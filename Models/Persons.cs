@@ -18,5 +18,5 @@ namespace ProjectInter.Models
 
 /*
     git add . 
-    git commit -m "Create class Person"
+    git commit -m "Git Init"
 */
