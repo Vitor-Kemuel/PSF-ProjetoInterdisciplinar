@@ -29,6 +29,8 @@ namespace ProjectInter.Repositories
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
+
+            return null;
         }
     }
 }
