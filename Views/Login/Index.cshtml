@@ -1,1 +1,30 @@
-<h1>Olá mundo</h1>
+@{
+    ViewBag.Title = "Point Login";
+    ViewBag.Styles = "css/login.css";
+    ViewBag.Script = "js/login.js";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div id="body">
+    <div id="loginBox">
+        <div id="left">
+            <img src="img/shopping.jpg" alt="Point Summer & foods" id="logoImage">
+        </div>
+        <div id="right">
+            <form id="formLogin" action="">
+                <h1 id="title">Bem-Vindo</h1>
+                <div id="inputContainer">
+                    <div id="emailCOntainer">
+                        <input class="loginInput" type="email" placeholder="email" />
+                    </div>
+                    <div id="passwordContainer">
+                        <input id="password" class="loginInput" type="password" placeholder="senha" /><span id="hideShowPassword" class="fas fa-eye-slash" onclick="hideShowPassword()"></span>
+                    </div>
+                    <button id="loginBtn" type="submit">
+                        Entrar 
+                        <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

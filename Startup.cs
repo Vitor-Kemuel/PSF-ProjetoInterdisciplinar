@@ -50,7 +50,7 @@ namespace ProjectInter
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Persons}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
