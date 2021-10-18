@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\ProjectInter.csproj": {}
+    "D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\ProjectInter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\ProjectInter.csproj": {
+    "D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\ProjectInter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\ProjectInter.csproj",
+        "projectUniqueName": "D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\ProjectInter.csproj",
         "projectName": "ProjectInter",
-        "projectPath": "C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\ProjectInter.csproj",
-        "packagesPath": "C:\\Users\\kemuv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\obj\\",
+        "projectPath": "D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\ProjectInter.csproj",
+        "packagesPath": "C:\\Users\\guilh\\.nuget\\packages\\",
+        "outputPath": "D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kemuv\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\guilh\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

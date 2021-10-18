@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using TodoList.Models;
+using ProjectInter.Models;
 using System.Data.SqlClient;
 
-
-
-namespace TodoList.Repositories
+namespace ProjectInter.Repositories
 {
-    public class PersonsDatabaseRepository : BDContext, IPersonsRepository
+    public class PersonsDatabaseRepository : BDContext
     {
         public void Create(Persons model)
         {
@@ -15,18 +13,20 @@ namespace TodoList.Repositories
             cmd.Connection = connection;
         }
 
-        public void Delete(int id){
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
-        }
-
-        public void Update(int id, Tarefa model)
+        public void Delete(int id)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
         }
 
-        public Persons Read(int id){
+        public void Update(int id, Persons model)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+        }
+
+        public Persons Read(int id)
+        {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
         }
