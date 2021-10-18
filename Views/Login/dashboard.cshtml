@@ -1,0 +1,71 @@
+@using ProjectInter.Models
+@model List<Order>
+
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/dashboard.css";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <div class="topBar">
+        <img id="logoTitle" src="/img/shppingLogoName.png" alt="">
+        <nav id="accountOpitions">
+            <a class="accountOpitions" href="#"><i class="far fa-user-circle"></i> Minha Conta</a>
+            <a class="accountOpitions" href="#"><i class="fas fa-sign-out-alt"></i>Sair</a>
+        </nav>
+    </div>
+    <hr>
+</header>
+<div id="dashboard">
+    <div id="bodyDashboard">
+        <div class="topBar">
+            <h2 id="subTitle">Cozinha</h2>
+            <a id="newOrder" href="">Fazer pedido +</a>
+        </div>
+        <div id="orderTable">
+            @foreach (var order in Model)
+            {     
+                <div class="cardOrderStatus">
+                    <div class="orderInformationLine">
+                        <p class="idOrder">#@order.IdOrder</p>
+                        <p class="dataOrder">@order.Date</p>
+                    </div>
+                    <div class="orderInformationLine">
+                        <p class="clientName">@order.Client</p>
+                    </div>
+                    <div class="orderInformationLine">
+                        <p class="orderStatus">Situação: @order.Situation</p>
+                    </div>
+                    <div class="orderInformationLine">
+                        <p class="orderDispatched"><i class="far fa-paper-plane"></i> @order.OrderRead</p>
+                        <p class="orderRead"><i class="fas fa-book-open"></i> @order.OrderAccepted</p>
+                        <p class="completedOrder"><i class="fas fa-truck"></i> @order.OrderDelivery</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="taskBar">
+    <nav id="options">
+        <a class="option" href="#">
+            <div class="optionIcon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <p class="descrition">Clientes</p>
+        </a>
+        <a class="option" href="#">
+            <div class="optionIcon">
+                <i class="fas fa-hamburger"></i>
+            </div>
+            <p class="descrition">Pedido</p>
+        </a>
+        <a class="option" href="#">
+            <div class="optionIcon">
+                <i class="far fa-clipboard"></i>
+            </div>
+            <p class="descrition">Estoque</p>
+        </a>
+    </nav>
+</div>

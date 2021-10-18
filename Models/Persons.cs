@@ -1,8 +1,17 @@
 namespace ProjectInter.Models
 {
-    public class Persons
+        public class Order
     {
-        
+        public int  IdOrder { get; set; }
+        public string  Date { get; set; }
+        public string  Client { get; set; }
+        public string  Situation { get; set; }
+        public string  OrderRead { get; set; }
+        public string  OrderAccepted { get; set; }
+        public string  OrderDelivery { get; set; }
+    }
+    public class Persons
+    {   
         public int IdPerson { get; set; }
 
         public string Name { get; set; }
