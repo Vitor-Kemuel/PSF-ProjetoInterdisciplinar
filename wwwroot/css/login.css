@@ -1,10 +1,15 @@
+/* Definição global */
 *{
     padding: 0;
     margin: 0;
 }
+
+/* Definição global para as tags HTML */
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+/* Definição do container da pagina */
 #container{
     position: fixed;
     height: 100%;
@@ -14,6 +19,8 @@ body{
     align-items: center;
     justify-content: center;
 }
+
+/* Definição IDs e classes do Container de login */
 #loginBox{
     display: flex;
     position: absolute;
@@ -21,31 +28,17 @@ body{
     background: rgba(0, 0, 0, 1);
     border-radius: 40px;
 }
+/* Definição Do lado esquerdo do container de login */
+#left{
+    margin-right: 10px;
+}
 #logoImage{
     display: block;
     width: 500px;
     border-radius: 40px 0 0 40px;
 }
-#formLogin{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgb(254, 220, 86);
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    border-radius: 0 40px 40px 0;
-    padding: 0 20px;
-}
-#inputContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
-}
-#left{
-    margin-right: 10px;
-}
+/* Definição do lado direito do conteiner de login */
+
 #title{
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #000;
@@ -56,6 +49,48 @@ body{
 }
 #title::selection{
     background: none;
+}
+#formLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(254, 220, 86);
+    height: 100%;
+    justify-content: space-around;
+    border-radius: 0 40px 40px 0;
+    padding: 0 20px;
+}
+/* Definição do conteiner dos input de email e password*/
+#inputContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.loginInput{
+    width: 320px;
+    height: 37px;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
+    font-size: 15px;
+    font-weight: bold;
+    margin: 10px;
+    background: rgba(255, 255, 255, 0);
+    color: #000;
+    padding: 10px 10px 0px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+}
+.loginInput::placeholder{
+    color:rgba(0, 0, 0, 0.7);
+}
+.loginInput:focus{
+    font-size: 20px;
+    padding: 5px 10px;
+    outline: none;
+}
+#password{
+    width: 280px;
+    padding-right: 50px;
 }
 #loginBtn{
     margin-top: 30px;
@@ -74,32 +109,6 @@ body{
     font-weight: bold;
     background: rgb(111, 56, 87);
 }
-.loginInput{
-    width: 320px;
-    height: 37px;
-    border: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 1);
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px;
-    background: rgba(255, 255, 255, 0);
-    color: #000;
-    padding: 10px 10px 0px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-}
-.loginInput::placeholder{
-    color:rgba(0, 0, 0, 0.7);
-    
-}
-#password{
-    width: 280px;
-    padding-right: 50px;
-}
-.loginInput:focus{
-    font-size: 20px;
-    padding: 5px 10px;
-    outline: none;
-}
 .fa-eye-slash, .fa-eye{
     font-size: 25px;
     background: none;
@@ -111,4 +120,46 @@ body{
 }
 .fa-eye-slash{
     margin-left: -57px;
+}
+
+@media (max-width: 950px){
+    #container{
+        background: rgb(254, 220, 86);
+    }
+    #loginBox{
+        display: flex;
+        position: fixed;
+        padding: 0px;
+        background: none;
+        border-radius: 0;
+        flex-direction: column;
+        height: 90%;
+    }
+    #left{
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    #logoImage{
+        display: block;
+        width: 70%;
+        border-radius: 0;
+    }
+    #title{
+        display: none;
+    }
+    #right{
+        height: 100%;
+    }
+    #formLogin{
+        background: none;
+        min-height: 70%;
+        border-radius: 0;
+        padding: 0;
+    }
+    #inputContainer{
+        height: 700px;
+        width: 100%;
+        margin: 0;
+    }
 }

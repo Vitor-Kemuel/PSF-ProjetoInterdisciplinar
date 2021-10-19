@@ -4,17 +4,18 @@
     ViewBag.Script = "js/login.js";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
+
 <div id="container">
     <div id="loginBox">
         <div id="left">
-            <img src="img/shopping.jpg" alt="Point Summer & foods" id="logoImage">
+            <img id="logoImage" src="img/shopping.jpg" alt="Point Summer & foods">
         </div>
+
         <div id="right">
-            @* <form id="formLogin" action=""> *@
             <form id="formLogin" asp-controller="Usuario" asp-action="Login" method="POST">
                 <h1 id="title">Bem-Vindo</h1>
                 <div id="inputContainer">
-                    <div id="emailCOntainer">
+                    <div id="emailContainer">
                         <input class="loginInput" type="email" placeholder="email" />
                     </div>
                     <div id="passwordContainer">
