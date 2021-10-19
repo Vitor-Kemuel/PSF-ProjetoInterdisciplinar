@@ -4,13 +4,12 @@ namespace ProjectInter.Repositories
 {
     public abstract class BDContext
     {
-        // Atributo
         protected SqlConnection connection;
 
         // Construtor
         public BDContext()
         {
-            var strConnection = "Data Source = localhost; Integrated Security = True; Initial Catalog = BDTodo";
+            var strConnection = "Data Source = localhost; Integrated Security = True; Initial Catalog = PointSummerFoods";
             connection = new SqlConnection(strConnection);
             connection.Open();
         }
