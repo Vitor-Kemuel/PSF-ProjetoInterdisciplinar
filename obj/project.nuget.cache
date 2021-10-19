@@ -1,6 +1,5 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "DKZ9Uqr6n5Eii8rrI65yWiCp/T+jWGu24XzOVrbuYvJzH59x2FyDFzMF99bn3qNiCTd4bWQdSmmfgOQoQK6tPA==",
   "success": true,
   "projectFilePath": "C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\ProjectInter.csproj",
@@ -14,32 +13,13 @@
     "C:\\Users\\kemuv\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\kemuv\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\kemuv\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
-=======
-  "dgSpecHash": "qyi3RJW3DEFxvs0NK9pCiIZOm49NU1jwvQGCqHvNJLjMMpC5SfDUFTkVaYHGXmQjsHsiYQ87okEEBg0gFC4HIQ==",
-  "success": true,
-  "projectFilePath": "D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\ProjectInter.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
->>>>>>> 32ef26f6401e2cafd6b87af033e59e0157f8a413
   ],
   "logs": [
     {
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-<<<<<<< HEAD
       "message": "Problema ao ler o arquivo de cache C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-=======
-      "message": "Problema ao ler o arquivo de cache D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
->>>>>>> 32ef26f6401e2cafd6b87af033e59e0157f8a413
     }
   ]
 }

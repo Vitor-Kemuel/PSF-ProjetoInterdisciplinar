@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Point Dashboard";
     ViewBag.Styles = "/css/dashboard.css";
+    ViewBag.Script = "/js/dashboard.js";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +12,7 @@
     <div class="topBar">
         <img id="logoTitle" src="/img/shppingLogoName.png" alt="">
         <nav id="accountOpitions">
-            <a class="accountOpitions" href="#"><i class="far fa-user-circle"></i> Minha Conta</a>
+            <a class="accountOpitions" href="#"><i class="far fa-user-circle"></i>Minha Conta</a>
             <a class="accountOpitions" href="#"><i class="fas fa-sign-out-alt"></i>Sair</a>
         </nav>
     </div>
@@ -19,7 +20,13 @@
 </header>
 
 <div class="session">
-    <h2 class="subTitle">Cozinha</h2>
+    <div id="sessionLeft">
+        <h2 class="subTitle">Cozinha</h2>
+        <div id="changeOrderDirection">
+            <span class="fas fa-list-ul" onclick="orderListDirection()"></span>
+            <span class="fas fa-th" onclick="orderGridDirection()"></span>
+        </div>
+    </div>
     <a id="newOrder" href="">Fazer pedido +</a>
 </div>
 
@@ -48,6 +55,7 @@
             }
         </div>
     </div>
+
 </div>
 
 <div id="taskBar">
