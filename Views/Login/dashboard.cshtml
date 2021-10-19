@@ -17,12 +17,14 @@
     </div>
     <hr>
 </header>
+
+<div class="session">
+    <h2 class="subTitle">Cozinha</h2>
+    <a id="newOrder" href="">Fazer pedido +</a>
+</div>
+
 <div id="dashboard">
     <div id="bodyDashboard">
-        <div class="topBar">
-            <h2 id="subTitle">Cozinha</h2>
-            <a id="newOrder" href="">Fazer pedido +</a>
-        </div>
         <div id="orderTable">
             @foreach (var order in Model)
             {     
@@ -47,8 +49,15 @@
         </div>
     </div>
 </div>
+
 <div id="taskBar">
     <nav id="options">
+        <a class="option" href="#">
+            <div class="optionIcon">
+                <i class="fas fa-solid fa-utensils"></i>
+            </div>
+            <p class="descrition">Cozinha</p>
+        </a>
         <a class="option" href="#">
             <div class="optionIcon">
                 <i class="fas fa-user-plus"></i>

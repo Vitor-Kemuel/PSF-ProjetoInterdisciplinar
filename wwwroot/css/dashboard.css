@@ -1,29 +1,138 @@
+/* Definição global */
 *{
     padding: 0;
     margin: 0;
 }
 
+/* Definição global para as tags HTML */
 body{
     display: flex;
     flex-direction: row;
-    background-color: rgb(139, 139, 139);
+    background: #939393 url(../img/background.png) no-repeat fixed;
     font-family: Arial, Helvetica, sans-serif;
 }
 a{
     text-decoration: none;
 }
-
-.shoppingIcon{
-    width: 80px;
+header{
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    background: rgb(254, 220, 86);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+    z-index: +1;
 }
+hr{
+    border: solid 3px rgb(111, 56, 87);
+}
+
+/* Definição IDs e Classes do header */
+.topBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+#logoTitle{
+    height: 80px;
+}
+.accountOpitions{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    margin-right: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .10s ease all;
+}
+.accountOpitions:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(111, 56, 87);
+    font-size: 17px;
+    font-weight: bold;
+    transition: .10s ease all;
+}
+
+/* Definição IDs e Classes da session */
+.session{
+    display: flex;
+    position: fixed;
+    margin: 86px 0 0px 80px;
+    padding: 14px 0 10px 20px;
+    width: 100%;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 83%, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8));
+}
+#newOrder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 37px;
+    border-radius: 15px;
+    background: rgb(111, 56, 87);
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+    margin-right: 120px;
+}
+#newOrder:hover{
+    background: rgba(111, 56, 87, .7);
+}
+.subTitle{
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+/* Definição ID e Classes do dashboard */
+#dashboard{
+    padding-top: 100px;
+    margin-left: 80px;
+    width: 100%;
+}
+#orderTable{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    margin: 15px 20px;
+    padding: 60px 0 0 0;
+}
+/* Definição IDs e Classes dos cards da dashboard */
+.cardOrderStatus{
+    width: 300px;
+    margin: 10px;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 25px;
+    background: rgba(219, 219, 219, .9);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+}
+.orderInformationLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.idOrder{
+    color:rgba(0, 0, 0, 0.6);
+}
+.clientName{
+    font-weight: bold;
+}
+
+/* Definição IDs e Classes da taskbar */
 #taskBar{
     display: flex;
-    position: absolute;
+    position: fixed;
     flex-direction: column;
     height: 100%;
     width: 80px;
-    background: rgb(78, 8, 52);
+    background: rgb(254, 220, 86);
     margin-top: 86px;
+    filter: drop-shadow(2px 4px 4px rgba(44, 44, 44, 0.9));
 }
 #options{
     display: flex;
@@ -38,17 +147,15 @@ a{
     justify-content: space-around;
     width: 80px;
     height: 70px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 .option:hover{
+    color: rgb(255, 255, 255);
     width: 200px;
     border-radius: 0 40px 40px 0;
-    background: rgb(100, 10, 67);
+    background: rgb(111, 56, 87);
     flex-direction: row;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-}
-.descrition{
-    display: none;
 }
 .optionIcon{
     width: 30px;
@@ -58,96 +165,11 @@ a{
 .option:hover > .optionIcon{
     margin-left: 25px;
 }
+.descrition{
+    display: none;
+}
 .option:hover > .descrition{
     margin-right: 30px;
     transition: all 10s;
     display: flex;
-}
-#dashboard{
-    margin-top: 100px;
-    margin-left: 80px;
-    width: 100%;
-}
-
-header{
-    height: 80px;
-    position: fixed;
-    width: 100%;
-    background: rgb(78, 8, 52);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-    z-index: +1;
-}
-hr{
-    border: solid 3px #000 ;
-}
-#subTitle{
-    font-size: 40px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-}
-.topBar{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 15px;
-}
-#logoTitle{
-    height: 80px;
-}
-.accountOpitions{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    margin-right: 5px;
-    padding: 10px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: .10s ease all;
-}
-.accountOpitions:hover{
-    background-color: rgb(100, 10, 67);
-    font-size: 17px;
-    font-weight: bold;
-    transition: .10s ease all;
-}
-#newOrder{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 37px;
-    border-radius: 15px;
-    background: rgb(100, 10, 67);
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-}
-#newOrder:hover{
-    background: rgba(121, 12, 81, .7);
-}
-
-#orderTable{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 15px 20px;
-}
-
-.cardOrderStatus{
-    width: 300px;
-    margin: 10px;
-    justify-content: space-between;
-    padding: 20px;
-    border-radius: 25px;
-    background: rgb(178, 179, 178);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-}
-.orderInformationLine{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 5px 0;
-}
-.idOrder{
-    color:rgba(0, 0, 0, 0.6);
 }
