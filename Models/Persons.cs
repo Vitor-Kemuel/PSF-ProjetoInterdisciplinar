@@ -10,7 +10,7 @@ namespace ProjectInter.Models
         public string  OrderAccepted { get; set; }
         public string  OrderDelivery { get; set; }
     }
-    public class Persons
+    public abstract class Persons
     {   
         public int IdPerson { get; set; }
 
