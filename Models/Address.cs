@@ -4,7 +4,7 @@ namespace ProjectInter.Models
     {
         public int IdAddress { get; set; }
 
-        public string Address { get; set; }
+        public string NameAddress { get; set; }
 
         public string NumberAddress { get; set; }
 

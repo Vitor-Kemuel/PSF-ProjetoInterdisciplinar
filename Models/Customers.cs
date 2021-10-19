@@ -4,7 +4,7 @@ namespace ProjectInter.Models
     {
         public int IdCustomers { get; set; }
 
-        public int IdPerson { get; set; }  
+        public int FkPerson { get; set; }  
 
         public string cpf { get; set; }
     }
