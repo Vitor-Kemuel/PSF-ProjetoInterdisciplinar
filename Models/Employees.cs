@@ -1,6 +1,6 @@
 namespace ProjectInter.Models
 {
-    public class Employee : Persons
+    public class Employees : Persons
     {
         public int IdEmployee { get; set; }
 

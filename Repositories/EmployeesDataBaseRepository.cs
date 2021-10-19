@@ -3,9 +3,9 @@ using ProjectInter.Models;
 
 namespace ProjectInter.Repositories
 {
-    public class EmployessDataBaseRepository : BDContext, IEmployeeRepository
+    public class EmployessDataBaseRepository : BDContext, IEmployeesRepository
     {
-        public void Create(Employee employee)
+        public void Create(Employees employee)
         {
             throw new System.NotImplementedException();
         }
@@ -15,17 +15,17 @@ namespace ProjectInter.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Employee GetEmployee(int id)
+        public Employees GetEmployee(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<Employee> GetListEmployees()
+        public List<Employees> GetListEmployees()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update(int id, Employee employee)
+        public void Update(int id, Employees employee)
         {
             throw new System.NotImplementedException();
         }

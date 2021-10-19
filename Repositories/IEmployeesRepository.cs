@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace ProjectInter.Repositories
 {
-    public interface IEmployeeRepository
+    public interface IEmployeesRepository
     {
-        void Create(Employee employee);
+        void Create(Employees employee);
 
-        List<Employee> GetListEmployees();
+        List<Employees> GetListEmployees();
 
-        Employee GetEmployee(int id);
+        Employees GetEmployee(int id);
 
-        void Update(int id, Employee employee);
+        void Update(int id, Employees employee);
 
         void Delete(int id);
     }
