@@ -522,7 +522,11 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
+<<<<<<< HEAD
       "message": "Problema ao ler o arquivo de cache C:\\Users\\kemuv\\Documents\\Interdisciplinar\\point-do-acai-projeto-interdisciplinar\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problema ao ler o arquivo de cache D:\\Desenvolvimento\\Dev interdisciplinar\\ProjectInter\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> 32ef26f6401e2cafd6b87af033e59e0157f8a413
     }
   ]
 }
