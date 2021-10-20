@@ -1,0 +1,44 @@
+#changeDirection{
+    display: none;
+}
+#OptionSession{
+    display: none;
+}
+/* Definição da tabela de Pedidos */
+#table{
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    margin: 60px 20px 30px;
+    padding: 10px 0;
+    background: rgba(165, 165, 165, 0.7);
+    /* align-items: center; */
+    justify-content: center;
+    border-radius: 20px;
+}
+
+/* Definição IDs e Classes dos cards da dashboard */
+#formCadastro{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.formLine{
+    width: 100%;
+    display: flex;
+    margin: 5px 0;
+}
+.formInput{
+    width: 100%;
+    margin: 0 7px;
+    height: 30px;
+    border-radius: 13px;
+}
+.divForm{
+    width: 98%;
+    border: 1px rgb(122, 122, 122) solid;
+    margin: 10px 0;
+}

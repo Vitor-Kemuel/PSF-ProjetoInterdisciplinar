@@ -1,0 +1,27 @@
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/newCustomer.css";
+    ViewBag.TitleSession = "Cadastro de clientes";
+    Layout = "/Views/Shared/_layoutDashboard.cshtml";
+}
+
+<div id="table">
+    <form id="formCadastro" asp-controller="Usuario" asp-action="Cadastro" method="POST">
+        <div class="formLine">
+            <input id="formName" class="formInput" type="text" placeholder="Nome">
+        </div>
+        <div class="formLine">
+            <input class="formInput" type="text" placeholder="CPF">
+            <input class="formInput" type="text" placeholder="Telefone">
+        </div>
+        <div class="formLine">
+            <input class="formInput" type="text" placeholder="E-mail">
+            <input class="formInput" type="text" placeholder="Senha">
+        </div>
+        <hr class="divForm">
+        <div id="Adresses">
+
+        </div>
+        <span>Adicionar Endereço</span>
+    </form>
+</div>

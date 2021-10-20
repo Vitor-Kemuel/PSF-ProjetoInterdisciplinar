@@ -126,5 +126,9 @@ namespace ProjectInter.Controllers
         {
             return View(getCustomers());
         }
+        public ActionResult NewCustomer()
+        {
+            return View();
+        }
     }
 }

@@ -1,7 +1,6 @@
 /* Definição da tabela de Pedidos */
 #table{
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: column;
     margin: 30px 20px;
     padding: 60px 0 0 0;

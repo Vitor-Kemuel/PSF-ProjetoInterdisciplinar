@@ -32,24 +32,24 @@
             <span class="fas fa-th" onclick="orderGridDirection()"></span>
         </div>
     </div>
-    <a id="OptionSession" href="">@ViewBag.OptionSession +</a>
+    <a id="OptionSession" href="@ViewBag.OptionSessionLink">@ViewBag.OptionSessionTitle +</a>
 </div>
 
 <div id="dashboard">
-    <div id="bodyDashboard">]
-        @RenderBody();
+    <div id="bodyDashboard">
+        @RenderBody()
     </div>
 </div>
 
 <div id="taskBar">
     <nav id="options">
-        <a class="option" href="#">
+        <a class="option" href="/Dashboard/Order">
             <div class="optionIcon">
                 <i class="fas fa-solid fa-utensils"></i>
             </div>
             <p class="descrition">Cozinha</p>
         </a>
-        <a class="option" href="#">
+        <a class="option" href="CustomerList">
             <div class="optionIcon">
                 <i class="fas fa-user-plus"></i>
             </div>
