@@ -1,0 +1,32 @@
+@using ProjectInter.Models
+@model List<Customer>
+
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/Customer.css";
+    ViewBag.OptionSession = "Fazer pedido";
+    ViewBag.TitleSession = "Clientes";
+    @* ViewBag.Script = "/js/listGrid.js"; *@
+    Layout = "/Views/Shared/_layoutDashboard.cshtml";
+}
+
+<div id="table">
+    @foreach (var customer in Model)
+    {     
+        <div class="card">
+            <div class="informationLine">
+                <p class="clientName">@customer.Name</p>
+                <p class="idCustomer">#@customer.IdCustomer</p>
+            </div>
+            <div class="informationLine">
+                <p class="customerAdress">@customer.Adress</p>
+            </div>
+            <div class="informationLine">
+                <p class="customerAdressComplement">Situação: @customer.Complemento</p>
+            </div>
+            <div class="informationLine">
+                <p class="customerContact">@customer.Telefone</p>
+            </div>
+        </div>
+    }
+</div>

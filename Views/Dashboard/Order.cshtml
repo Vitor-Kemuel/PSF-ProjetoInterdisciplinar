@@ -1,0 +1,34 @@
+@using ProjectInter.Models
+@model List<Order>
+
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/order.css";
+    ViewBag.OptionSession = "Fazer pedido";
+    ViewBag.TitleSession = "Cozinha";
+    ViewBag.Script = "/js/listGrid.js";
+    Layout = "/Views/Shared/_layoutDashboard.cshtml";
+}
+
+<div id="orderTable">
+    @foreach (var order in Model)
+    {     
+        <div class="cardOrderStatus">
+            <div class="orderInformationLine">
+                <p class="idOrder">#@order.IdOrder</p>
+                <p class="dataOrder">@order.Date</p>
+            </div>
+            <div class="orderInformationLine">
+                <p class="clientName">@order.Client</p>
+            </div>
+            <div class="orderInformationLine">
+                <p class="orderStatus">Situação: @order.Situation</p>
+            </div>
+            <div class="orderInformationLine">
+                <p class="orderDispatched"><i class="far fa-paper-plane"></i> @order.OrderRead</p>
+                <p class="orderRead"><i class="fas fa-book-open"></i> @order.OrderAccepted</p>
+                <p class="completedOrder"><i class="fas fa-truck"></i> @order.OrderDelivery</p>
+            </div>
+        </div>
+    }
+</div>

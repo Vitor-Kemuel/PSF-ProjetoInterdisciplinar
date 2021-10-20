@@ -66,7 +66,7 @@ hr{
     z-index: 1;
     filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.9));
 }
-#newOrder{
+#OptionSession{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,11 +80,11 @@ hr{
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
     margin-right: 120px;
 }
-#newOrder:hover{
+#OptionSession:hover{
     background: rgba(111, 56, 87, .7);
 }
 /* Definição IDs e classes dos botoes para alterar direção do painel */
-#changeOrderDirection{
+#changeDirection{
     display: flex;
 }
 .subTitle{
@@ -105,34 +105,6 @@ hr{
     padding-top: 100px;
     margin-left: 80px;
     width: 100%;
-}
-#orderTable{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 30px 20px;
-    padding: 60px 0 0 0;
-}
-/* Definição IDs e Classes dos cards da dashboard */
-.cardOrderStatus{
-    width: 300px;
-    margin: 10px;
-    justify-content: space-between;
-    padding: 20px;
-    border-radius: 25px;
-    background: rgba(219, 219, 219, .9);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-}
-.orderInformationLine{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 5px 0;
-}
-.idOrder{
-    color:rgba(0, 0, 0, 0.6);
-}
-.clientName{
-    font-weight: bold;
 }
 
 /* Definição IDs e Classes da taskbar */

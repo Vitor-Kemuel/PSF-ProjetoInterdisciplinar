@@ -1,6 +1,6 @@
 namespace ProjectInter.Models
 {
-        public class Order
+    public class Order
     {
         public int  IdOrder { get; set; }
         public string  Date { get; set; }
@@ -9,6 +9,14 @@ namespace ProjectInter.Models
         public string  OrderRead { get; set; }
         public string  OrderAccepted { get; set; }
         public string  OrderDelivery { get; set; }
+    }
+    public class Customer
+    {
+        public int IdCustomer { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+        public string Complemento { get; set; }
+        public string Telefone { get; set; }
     }
     public abstract class Persons
     {   

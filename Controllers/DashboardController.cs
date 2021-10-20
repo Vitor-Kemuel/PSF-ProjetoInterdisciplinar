@@ -63,9 +63,68 @@ namespace ProjectInter.Controllers
 
             return orders;
         }
-        public ActionResult Dashboard()
+        public ActionResult Order()
         {   
             return View(getOrders());
+        }
+        private List<Customer> getCustomers()
+        {
+            List<Customer> customers = new List<Customer>();
+
+            Customer customer01 = new Customer();
+            customer01.IdCustomer = 1;
+            customer01.Name = "José da Silva";
+            customer01.Adress = "Rua. Antonio José, 654";
+            customer01.Complemento = "Ap. 15";
+            customer01.Telefone = "(17) 91234-5678";
+
+            Customer customer02 = new Customer();
+            customer02.IdCustomer = 1;
+            customer02.Name = "José da Silva";
+            customer02.Adress = "Rua. Antonio José, 654";
+            customer02.Complemento = "Ap. 15";
+            customer02.Telefone = "(17) 91234-5678";
+
+            Customer customer03 = new Customer();
+            customer03.IdCustomer = 1;
+            customer03.Name = "José da Silva";
+            customer03.Adress = "Rua. Antonio José, 654";
+            customer03.Complemento = "Ap. 15";
+            customer03.Telefone = "(17) 91234-5678";
+
+            Customer customer04 = new Customer();
+            customer04.IdCustomer = 1;
+            customer04.Name = "José da Silva";
+            customer04.Adress = "Rua. Antonio José, 654";
+            customer04.Complemento = "Ap. 15";
+            customer04.Telefone = "(17) 91234-5678";
+
+            Customer customer05 = new Customer();
+            customer05.IdCustomer = 1;
+            customer05.Name = "José da Silva";
+            customer05.Adress = "Rua. Antonio José, 654";
+            customer05.Complemento = "Ap. 15";
+            customer05.Telefone = "(17) 91234-5678";
+
+            Customer customer06 = new Customer();
+            customer06.IdCustomer = 1;
+            customer06.Name = "José da Silva";
+            customer06.Adress = "Rua. Antonio José, 654";
+            customer06.Complemento = "Ap. 15";
+            customer06.Telefone = "(17) 91234-5678";
+
+            customers.Add(customer01);
+            customers.Add(customer02);
+            customers.Add(customer03);
+            customers.Add(customer04);
+            customers.Add(customer05);
+            customers.Add(customer06);
+
+            return customers;
+        }
+        public ActionResult CustomerList()
+        {
+            return View(getCustomers());
         }
     }
 }

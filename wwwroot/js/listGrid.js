@@ -1,6 +1,4 @@
 function cardWidth(size){
-    // var direction = document.querySelector('.cardOrderStatus');
-    // direction.style.width = size;
     var divs =document.getElementsByTagName("div");
     for(var i=0;i<=divs.length;i++) 
     {
@@ -10,7 +8,6 @@ function cardWidth(size){
         }
     }
 }
-
 
 function orderListDirection(){
     var direction = document.querySelector('#orderTable');

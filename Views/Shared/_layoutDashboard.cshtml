@@ -1,12 +1,17 @@
-@using ProjectInter.Models
-@model List<Order>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="@ViewBag.Styles">
+    <script src="@ViewBag.Script"></script>
+    <script src="https://kit.fontawesome.com/b035d81f9c.js" crossorigin="anonymous" defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
 
-@{
-    ViewBag.Title = "Point Dashboard";
-    ViewBag.Styles = "/css/dashboard.css";
-    ViewBag.Script = "/js/dashboard.js";
-    Layout = "/Views/Shared/_Layout.cshtml";
-}
+<body>
 
 <header>
     <div class="topBar">
@@ -21,41 +26,19 @@
 
 <div class="session">
     <div id="sessionLeft">
-        <h2 class="subTitle">Cozinha</h2>
-        <div id="changeOrderDirection">
+        <h2 class="subTitle">@ViewBag.TitleSession</h2>
+        <div id="changeDirection">
             <span class="fas fa-list-ul" onclick="orderListDirection()"></span>
             <span class="fas fa-th" onclick="orderGridDirection()"></span>
         </div>
     </div>
-    <a id="newOrder" href="">Fazer pedido +</a>
+    <a id="OptionSession" href="">@ViewBag.OptionSession +</a>
 </div>
 
 <div id="dashboard">
-    <div id="bodyDashboard">
-        <div id="orderTable">
-            @foreach (var order in Model)
-            {     
-                <div class="cardOrderStatus">
-                    <div class="orderInformationLine">
-                        <p class="idOrder">#@order.IdOrder</p>
-                        <p class="dataOrder">@order.Date</p>
-                    </div>
-                    <div class="orderInformationLine">
-                        <p class="clientName">@order.Client</p>
-                    </div>
-                    <div class="orderInformationLine">
-                        <p class="orderStatus">Situação: @order.Situation</p>
-                    </div>
-                    <div class="orderInformationLine">
-                        <p class="orderDispatched"><i class="far fa-paper-plane"></i> @order.OrderRead</p>
-                        <p class="orderRead"><i class="fas fa-book-open"></i> @order.OrderAccepted</p>
-                        <p class="completedOrder"><i class="fas fa-truck"></i> @order.OrderDelivery</p>
-                    </div>
-                </div>
-            }
-        </div>
+    <div id="bodyDashboard">]
+        @RenderBody();
     </div>
-
 </div>
 
 <div id="taskBar">
@@ -86,3 +69,5 @@
         </a>
     </nav>
 </div>
+
+</body>
