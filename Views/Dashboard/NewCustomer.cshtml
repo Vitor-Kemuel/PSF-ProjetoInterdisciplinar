@@ -2,26 +2,35 @@
     ViewBag.Title = "Point Dashboard";
     ViewBag.Styles = "/css/newCustomer.css";
     ViewBag.TitleSession = "Cadastro de clientes";
+    ViewBag.Script = "/js/newCustomer.js";
     Layout = "/Views/Shared/_layoutDashboard.cshtml";
 }
 
 <div id="table">
     <form id="formCadastro" asp-controller="Usuario" asp-action="Cadastro" method="POST">
-        <div class="formLine">
-            <input id="formName" class="formInput" type="text" placeholder="Nome">
-        </div>
-        <div class="formLine">
-            <input class="formInput" type="text" placeholder="CPF">
-            <input class="formInput" type="text" placeholder="Telefone">
-        </div>
-        <div class="formLine">
-            <input class="formInput" type="text" placeholder="E-mail">
-            <input class="formInput" type="text" placeholder="Senha">
+        <div id="consumerInfo">
+            <div class="formLine">
+                <input id="customerName" class="formInput" type="text" placeholder="Nome">
+                <input id="customerCPF" class="formInput" type="text" placeholder="CPF">
+            </div>
+            <div class="formLine">
+                <input id="customerEmail" class="formInput" type="text" placeholder="E-mail">
+                <input id="customerPhoneNumber" class="formInput" type="text" placeholder="Telefone">
+            </div>
+            <div class="formLine">
+                <input id="CustomerPassword" class="formInput" type="text" placeholder="Senha">
+                <input id="CustomerConfirmPassword" class="formInput" type="text" placeholder="Confirmar Senha">
+            </div>
         </div>
         <hr class="divForm">
-        <div id="Adresses">
+        <div id="adresses">
 
         </div>
-        <span>Adicionar Endereço</span>
+        <div id="formOptionsBtn">
+            <div id="newAdress">
+                <span class="btnForm" onclick="newAdress()" >Adicionar Endereço +</span>
+            </div>
+            <button id="btnSubmit" class="btnForm" type="submit">Salvar <i class="far fa-save"></i></button>
+        </div>
     </form>
 </div>

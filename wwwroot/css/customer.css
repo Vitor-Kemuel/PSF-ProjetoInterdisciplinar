@@ -1,3 +1,8 @@
+/* Definindo elementos do layout que n devem ser mostrados na pagina */
+#changeDirection{
+    display: none;
+}
+
 /* Definição da tabela de Pedidos */
 #table{
     display: flex;
@@ -27,8 +32,4 @@
 }
 .clientName{
     font-weight: bold;
-}
-
-#changeDirection{
-    display: none;
 }

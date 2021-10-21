@@ -103,10 +103,10 @@ body{
     font-size: 20px;
     cursor: pointer;
     filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.9));
+    font-weight: bold;
 }
 #loginBtn:hover{
     border-style: inset;
-    font-weight: bold;
     background: rgb(111, 56, 87);
 }
 .fa-eye-slash, .fa-eye{

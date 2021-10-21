@@ -1,23 +1,23 @@
+/* Definindo elementos do layout que n devem ser mostrados na pagina */
 #changeDirection{
     display: none;
 }
 #OptionSession{
     display: none;
 }
+
 /* Definição da tabela de Pedidos */
 #table{
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
     margin: 60px 20px 30px;
     padding: 10px 0;
     background: rgba(165, 165, 165, 0.7);
-    /* align-items: center; */
     justify-content: center;
     border-radius: 20px;
 }
 
-/* Definição IDs e Classes dos cards da dashboard */
+/* Definição IDs e Classes do form da dashboard */
 #formCadastro{
     display: flex;
     width: 100%;
@@ -36,9 +36,55 @@
     margin: 0 7px;
     height: 30px;
     border-radius: 13px;
+    padding: 10px 20px;
+    font-size: 25px;
+    border: 2px rgb(122, 122, 122) solid;
+}
+#consumerInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+#adresses{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+#newAdress{
+    display: flex;
+}
+#customerPhoneNumber, #customerCPF{
+    width: 40%;
 }
 .divForm{
     width: 98%;
     border: 1px rgb(122, 122, 122) solid;
     margin: 10px 0;
+}
+#formOptionsBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.btnForm{
+    background: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 7px;
+    color: rgba(156, 39, 173, 1);
+}
+.btnForm:hover{
+    background: rgba(255, 255, 255, 0.7);
+}
+.cepInput{
+    width: 20%;
+}
+.adressNumber{
+    width: 30%;
+}
+.titleAdress{
+    margin-left: 15px;
 }
