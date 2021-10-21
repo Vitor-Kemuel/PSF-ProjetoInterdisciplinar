@@ -24,15 +24,10 @@
     <hr>
 </header>
 
-<div class="session">
-    <div id="sessionLeft">
-        <h2 class="subTitle">@ViewBag.TitleSession</h2>
-        <div id="changeDirection">
-            <span class="fas fa-list-ul" onclick="orderListDirection()"></span>
-            <span class="fas fa-th" onclick="orderGridDirection()"></span>
-        </div>
-    </div>
-    <a id="OptionSession" href="@ViewBag.OptionSessionLink">@ViewBag.OptionSessionTitle +</a>
+<div id="session" class="session" >
+    <script>
+        getSession();
+    </script>
 </div>
 
 <div id="dashboard">

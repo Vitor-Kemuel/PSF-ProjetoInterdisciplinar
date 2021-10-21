@@ -15,3 +15,12 @@ function newAdress(){
     var adressForm = document.getElementById("adresses");
     adressForm.innerHTML = adressForm.innerHTML + newAdressForm;
 }
+
+function getSession(){
+    var getSession =              "<div id='sessionLeft'>";
+    var getSession = getSession + "<h2 class='subTitle'>Cadastro de clientes</h2>";
+    var getSession = getSession + "</div>";
+    
+    var session = document.getElementById("session");
+    session.innerHTML = session.innerHTML + getSession;
+}
