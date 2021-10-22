@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ProjectInter.Repositories
 {
-    public class CustomerMemoryRepository : BDContext, ICustomersRepository
+    public class CustomerMemoryRepository : ICustomersRepository
     {
 
         private static List<Customers> customers = new List<Customers>();

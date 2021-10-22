@@ -22,12 +22,16 @@ namespace ProjectInter.Controllers
 
             Order order01 = new Order();
             order01.IdOrder = 1;
-            order01.DateToSell = new DateTime(2021, 22, 10);
+            // order01.DateToSell = new DateTime(2021, 22, 10);
+            order01.DateToSell = "15/10";
             order01.Situation = "Finalizado";
             order01.CodeOrder = "001282";
             order01.Observations = "Sem cebola";
-            order01.QuantityItens = 2;
-            order01.TypeOrder = 1;
+            // order01.QuantityItens = 2; quantidade deve ser por intens
+            order01.OrderRead = "15:15";
+            order01.OrderAccepted = "15:15";
+            order01.OrderDelivery = "15:20";
+            // order01.TypeOrder = 1;
 
             orders.Add(order01);
 
