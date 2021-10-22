@@ -1,15 +1,11 @@
+using System.Collections.Generic;
+
 namespace ProjectInter.Models
 {
     public class Customers : Persons
     {
-        public int IdCustomers { get; set; }
-
-        public int FkPerson { get; set; }  
-
         public string cpf { get; set; }
 
-        #region Foreign Key
-        public Persons Person { get; set; }    
-        #endregion
+        public List<Address> Address { get; set; }
     }
 }
