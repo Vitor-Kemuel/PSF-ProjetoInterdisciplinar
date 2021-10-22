@@ -12,6 +12,8 @@ namespace ProjectInter.Models
 
         public string ComplementAddress { get; set; }
 
-        public string ZipCodeAddress { get; set; }  
+        public string ZipCodeAddress { get; set; }
+
+        public int IdCustomer { get; set; }  
     }
 }
