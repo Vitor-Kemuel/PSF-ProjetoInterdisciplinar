@@ -7,5 +7,9 @@ namespace ProjectInter.Models
         public int FkPerson { get; set; }  
 
         public string cpf { get; set; }
+
+        #region Foreign Key
+        public Persons Person { get; set; }    
+        #endregion
     }
 }

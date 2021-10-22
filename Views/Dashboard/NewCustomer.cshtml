@@ -10,15 +10,15 @@
     <form id="formCadastro" asp-controller="Usuario" asp-action="Cadastro" method="POST">
         <div id="consumerInfo">
             <div class="formLine">
-                <input id="customerName" class="formInput" type="text" placeholder="Nome">
-                <input id="customerCPF" class="formInput" type="text" placeholder="CPF">
+                <input id="customerName" class="formInput" type="text" placeholder="Nome" name="Name">
+                <input id="customerCPF" class="formInput" type="text" placeholder="CPF" name="cpf">
             </div>
             <div class="formLine">
-                <input id="customerEmail" class="formInput" type="text" placeholder="E-mail">
-                <input id="customerPhoneNumber" class="formInput" type="text" placeholder="Telefone">
+                <input id="customerEmail" class="formInput" type="text" placeholder="E-mail" name="Email">
+                <input id="customerPhoneNumber" class="formInput" type="text" placeholder="Telefone" name="Cellphone">
             </div>
             <div class="formLine">
-                <input id="CustomerPassword" class="formInput" type="text" placeholder="Senha">
+                <input id="CustomerPassword" class="formInput" type="text" placeholder="Senha" name="Password">
                 <input id="CustomerConfirmPassword" class="formInput" type="text" placeholder="Confirmar Senha">
             </div>
         </div>

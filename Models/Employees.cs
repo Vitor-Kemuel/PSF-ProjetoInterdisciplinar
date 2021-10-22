@@ -9,5 +9,9 @@ namespace ProjectInter.Models
         public string Responsibility { get; set; }
 
         public decimal Wage { get; set; }
+
+        #region Foreign Key
+        public Persons Person { get; set; }    
+        #endregion
     }
 }
