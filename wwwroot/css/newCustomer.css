@@ -52,7 +52,7 @@
     flex-direction: column;
     margin: 5px 0;
 }
-#newAdress{
+#optionAdress{
     display: flex;
 }
 #customerPhoneNumber, #customerCPF{
@@ -87,4 +87,12 @@
 }
 .titleAdress{
     margin-left: 15px;
+}
+
+#trash{
+    margin: 0 7px 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #000;
 }

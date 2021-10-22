@@ -1,5 +1,17 @@
+function remove(){
+    var divs = document.getElementsByTagName("div");
+    for(var i=0;i<=divs.length;i++) 
+    {
+        if(divs[i].className == "adress") 
+        {
+            divs[i].parentNode.removeChild(divs[i]);
+        }
+    }
+}
+
 function newAdress(){
-    var newAdressForm =                 "<h2 class='titleAdress'>Endereço:</h2>";
+    var newAdressForm =                 "<div class='adress'";
+    var newAdressForm = newAdressForm + "<h2 class='titleAdress'>Endereço:</h2>";
     var newAdressForm = newAdressForm + "<div class='formLine'>";
     var newAdressForm = newAdressForm + "<input class='formInput cepInput' type='text' placeholder='CEP'>";
     var newAdressForm = newAdressForm + "</div>";
@@ -11,9 +23,16 @@ function newAdress(){
     var newAdressForm = newAdressForm + "<input class='formInput' type='text' placeholder='Bairro'>";
     var newAdressForm = newAdressForm + "<input class='formInput' type='text' placeholder='Complemento'>";
     var newAdressForm = newAdressForm + "</div><br>";
+    var newAdressForm = newAdressForm + "</div>";
     
     var adressForm = document.getElementById("adresses");
     adressForm.innerHTML = adressForm.innerHTML + newAdressForm;
+
+    var trash = document.getElementById("trash");
+    if (trash == null){
+        var removeOption = document.getElementById("optionAdress");
+        removeOption.innerHTML = "<span id='trash' class='btnForm trash' onclick='remove()'><i class='fas fa-trash-alt'></i></span>" + removeOption.innerHTML;
+    }
 }
 
 function getSession(){
