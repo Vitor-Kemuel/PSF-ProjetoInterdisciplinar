@@ -1,12 +1,12 @@
 using ProjectInter.Models;
 using System.Collections.Generic;
 
-namespace ProjectInter.Repositories
+namespace ProjectInter.Data.Interfaces
 {
     public interface ICustomersRepository
     {
         void Create(Customers customers);
-        List<Customers> GetListCustomers();
+        List<Customers> GetAllCustomers();
         Customers GetCustomer(int id);
         void Update(int id, Customers customers);
         void Delete(int id);

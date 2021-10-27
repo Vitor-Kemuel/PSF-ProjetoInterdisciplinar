@@ -1,6 +1,8 @@
-namespace ProjectInter.Repositories
+using ProjectInter.Data.Interfaces;
+
+namespace ProjectInter.Data.Repositories
 {
-    public class AddressDataBaseRepository : BDContext, IAddressRepository
+    public class AddressRepository : BDContext, IAddressRepository
     {
         public void CreateAddressOfCustomer(int idCudtomer)
         {

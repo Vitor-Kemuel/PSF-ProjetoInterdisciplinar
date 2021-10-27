@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using ProjectInter.Models;
+using ProjectInter.Data.Interfaces;
 
-namespace ProjectInter.Repositories
+namespace ProjectInter.Data.Repositories
 {
-    public class CustomersDataBaseRepository : BDContext, ICustomersRepository
+    public class CustomersRepository : BDContext, ICustomersRepository
     {
         public void Create(Customers customers)
         {
@@ -20,7 +21,7 @@ namespace ProjectInter.Repositories
             throw new System.NotImplementedException();
         }
 
-        public List<Customers> GetListCustomers()
+        public List<Customers> GetAllCustomers()
         {
             throw new System.NotImplementedException();
         }

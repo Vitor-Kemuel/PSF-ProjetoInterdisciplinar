@@ -1,4 +1,4 @@
-namespace ProjectInter.Repositories
+namespace ProjectInter.Data.Interfaces
 {
     public interface IAddressRepository
     {

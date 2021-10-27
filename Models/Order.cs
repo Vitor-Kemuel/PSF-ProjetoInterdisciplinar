@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ProjectInter.Models
 {
@@ -6,14 +7,18 @@ namespace ProjectInter.Models
     {
         public int IdOrder { get; set; }  
         public string CodeOrder { get; set; }   
-        public int TypeOrder { get; set; }
-        // public int QuantityItens { get; set; }  quantidade deve ser por itens   
         public string Observations { get; set; }
-        public string Situation { get; set; }
+        public int Situation { get; set; }
         // public DateTime DateToSell {get; set;}
         public string DateToSell {get; set;}
         public string OrderRead { get; set; }
         public string OrderAccepted { get; set; }
         public string OrderDelivery { get; set; }
+        public double TotalValue { get; set; }
+
+        #region foreign key
+             public List<Customers> Customer { get; set; }
+             public List<Products> Products { get; set; }
+        #endregion
     }
 }

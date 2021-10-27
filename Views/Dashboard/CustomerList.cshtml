@@ -1,5 +1,5 @@
 @using ProjectInter.Models
-@model List<Customer>
+@model List<Customers>
 
 @{
     ViewBag.Title = "Point Dashboard";
@@ -11,7 +11,7 @@
 <div id="table">
     @foreach (var customer in Model)
     {     
-        <div class="card">
+        @* <div class="card">
             <div class="informationLine">
                 <h2 class="clientName">@customer.Name</h2>
                 <p class="idCustomer">#@customer.IdCustomer</p>
@@ -25,6 +25,6 @@
             <div class="informationLine">
                 <p class="customerContact">@customer.Telefone</p>
             </div>
-        </div>
+        </div> *@
     }
 </div>

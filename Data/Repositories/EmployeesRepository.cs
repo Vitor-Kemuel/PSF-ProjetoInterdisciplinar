@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using ProjectInter.Models;
+using ProjectInter.Data.Interfaces;
 
-namespace ProjectInter.Repositories
+namespace ProjectInter.Data.Repositories
 {
-    public class EmployessDataBaseRepository : BDContext, IEmployeesRepository
+    public class EmployessRepository : BDContext, IEmployeesRepository
     {
         public void Create(Employees employee)
         {

@@ -1,7 +1,7 @@
 using ProjectInter.Models;
 using System.Collections.Generic;
 
-namespace ProjectInter.Repositories
+namespace ProjectInter.Data.Interfaces
 {
     public interface IEmployeesRepository
     {

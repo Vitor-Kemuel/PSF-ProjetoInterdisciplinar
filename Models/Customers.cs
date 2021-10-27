@@ -6,6 +6,10 @@ namespace ProjectInter.Models
     {
         public string cpf { get; set; }
 
-        public List<Address> Address { get; set; }
+        #region Foreign Key
+            public List<Address> Address { get; set; }
+            public List<Order> Order { get; set; }
+
+        #endregion
     }
 }

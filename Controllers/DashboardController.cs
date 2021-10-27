@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using ProjectInter.Models;
 using System;
-using ProjectInter.Repositories;
+using ProjectInter.Data.Interfaces;
 
 namespace ProjectInter.Controllers
 {
@@ -24,7 +24,7 @@ namespace ProjectInter.Controllers
             order01.IdOrder = 1;
             // order01.DateToSell = new DateTime(2021, 22, 10);
             order01.DateToSell = "15/10";
-            order01.Situation = "Finalizado";
+            order01.Situation = 3;
             order01.CodeOrder = "001282";
             order01.Observations = "Sem cebola";
             // order01.QuantityItens = 2; quantidade deve ser por intens
@@ -43,7 +43,7 @@ namespace ProjectInter.Controllers
         }
         private List<Customers> getCustomers()
         {
-            List<Customers> customers = repository.GetListCustomers();
+            List<Customers> customers = repository.GetAllCustomers();
             return customers;
         }
         public ActionResult CustomerList()

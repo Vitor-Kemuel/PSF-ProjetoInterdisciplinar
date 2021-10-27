@@ -6,6 +6,5 @@ namespace ProjectInter.Models
 
         public decimal Wage { get; set; }
 
-        public Address Address { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace ProjectInter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ICustomersRepository, CustomerMemoryRepository>();
+            services.AddSingleton<ICustomersRepository, CustomersRepository>();
 
         }
 

@@ -1,6 +1,6 @@
 using System.Data.SqlClient;
 
-namespace ProjectInter.Repositories
+namespace ProjectInter.Data.Repositories
 {
     public abstract class BDContext
     {
