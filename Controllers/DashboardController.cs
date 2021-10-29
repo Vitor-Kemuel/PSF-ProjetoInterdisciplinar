@@ -9,12 +9,12 @@ namespace ProjectInter.Controllers
     public class DashboardController : Controller
     {
 
-        private ICustomersRepository repository;
+        // private ICustomersRepository repository;
 
-        public DashboardController(ICustomersRepository repository)
-        {
-            this.repository = repository;
-        }
+        // public DashboardController(ICustomersRepository repository)
+        // {
+            // this.repository = repository;
+        // }
 
         private List<Order> getOrders()
         {
@@ -27,7 +27,7 @@ namespace ProjectInter.Controllers
             order01.Situation = 3;
             order01.CodeOrder = "001282";
             order01.Observations = "Sem cebola";
-            // order01.QuantityItens = 2; quantidade deve ser por intens
+            // order01.QuantityItens = 2; quantidade deve ser por itens
             order01.OrderRead = "15:15";
             order01.OrderAccepted = "15:15";
             order01.OrderDelivery = "15:20";
@@ -41,16 +41,22 @@ namespace ProjectInter.Controllers
         {   
             return View(getOrders());
         }
-        private List<Customers> getCustomers()
-        {
-            List<Customers> customers = repository.GetAllCustomers();
-            return customers;
-        }
+        // private List<Customers> getCustomers()
+        // {
+            // List<Customers> customers = repository.GetAllCustomers();
+            // return customers;
+        // }
         public ActionResult CustomerList()
         {
-            return View(getCustomers());
+            // return View(getCustomers());
+            return View();
         }
         public ActionResult NewCustomer()
+        {
+            return View();
+        }
+
+        public ActionResult NewOrder()
         {
             return View();
         }

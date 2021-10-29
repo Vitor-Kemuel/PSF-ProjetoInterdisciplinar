@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProjectInter.Repositories;
+using ProjectInter.Data.Repositories;
 
 namespace ProjectInter
 {
@@ -25,7 +25,7 @@ namespace ProjectInter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ICustomersRepository, CustomersRepository>();
+            // services.AddSingleton<ICustomersRepository, CustomersRepository>();
 
         }
 

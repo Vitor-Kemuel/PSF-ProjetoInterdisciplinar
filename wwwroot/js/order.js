@@ -31,7 +31,7 @@ function getSession(){
     var getSession = getSession + "<span class='fas fa-th' onclick='orderGridDirection()'></span>";
     var getSession = getSession + "</div>";
     var getSession = getSession + "</div>";
-    var getSession = getSession + "<a id='OptionSession' href='#'>Fazer Pedido +</a>";
+    var getSession = getSession + "<a id='OptionSession' href='NewOrder'>Fazer Pedido <i class='fas fa-cart-plus'></i></i></a>";
     
     var session = document.getElementById("session");
     session.innerHTML = session.innerHTML + getSession;

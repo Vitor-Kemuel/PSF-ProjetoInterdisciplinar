@@ -1,0 +1,17 @@
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/newOrder.css";
+    ViewBag.Script = "/js/newOrder.js";
+    Layout = "/Views/Shared/_layoutDashboard.cshtml";
+}
+
+<div id="table">
+    <form id="formNewOrder" asp-controller="NewOrder" asp-action="Order" method="POST">
+        <div id="consumerInfo">
+            <div class="formLine">
+                <input id="searchCustomers" class="formInput" type="search" name="Cliente">
+                <input id="confirm" type="submit" value="Confirmar">
+            </div>
+        </div>
+    </form>
+</div>

@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "Point Dashboard";
     ViewBag.Styles = "/css/order.css";
-    ViewBag.OptionSessionLink = "#";
     ViewBag.Script = "/js/order.js";
     Layout = "/Views/Shared/_layoutDashboard.cshtml";
 }
@@ -24,8 +23,7 @@
                 <p class="orderStatus">Situação: @order.Situation</p>            
             </div>            
             <div class="orderInformationLine">                
-                <p class="orderObservation">Observação: @order.Observations</p>                
-                @* <p class="orderQuantityItens">Quantidade: @order.QuantityItens</p>             *@
+                <p class="orderObservation">Observação: @order.Observations</p>
             </div>            
             <div class="orderInformationLine">                
                 <p class="orderDispatched"><i class="far fa-paper-plane"></i> @order.OrderRead</p>                
