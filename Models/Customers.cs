@@ -8,8 +8,6 @@ namespace ProjectInter.Models
 
         #region Foreign Key
             public List<Address> Address { get; set; }
-            public List<Order> Order { get; set; }
-
         #endregion
     }
 }

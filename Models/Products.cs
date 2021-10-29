@@ -6,13 +6,13 @@ namespace ProjectInter.Models
     {
         public int IdProducts { get; set; }
         public string CodeProducts { get; set; }
-
-        public int Status { get; set; } // 1 - Ativo 2 - Inativo
+        public string Name { get; set; }
+        public float Inventory { get; set; }
+        public bool Status { get; set; } // 1 - Ativo 2 - Inativo
 
         #region Foreign Key
-            public List<TypeProducts> TypeProducts { get; set; }
-            public List<Order> Order { get; set; }
-             
+            public List<TypeProducts> TypeProduct { get; set; }
+            public List<ProductsOrders> Itens { get; set; }
         #endregion
 
 
