@@ -1,0 +1,24 @@
+#table{
+    margin: 100px 0 0 0 ;
+}
+#formCadastroProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.formLine{
+    width: 100%;
+    display: flex;
+    margin: 5px 0;
+}
+.formInput{
+    width: 100%;
+    margin: 0 7px;
+    height: 30px;
+    border-radius: 13px;
+    padding: 10px 20px;
+    font-size: 25px;
+    border: 2px rgb(122, 122, 122) solid;
+}

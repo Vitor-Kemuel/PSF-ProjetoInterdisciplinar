@@ -4,3 +4,26 @@
     ViewBag.Script = "/js/newProduct.js";
     Layout = "/Views/Shared/_layoutDashboard.cshtml";
 }
+
+<div id="table">
+    <form id="formCadastroProduct" asp-controller="Product" asp-action="CadastroProduct" method="POST">
+        <div id="consumerInfo">
+            <div class="formLine">
+                <img id="productImagePreview" src="" alt="">
+                <input id="productImage" class="formInput" type="file" placeholder="Nome" name="Name">
+            </div>
+            <div class="formLine">
+                <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
+            </div>
+            <div class="formLine">
+                <input id="product" class="formInput" type="text" placeholder="Codigo" name="codeProduct">
+                <input id="CustomerPassword" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
+                <label for=""></label>
+                @* Adicionar label com tipos de medidas *@
+            </div>
+            <div class="formLine">
+                <input type="text" name="Descrição" id="description" class="formInput">
+            </div>
+        </div>
+    </form>
+</div>
