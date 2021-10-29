@@ -14,8 +14,3 @@ namespace ProjectInter.Models
 
     }
 }
-
-/*
-    git add . 
-    git commit -m "Git Init"
-*/
