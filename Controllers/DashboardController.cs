@@ -65,5 +65,10 @@ namespace ProjectInter.Controllers
         {
             return View();
         }
+
+        public ActionResult NewProduct()
+        {
+            return View();
+        }
     }
 }
