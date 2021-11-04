@@ -12,13 +12,39 @@
     width: 100%;
     display: flex;
     margin: 5px 0;
+    align-items: center;
+    justify-content: center;
 }
 .formInput{
     width: 100%;
+    /* width: auto; */
     margin: 0 7px;
     height: 30px;
     border-radius: 13px;
     padding: 10px 20px;
     font-size: 25px;
     border: 2px rgb(122, 122, 122) solid;
+}
+input[type="file"]{
+    display: none;
+}
+#productImagePreview{
+    width: 20%;
+    max-height: 200px;
+    padding: 15px;
+    cursor: pointer;
+    border: 2px rgb(122, 122, 122) solid;
+    border-radius: 23px;
+}
+#productInfoBox{
+    width: 70%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.formSubTitle{
+    margin: 0 0 0 20px;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
 }

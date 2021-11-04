@@ -6,3 +6,24 @@ function getSession(){
     var session = document.getElementById("session");
     session.innerHTML = session.innerHTML + getSession;
 }
+
+'use strict'
+
+window.onload=function(){
+    let image = document.getElementById('productImagePreview');
+    let input = document.getElementById('productImage');
+
+    image.addEventListener('click', () => {
+        input.click();
+    });
+
+    input.addEventListener('change', (event) => {
+        let reader = new FileReader();
+
+        reader.onload = () => {
+            image.src = reader.result;
+        }
+
+        reader.readAsDataURL(input.files[0])
+    });
+}
