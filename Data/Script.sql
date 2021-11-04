@@ -47,9 +47,11 @@ cep              varchar(10)  not null
 go
 
 create table PRODUTOS(
-id_produtos     int         not null  primary key  identity,
-cod_produto     varchar(40) not null,
-situacao        bit         not null,-- 1=Ativo 2=Desativo
+id_produtos     int            not null  primary key  identity,
+cod_produto     varchar(40)    not null,
+situacao        bit            not null,-- 1=Ativo 2=Desativo
+nome            varchar(100)   not null,
+estoque         decimal(10,2)  not null,
 check (situacao in ( 1, 2))
 )
 
@@ -58,16 +60,10 @@ go
 create table COMPRAS(
 id_compras     int         not null  primary key  identity,
 data_compra    datetime    not null,
-quantidade     Varchar(40) not null
+quantidade     decimal(10,2) not null
 )
 
 go
-
-/*
-quantidade     = 2 
-unidade_medida = 1,5
-fisico         = 'balde'
-*/
 
 create table PRODUTOS_COMPRAS(
 id_produtos int not null references PRODUTOS,
@@ -111,11 +107,9 @@ go
 create table TIPO_PRODUTO(
 id_tipo_produto   int           not null  primary key  identity,
 fk_produto        int           not null  references PRODUTOS,
-descricao         varchar(100)  not null,
-situacao          bit           not null, -- 1=Ativo 2=Desativo
-quantidade        varchar(40)   not null, 
+situacao          bit           not null, -- 1=Ativo 2=Desativo 
 preco             decimal(10,2) not null,
-estoque           int           not null,
+tipo_produto      int           not null,
 check (situacao in ( 1, 2))
 )
 
