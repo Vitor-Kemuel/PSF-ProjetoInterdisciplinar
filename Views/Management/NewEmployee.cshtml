@@ -1,0 +1,28 @@
+@{
+    ViewBag.Title = "Administração";
+    ViewBag.Styles = "/css/management/newEmployee.css";
+    ViewBag.Script = "";
+    Layout = "/Views/Shared/_layoutManagement.cshtml";
+}
+
+<div id="table">
+    <form id="formCadastro" asp-controller="Employer" asp-action="CadastroEmployer" method="POST">
+        <div class="formLine">
+            <input id="employeeName" class="formInput" type="text" placeholder="Nome" name="Name">
+            <input id="employeeCPF" class="formInput" type="text" placeholder="CPF" name="cpf">
+            <input id="employeeResponsibility" class="formInput" type="text" placeholder="Cargo" name="responsibility">
+        </div>
+        <div class="formLine">
+            <input id="employeeEmail" class="formInput" type="text" placeholder="E-mail" name="Email">
+            <input id="employeePhoneNumber" class="formInput" type="text" placeholder="Telefone" name="Cellphone">
+        </div>
+        <div class="formLine">
+            <input id="employeePassword" class="formInput" type="text" placeholder="Senha" name="Password">
+            <input id="employeeConfirmPassword" class="formInput" type="text" placeholder="Confirmar Senha">
+        </div>
+        <hr class="divForm">
+        <div id="formOptionsBtn">
+            <button id="btnSubmit" class="btnForm" type="submit">Salvar <i class="far fa-save"></i></button>
+        </div>
+    </form>
+</div>

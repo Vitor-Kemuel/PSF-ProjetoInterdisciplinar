@@ -17,7 +17,7 @@ window.onload=function(){
         input.click();
     });
 
-    input.addEventListener('change', (event) => {
+    input.addEventListener('change', () => {
         let reader = new FileReader();
 
         reader.onload = () => {

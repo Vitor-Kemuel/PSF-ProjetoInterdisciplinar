@@ -8,7 +8,7 @@
 body{
     display: flex;
     flex-direction: row;
-    background: #939393 url(../img/background.png) no-repeat fixed;
+    background: #939393 url(../../img/background.png) no-repeat fixed;
     font-family: Arial, Helvetica, sans-serif;
 }
 a{
@@ -44,14 +44,14 @@ hr{
     padding: 10px;
     border-radius: 15px;
     cursor: pointer;
-    transition: .10s ease all;
+    transition: .3s;
 }
 .accountOpitions:hover{
     color: rgb(255, 255, 255);
     background-color: rgb(111, 56, 87);
     font-size: 17px;
     font-weight: bold;
-    transition: .10s ease all;
+    transition: .3s;
 }
 
 /* Definição IDs e Classes da session */
@@ -79,9 +79,11 @@ hr{
     font-size: 20px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
     margin-right: 120px;
+    transition: .3s;
 }
 #OptionSession:hover{
     background: rgba(111, 56, 87, .7);
+    transition: .3s;
 }
 /* Definição IDs e classes dos botoes para alterar direção do painel */
 #changeDirection{
@@ -112,6 +114,7 @@ hr{
     display: flex;
     position: fixed;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
     width: 80px;
     background: rgb(254, 220, 86);
@@ -122,7 +125,10 @@ hr{
 #options{
     display: flex;
     flex-direction: column;
+    font-size: 20px;
     margin-top: 15px;
+}
+#adminOpitions{
     font-size: 20px;
 }
 .option{
@@ -146,6 +152,7 @@ hr{
     width: 30px;
     display: flex;
     justify-content: center;
+    transition: .2s;
 }
 .option:hover > .optionIcon{
     margin-left: 25px;
@@ -155,6 +162,6 @@ hr{
 }
 .option:hover > .descrition{
     margin-right: 30px;
-    transition: all 10s;
+    transition: .3s;
     display: flex;
 }

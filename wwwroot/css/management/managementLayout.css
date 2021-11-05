@@ -1,0 +1,55 @@
+/* Definição global */
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* Definição global para as tags HTML */
+body{
+    display: flex;
+    flex-direction: row;
+    background: #939393 url(../../img/background.png) no-repeat fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+header{
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    background: rgb(254, 220, 86);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+    z-index: 2;
+}
+hr{
+    border: solid 3px rgb(111, 56, 87);
+}
+
+/* Definição IDs e Classes do header */
+.topBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+#logoTitle{
+    height: 80px;
+}
+.accountOpitions{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    margin-right: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .3s;
+}
+.accountOpitions:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(111, 56, 87);
+    font-size: 17px;
+    font-weight: bold;
+    transition: .3s;
+}

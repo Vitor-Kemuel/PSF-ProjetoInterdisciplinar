@@ -1,0 +1,64 @@
+#table{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px 20px 30px;
+    width: 100%;
+    padding: 10px 0;
+    background: rgba(165, 165, 165, 0.7);
+    justify-content: center;
+    border-radius: 20px;
+}
+
+/* Definição IDs e Classes do form de cadastro */
+#formCadastro{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.formLine{
+    width: 100%;
+    display: flex;
+    margin: 5px 0;
+}
+.formInput{
+    width: 100%;
+    margin: 0 7px;
+    height: 30px;
+    border-radius: 13px;
+    padding: 10px 20px;
+    font-size: 25px;
+    border: 2px rgb(122, 122, 122) solid;
+}
+#employeePhoneNumber{
+    width: 40%;
+}
+#employeeCPF{
+    width: 50%;
+}
+#employeeResponsibility{
+    width: 40%;
+}
+.divForm{
+    width: 98%;
+    border: 1px rgb(122, 122, 122) solid;
+    margin: 10px 0;
+}
+#formOptionsBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+.btnForm{
+    background: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 7px;
+    color: rgba(156, 39, 173, 1);
+}
+.btnForm:hover{
+    background: rgba(255, 255, 255, 0.7);
+}

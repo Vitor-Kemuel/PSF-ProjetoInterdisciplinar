@@ -1,0 +1,22 @@
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/dashboard/dashboardAdminLogin.css";
+    ViewBag.Script = "/js/dashboard/dashboardAdminLogin.js";
+    Layout = "/Views/Shared/_layoutDashboard.cshtml";
+}
+
+<form id="formLoginAdmin" asp-controller="UsuarioAdmin" asp-action="LoginAdmin" method="POST">
+    <h1 id="title">ADMINISTRADOR</h1>
+    <div id="inputContainer">
+        <div id="emailContainer">
+            <input class="loginInput" type="email" placeholder="email" />
+        </div>
+        <div id="passwordContainer">
+            <input id="password" class="loginInput" type="password" placeholder="senha" /><span id="hideShowPassword" class="fas fa-eye-slash" onclick="hideShowPassword()"></span>
+        </div>
+        <button id="loginBtn" type="submit">
+            Entrar
+            <i class="fas fa-sign-in-alt"></i>
+        </button>
+    </div>
+</form>
