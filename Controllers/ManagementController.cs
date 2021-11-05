@@ -7,7 +7,15 @@ namespace ProjectInter.Controllers
 {
     public class ManagementController : Controller
     {
-        public ActionResult index()
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Employee()
+        {
+            return View();
+        }
+        public ActionResult NewEmployee()
         {
             return View();
         }
