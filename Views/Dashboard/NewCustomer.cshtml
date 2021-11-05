@@ -6,19 +6,19 @@
 }
 
 <div id="table">
-    <form id="formCadastro" asp-controller="Usuario" asp-action="Cadastro" method="POST">
+    <form id="formCadastro" asp-controller="Usuario" asp-action="Cadastro" action="/Dashboard/NewCustomer" method="POST">
         <div id="consumerInfo">
             <div class="formLine">
-                <input id="customerName" class="formInput" type="text" placeholder="Nome" name="Name">
-                <input id="customerCPF" class="formInput" type="text" placeholder="CPF" name="cpf">
+                <input id="customerName" class="formInput" type="text" placeholder="Nome" name="Name" required>
+                <input id="customerCPF" class="formInput" type="text" placeholder="CPF" name="cpf" required>
             </div>
             <div class="formLine">
-                <input id="customerEmail" class="formInput" type="text" placeholder="E-mail" name="Email">
-                <input id="customerPhoneNumber" class="formInput" type="text" placeholder="Telefone" name="Cellphone">
+                <input id="customerEmail" class="formInput" type="text" placeholder="E-mail" name="Email" required>
+                <input id="customerPhoneNumber" class="formInput" type="text" placeholder="Telefone" name="Cellphone" required>
             </div>
             <div class="formLine">
-                <input id="CustomerPassword" class="formInput" type="text" placeholder="Senha" name="Password">
-                <input id="CustomerConfirmPassword" class="formInput" type="text" placeholder="Confirmar Senha">
+                <input id="CustomerPassword" class="formInput" type="text" placeholder="Senha" name="Password" required>
+                <input id="CustomerConfirmPassword" class="formInput" type="text" placeholder="Confirmar Senha" required>
             </div>
         </div>
         <hr class="divForm">

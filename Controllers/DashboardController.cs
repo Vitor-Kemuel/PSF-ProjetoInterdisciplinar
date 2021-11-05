@@ -10,12 +10,12 @@ namespace ProjectInter.Controllers
     public class DashboardController : Controller
     {
 
-        // private ICustomersRepository repository;
+        private ICustomersRepository repository;
 
-        // public DashboardController(ICustomersRepository repository)
-        // {
-            // this.repository = repository;
-        // }
+        public DashboardController(ICustomersRepository repository)
+        {
+            this.repository = repository;
+        }
 
         private List<Order> getOrders()
         {
@@ -38,6 +38,7 @@ namespace ProjectInter.Controllers
 
             return orders;
         }
+        [HttpGet]
         public ActionResult Order()
         {   
             return View(getOrders());
@@ -52,9 +53,17 @@ namespace ProjectInter.Controllers
             // return View(getCustomers());
             return View();
         }
+        [HttpGet]
         public ActionResult NewCustomer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewCustomer(Customers customer, Address address)
+        {
+            repository.Create(customer, address);
+            return RedirectToAction("Order");
         }
 
         public ActionResult NewOrder()
