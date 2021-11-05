@@ -70,5 +70,10 @@ namespace ProjectInter.Controllers
         {
             return View();
         }
+
+        public ActionResult LoguinAdmin()
+        {
+            return View();
+        }
     }
 }
