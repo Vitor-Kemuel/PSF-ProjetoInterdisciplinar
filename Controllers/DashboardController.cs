@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectInter.Models;
 using System;
@@ -71,9 +72,15 @@ namespace ProjectInter.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult LoguinAdmin()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult LoguinAdmin(IFormCollection LoginAdmin)
+        {
+            return RedirectToAction("Index", "Management");
         }
     }
 }

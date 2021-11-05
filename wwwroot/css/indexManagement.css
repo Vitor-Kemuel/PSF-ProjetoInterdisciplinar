@@ -1,0 +1,32 @@
+#boryContainer{
+    margin: 100px 0 0 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+}
+.options{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 100px 30% 0;
+    width: 100%;
+}
+.lineOption{
+    width: 50%;
+    margin: 30px 0;
+}
+.option{
+    text-decoration: none;
+    color: #000;
+    font-size: 25px;
+    padding: 20px 10px;
+    background: rgba(254, 220, 86, 1);
+    border-radius: 20px;
+}
+.option:hover{
+    background: rgba(254, 220, 86, 0.8);
+}
