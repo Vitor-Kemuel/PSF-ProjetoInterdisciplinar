@@ -1,10 +1,25 @@
-function cardWidth(size){
-    var divs =document.getElementsByTagName("div");
-    for(var i=0;i<=divs.length;i++) 
+'use strict';
+
+function cardStyles(div, size, marg){
+    div.style.width = size;
+    div.style.margin = marg;
+}
+
+function flexStylesLine(div, lineFlex){
+    div.style.flexDirection = lineFlex;
+}
+
+function card(size, marg, flex){
+    var divs = document.getElementsByTagName("div");
+    for(var i=0;i<=divs.length;i++)
     {
         if(divs[i].className == "cardOrderStatus") 
         {
-            divs[i].style.width = size;
+            cardStyles(divs[i], size, marg);
+        }
+        else if(divs[i].className == "orderInformationLine" || divs[i].className == "timeOrderInformation")
+        {
+            flexStylesLine(divs[i], flex);
         }
     }
 }
@@ -13,14 +28,14 @@ function orderListDirection(){
     var direction = document.querySelector('#orderTable');
     direction.style.flexDirection = "column";
     
-    cardWidth("auto")
+    card("auto", "10px 10%", "row")
 }
 
 function orderGridDirection(){
     var direction = document.querySelector('#orderTable');
     direction.style.flexDirection = "row";
 
-    cardWidth("300px");
+    card("40%", "10px", "column");
 }
 
 function getSession(){
