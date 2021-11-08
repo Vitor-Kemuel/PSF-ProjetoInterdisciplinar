@@ -66,18 +66,18 @@
 #formOptionsBtn{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
 }
 .btnForm{
     background: rgba(255, 255, 255, 1);
     font-weight: bold;
-    padding: 7px;
+    padding: 15px 10px;
     border-radius: 7px;
     color: rgba(156, 39, 173, 1);
 }
 .btnForm:hover{
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(175, 175, 175);
 }
 .cepInput{
     width: 20%;
