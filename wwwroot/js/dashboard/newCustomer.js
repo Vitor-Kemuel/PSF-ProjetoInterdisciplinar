@@ -11,29 +11,67 @@ function remove(){
 }
 
 function newAdress(){
-    var newAdressForm =                 "<div class='adress'";
-    var newAdressForm = newAdressForm + "<h2 class='titleAdress'>Endereço:</h2>";
-    var newAdressForm = newAdressForm + "<div class='formLine'>";
-    var newAdressForm = newAdressForm + "<input class='formInput cepInput' type='text' placeholder='CEP' name='ZipCodeAddress' >";
-    var newAdressForm = newAdressForm + "</div>";
-    var newAdressForm = newAdressForm + "<div class='formLine'>";
-    var newAdressForm = newAdressForm + "<input class='formInput' type='text' placeholder='Endereço' name='NameAddress' >";
-    var newAdressForm = newAdressForm + "<input class='formInput adressNumber' type='text' placeholder='Numero' name='NumberAddress' >";
-    var newAdressForm = newAdressForm + "</div>";
-    var newAdressForm = newAdressForm + "<div class='formLine'>";
-    var newAdressForm = newAdressForm + "<input class='formInput' type='text' placeholder='Bairro' name='District' >";
-    var newAdressForm = newAdressForm + "<input class='formInput' type='text' placeholder='Complemento' name='ComplementAddress' >";
-    var newAdressForm = newAdressForm + "</div><br>";
-    var newAdressForm = newAdressForm + "</div>";
-    
     var adressForm = document.getElementById("adresses");
-    adressForm.innerHTML = adressForm.innerHTML + newAdressForm;
+    
+    var elementoAdress = document.createElement('div');
+    elementoAdress.setAttribute('class', 'adress');
+    
+    var elementoTitleAdress = document.createElement('h2');
+    elementoTitleAdress.setAttribute('class', 'titleAdress');
+    elementoTitleAdress.textContent = 'Endereço:';
+    
+    var elementoFormLine = document.createElement('div');
+    elementoFormLine.setAttribute('class', 'formLine');
+    
+    var elementoFormInputCEP = document.createElement('input');
+    elementoFormInputCEP.setAttribute('class', 'formInput cepInput');
+    elementoFormInputCEP.setAttribute('type', 'text');
+    elementoFormInputCEP.setAttribute('placeholder', 'CEP');
+    elementoFormInputCEP.setAttribute('name', 'ZipCodeAddress');
+    
+    var elementoFormLine2 = document.createElement('div');
+    elementoFormLine2.setAttribute('class', 'formLine');
+    
+    var elementoFormInputAdress = document.createElement('input');
+    elementoFormInputAdress.setAttribute('class', 'formInput');
+    elementoFormInputAdress.setAttribute('type', 'text');
+    elementoFormInputAdress.setAttribute('placeholder', 'Endereço');
+    elementoFormInputAdress.setAttribute('name', 'NameAddress');
+    
+    var elementoFormInputAdressNumber = document.createElement('input');
+    elementoFormInputAdressNumber.setAttribute('class', 'formInput adressNumber');
+    elementoFormInputAdressNumber.setAttribute('type', 'text');
+    elementoFormInputAdressNumber.setAttribute('placeholder', 'Numero');
+    elementoFormInputAdressNumber.setAttribute('name', 'NumberAddress');
+    
+    var elementoFormLine3 = document.createElement('div');
+    elementoFormLine3.setAttribute('class', 'formLine');
 
-    // var trash = document.getElementById("trash");
-    // if (trash == null){
-    //     var removeOption = document.getElementById("optionAdress");
-    //     removeOption.innerHTML = "<span id='trash' class='btnForm trash' onclick='remove()'><i class='fas fa-trash-alt'></i></span>" + removeOption.innerHTML;
-    // }
+    var elementoFormInputDistrict = document.createElement('input');
+    elementoFormInputDistrict.setAttribute('class', 'formInput');
+    elementoFormInputDistrict.setAttribute('type', 'text');
+    elementoFormInputDistrict.setAttribute('placeholder', 'Bairro');
+    elementoFormInputDistrict.setAttribute('name', 'District');
+
+    var elementoFormInputComplementAddress = document.createElement('input');
+    elementoFormInputComplementAddress.setAttribute('class', 'formInput');
+    elementoFormInputComplementAddress.setAttribute('type', 'text');
+    elementoFormInputComplementAddress.setAttribute('placeholder', 'Complemento');
+    elementoFormInputComplementAddress.setAttribute('name', 'ComplementAddress');
+
+    adressForm.appendChild(elementoAdress);
+
+    elementoAdress.appendChild(elementoTitleAdress);
+    elementoAdress.appendChild(elementoFormLine);
+    elementoFormLine.appendChild(elementoFormInputCEP)
+
+    elementoAdress.appendChild(elementoFormLine2);
+    elementoFormLine2.appendChild(elementoFormInputAdress)
+    elementoFormLine2.appendChild(elementoFormInputAdressNumber)
+    
+    elementoAdress.appendChild(elementoFormLine3);
+    elementoFormLine3.appendChild(elementoFormInputDistrict)
+    elementoFormLine3.appendChild(elementoFormInputComplementAddress)
 }
 
 function getSession(){
