@@ -23,13 +23,22 @@
         </div>
         <hr class="divForm">
         <div id="adresses">
-
+            <div class="adress">
+                <h2 class="titleAdress">Endereço:</h2>
+                <div class="formLine">
+                    <input class="formInput cepInput" type="text" placeholder="CEP" name="ZipCodeAddress">
+                </div>
+                <div class="formLine">
+                    <input class="formInput" type="text" placeholder="Endereço" name="NameAddress">
+                    <input class="formInput adressNumber" type="text" placeholder="Numero" name="NumberAddress">
+                </div>
+                <div class="formLine">
+                    <input class="formInput" type="text" placeholder="Bairro" name="District">
+                    <input class="formInput" type="text" placeholder="Complemento" name="ComplementAddress">
+                </div>
+            </div>
         </div>
         <div id="formOptionsBtn">
-            <div id="optionAdress">
-                <span id="trash" class="btnForm trash" onclick="remove()"><i class="fas fa-trash-alt"></i></span>
-                <span class="btnForm" onclick="newAdress()" >Adicionar Endereço +</span>
-            </div>
             <button id="btnSubmit" class="btnForm" type="submit">Salvar <i class="far fa-save"></i></button>
         </div>
     </form>
