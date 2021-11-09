@@ -18,8 +18,5 @@ namespace ProjectInter.Models
 
         public int IdCustomer { get; set; }  
 
-        #region foreing key
-        public List<Customers> Customer { get; set; }
-        #endregion
     }
 }

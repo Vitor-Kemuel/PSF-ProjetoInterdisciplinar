@@ -7,7 +7,7 @@ namespace ProjectInter.Models
         public string Cpf { get; set; }
 
         #region Foreign Key
-            public List<Address> Address { get; set; }
+            public Address Address { get; set; }
         #endregion
     }
 }

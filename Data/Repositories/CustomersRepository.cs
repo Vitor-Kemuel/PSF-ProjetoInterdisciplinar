@@ -16,7 +16,6 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-
                 cmd.CommandText = "cadCliente";
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -30,7 +29,6 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@numero_endereco", address.NumberAddress);
                 cmd.Parameters.AddWithValue("@bairro", address.District);
                 cmd.Parameters.AddWithValue("@cep", address.ZipCodeAddress);
-
                 cmd.ExecuteNonQuery();
 
 
