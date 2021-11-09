@@ -4,7 +4,7 @@ namespace ProjectInter.Data.Repositories
 {
     public abstract class BDContext
     {
-        protected readonly SqlConnection connection;
+        protected SqlConnection connection;
 
         // Construtor
         public BDContext()

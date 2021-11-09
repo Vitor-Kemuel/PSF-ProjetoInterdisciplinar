@@ -24,7 +24,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@celular", customers.Cellphone);
                 cmd.Parameters.AddWithValue("@email", customers.Email);
                 cmd.Parameters.AddWithValue("@senha", customers.Password);
-                cmd.Parameters.AddWithValue("@cpf", customers.cpf);
+                cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
                 cmd.Parameters.AddWithValue("@endereco", address.NameAddress);
                 cmd.Parameters.AddWithValue("@complemento", address.ComplementAddress);
                 cmd.Parameters.AddWithValue("@numero_endereco", address.NumberAddress);
