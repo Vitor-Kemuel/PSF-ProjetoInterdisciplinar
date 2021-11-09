@@ -7,28 +7,26 @@
 
 <div id="table">
     <form id="formCadastroProduct" asp-controller="Product" asp-action="CadastroProduct" method="POST">
-        <div id="consumerInfo">
-            <div class="formLine">
-                <img id="productImagePreview" src="/img/camera.png" alt="Adicionar imagem">
-                <input id="productImage" class="formInput" type="file" name="productImage" accept="image/*">                @* <label id="labelImage" class="formInput" for="productImage">Adicionar imagem</label> *@
-                <div id="productInfoBox" class="formLine">
-                    <div class="formLine">
-                    <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
-                    </div>
-                    <div class="formLine">
-                    <input id="productCode" class="formInput" type="text" placeholder="Codigo" name="codeProduct">
-                    <input id="productType" class="formInput" type="text" placeholder="tipo" name="productType">
-                    </div>
-                    <div class="formLine">
-                        <input id="CustomerPassword" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
-                        <label class="formInput" for="">medidas</label>
-                    </div>
+        <div class="formLine">
+            <img id="productImagePreview" src="/img/camera.png" alt="Adicionar imagem">
+            <input id="productImage" class="formInput" type="file" name="productImage" accept="image/*">                @* <label id="labelImage" class="formInput" for="productImage">Adicionar imagem</label> *@
+            <div id="productInfoBox" class="formLine">
+                <div class="formLine">
+                <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
+                </div>
+                <div class="formLine">
+                <input id="productCode" class="formInput" type="text" placeholder="Codigo" name="codeProduct">
+                <input id="productType" class="formInput" type="text" placeholder="tipo" name="productType">
+                </div>
+                <div class="formLine">
+                    <input id="CustomerPassword" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
+                    <label class="formInput" for="">medidas</label>
                 </div>
             </div>
-            <h2 class="formSubTitle">Descrição</h2>
-            <div class="formLine">
-                <input type="text" name="Descrição" id="description" class="formInput">
-            </div>
+        </div>
+        <h2 class="formSubTitle">Descrição</h2>
+        <div class="formLine">
+            <input type="text" name="Descrição" id="description" class="formInput">
         </div>
     </form>
 </div>

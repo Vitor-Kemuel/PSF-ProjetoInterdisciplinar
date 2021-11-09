@@ -8,18 +8,18 @@
 body{
     display: flex;
     flex-direction: row;
-    background: #939393 url(../../img/background.png) no-repeat fixed;
     font-family: Arial, Helvetica, sans-serif;
+    background: #939393 url(../../img/background.png) no-repeat fixed;
 }
 a{
     text-decoration: none;
 }
 header{
     height: 80px;
-    position: fixed;
     width: 100%;
+    position: fixed;
     background: rgb(254, 220, 86);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.6));
     z-index: 2;
 }
 hr{
@@ -38,19 +38,18 @@ hr{
     height: 80px;
 }
 .accountOpitions{
+    cursor: pointer;
     text-decoration: none;
-    color: rgb(0, 0, 0);
-    margin-right: 5px;
     padding: 10px;
     border-radius: 15px;
-    cursor: pointer;
+    margin: 0 5px 0 0;
+    color: rgb(0, 0, 0);
     transition: .3s;
 }
 .accountOpitions:hover{
-    color: rgb(255, 255, 255);
-    background-color: rgb(111, 56, 87);
     font-size: 17px;
     font-weight: bold;
+    background-color: rgba(255, 255, 255, .3);
     transition: .3s;
 }
 
@@ -58,32 +57,31 @@ hr{
 .session{
     display: flex;
     position: fixed;
+    justify-content: space-between;
+    width: 100%;
     margin: 86px 0 0px 80px;
     padding: 14px 0 10px 20px;
-    width: 100%;
-    justify-content: space-between;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 83%, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8));
-    z-index: 1;
     filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.9));
+    z-index: 1;
 }
 #OptionSession{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 37px;
-    border-radius: 15px;
-    background: rgb(111, 56, 87);
-    color: #fff;
-    font-weight: bold;
     font-size: 20px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
-    margin-right: 120px;
+    font-weight: bold;
+    height: 37px;
+    width: 200px;
+    border-radius: 15px;
+    margin: 0 120px 0 0;
+    color: #fff;
+    background: rgb(111, 56, 87);
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.9));
     transition: .3s;
 }
 #OptionSession:hover{
-    background: rgba(111, 56, 87, .7);
-    transition: .3s;
+    background: rgb(83, 20, 64);
 }
 /* Definição IDs e classes dos botoes para alterar direção do painel */
 #changeDirection{
@@ -91,77 +89,79 @@ hr{
 }
 .subTitle{
     font-size: 40px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .fa-list-ul, .fa-th{
     padding: 3px 7px;
-    border-radius: 10px;
+    border-radius: 7px;
 }
 .fa-list-ul:hover, .fa-th:hover{
+    font-size: 18px;
     background: rgb(206, 206, 206);
 }
 
 /* Definição ID e Classes do dashboard */
 #dashboard{
-    padding-top: 100px;
-    margin-left: 80px;
     width: 100%;
+    padding: 100px 0 0;
+    margin: 0 0 0 80px;
 }
 
 /* Definição IDs e Classes da taskbar */
 #taskBar{
-    display: flex;
     position: fixed;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: calc(100% - 86px);
     width: 80px;
+    margin: 86px 0 0;
     background: rgb(254, 220, 86);
-    margin-top: 86px;
-    filter: drop-shadow(2px 4px 4px rgba(44, 44, 44, 0.9));
+    filter: drop-shadow(1px 1px 2px rgba(44, 44, 44, 0.9));
     z-index: 1;
 }
 #options{
     display: flex;
     flex-direction: column;
     font-size: 20px;
-    margin-top: 15px;
+    margin: 20px 0 0;
 }
 #adminOpitions{
     font-size: 20px;
+    margin: 0 0 20px;
 }
 .option{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 80px;
     height: 70px;
+    width: 80px;
     color: rgb(0, 0, 0);
 }
 .option:hover{
-    color: rgb(255, 255, 255);
+    flex-direction: row;
     width: 200px;
     border-radius: 0 40px 40px 0;
+    color: rgb(255, 255, 255);
     background: rgb(111, 56, 87);
-    flex-direction: row;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
 }
 .optionIcon{
-    width: 30px;
     display: flex;
     justify-content: center;
+    width: 30px;
     transition: .2s;
 }
 .option:hover > .optionIcon{
-    margin-left: 25px;
+    margin-left: 20px;
 }
 .descrition{
     display: none;
 }
 .option:hover > .descrition{
+    display: flex;
     margin-right: 30px;
     transition: .3s;
-    display: flex;
 }

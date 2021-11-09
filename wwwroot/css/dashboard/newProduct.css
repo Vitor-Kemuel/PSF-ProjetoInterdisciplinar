@@ -6,32 +6,31 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
 }
 .formLine{
-    width: 100%;
     display: flex;
-    margin: 5px 0;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    margin: 5px 0;
 }
 .formInput{
-    width: 100%;
-    margin: 0 7px;
-    height: 30px;
-    border-radius: 13px;
-    padding: 10px 20px;
     font-size: 25px;
+    width: 100%;
+    height: 30px;
+    padding: 10px 20px;
+    border-radius: 13px;
     border: 2px rgb(122, 122, 122) solid;
+    margin: 0 7px;
 }
 input[type="file"]{
     display: none;
 }
 #productImagePreview{
+    cursor: pointer;
     width: 20%;
     max-height: 200px;
     padding: 15px;
-    cursor: pointer;
     border: 2px rgb(122, 122, 122) solid;
     border-radius: 23px;
 }
@@ -42,8 +41,9 @@ input[type="file"]{
 }
 
 .formSubTitle{
-    margin: 0 0 0 20px;
     font-size: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 100%;
+    margin: 0 0 0 30px;
 }

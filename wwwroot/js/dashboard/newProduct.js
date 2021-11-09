@@ -7,8 +7,6 @@ function getSession(){
     session.innerHTML = session.innerHTML + getSession;
 }
 
-'use strict'
-
 window.onload=function(){
     let image = document.getElementById('productImagePreview');
     let input = document.getElementById('productImage');
