@@ -14,12 +14,12 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.CommandText = "cadFuncionario";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nome", employees.Name);
-                cmd.Parameters.AddWithValue("@celular", employees.Cellphone);
-                cmd.Parameters.AddWithValue("@email", employees.Email);
-                cmd.Parameters.AddWithValue("@senha", employees.Password);
-                cmd.Parameters.AddWithValue("@salario", employees.Salario);
-                cmd.Parameters.AddWithValue("@cargo", employees.Cargo);
+                cmd.Parameters.AddWithValue("@nome", employee.Name);
+                cmd.Parameters.AddWithValue("@celular", employee.Cellphone);
+                cmd.Parameters.AddWithValue("@email", employee.Email);
+                cmd.Parameters.AddWithValue("@senha", employee.Password);
+                cmd.Parameters.AddWithValue("@salario", employee.Salario);
+                cmd.Parameters.AddWithValue("@cargo", employee.Cargo);
                 cmd.ExecuteNonQuery();
            }catch(Exception ex){
                 Console.WriteLine("Erro: " + ex.Message);
