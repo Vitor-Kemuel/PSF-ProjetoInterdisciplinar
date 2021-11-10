@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using ProjectInter.Models;
 using ProjectInter.Data.Interfaces;
+using System.Data.SqlClient;
+using System.Data;
+using System;
 
 namespace ProjectInter.Data.Repositories
 {
@@ -18,8 +21,8 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@celular", employee.Cellphone);
                 cmd.Parameters.AddWithValue("@email", employee.Email);
                 cmd.Parameters.AddWithValue("@senha", employee.Password);
-                cmd.Parameters.AddWithValue("@salario", employee.Salario);
-                cmd.Parameters.AddWithValue("@cargo", employee.Cargo);
+                cmd.Parameters.AddWithValue("@salario", employee.Wage);
+                cmd.Parameters.AddWithValue("@cargo", employee.Responsibility);
                 cmd.ExecuteNonQuery();
            }catch(Exception ex){
                 Console.WriteLine("Erro: " + ex.Message);
