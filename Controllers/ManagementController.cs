@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 using ProjectInter.Models;
 using ProjectInter.Data.Interfaces;
-using ProjectInter.Data.Repositories;
 
 
 namespace ProjectInter.Controllers
@@ -12,7 +9,8 @@ namespace ProjectInter.Controllers
     {
         private IEmployeesRepository repository;
 
-        public ManagementController(IEmployeesRepository repository){
+        public ManagementController(IEmployeesRepository repository)
+        {
             this.repository = repository;
         }
 
@@ -20,10 +18,13 @@ namespace ProjectInter.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public ActionResult Employee()
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult NewEmployee()
         {

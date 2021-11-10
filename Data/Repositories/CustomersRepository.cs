@@ -9,6 +9,7 @@ namespace ProjectInter.Data.Repositories
 {
     public class CustomersRepository : BDContext, ICustomersRepository
     {
+        //Lembrar de perguntar para o Dezani sobre a referência de Address em Customer
         public void Create(Customers customers, Address address)
         {
             try

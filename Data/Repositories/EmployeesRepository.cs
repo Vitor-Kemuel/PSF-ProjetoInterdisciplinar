@@ -17,6 +17,7 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.CommandText = "cadFuncionario";
                 cmd.CommandType = CommandType.StoredProcedure;
+                
                 cmd.Parameters.AddWithValue("@nome", employee.Name);
                 cmd.Parameters.AddWithValue("@celular", employee.Cellphone);
                 cmd.Parameters.AddWithValue("@email", employee.Email);
@@ -24,6 +25,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@salario", employee.Wage);
                 cmd.Parameters.AddWithValue("@cargo", employee.Responsibility);
                 cmd.ExecuteNonQuery();
+
            }catch(Exception ex){
                 Console.WriteLine("Erro: " + ex.Message);
            }finally{
