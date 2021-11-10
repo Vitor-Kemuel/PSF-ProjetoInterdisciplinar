@@ -85,15 +85,11 @@ namespace ProjectInter.Controllers
         {
             return View(getOrders());
         }
-        // private List<Customers> getCustomers()
-        // {
-            // List<Customers> customers = repository.GetAllCustomers();
-            // return customers;
-        // }
+        [HttpGet]
         public ActionResult CustomerList()
-        {
-            // return View(getCustomers());
-            return View();
+        {   
+            var customers = repository.GetAllCustomers();
+            return View(customers);
         }
         [HttpGet]
         public ActionResult NewCustomer()

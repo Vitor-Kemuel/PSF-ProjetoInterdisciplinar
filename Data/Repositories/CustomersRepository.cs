@@ -51,7 +51,51 @@ namespace ProjectInter.Data.Repositories
 
         public List<Customers> GetAllCustomers()
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                List<Customers> customers = new List<Customers>();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "v_listaClientes";
+                cmd.CommandType = CommandType.TableDirect;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read()){
+
+                    Address address = new Address(){
+                        NameAddress = reader.GetString(5),
+                        ComplementAddress = reader.GetString(6),
+                        NumberAddress = reader.GetString(7),
+                        District = reader.GetString(8),
+                        ZipCodeAddress = reader.GetString(9),
+                    };
+
+                    Customers customer = new Customers(){
+                         Name = reader.GetString(0),
+                         Cellphone = reader.GetString(1),
+                         Email = reader.GetString(2),
+                         Password = reader.GetString(3),
+                         Cpf = reader.GetString(4),
+                         Address = address
+                    };
+                     
+                    customers.Add(customer);
+                    return customers;
+                }
+
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                Dispose();
+            }
         }
 
         public void Update(int id, Customers customers)
