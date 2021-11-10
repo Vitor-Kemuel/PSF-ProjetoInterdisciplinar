@@ -82,7 +82,7 @@ namespace ProjectInter.Controllers
         }
         [HttpGet]
         public ActionResult Order()
-        {   
+        {
             return View(getOrders());
         }
         // private List<Customers> getCustomers()
@@ -112,7 +112,7 @@ namespace ProjectInter.Controllers
         {
             return View();
         }
-        
+
         public ActionResult Inventory()
         {
             return View();

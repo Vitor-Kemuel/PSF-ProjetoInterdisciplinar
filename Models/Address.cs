@@ -16,7 +16,7 @@ namespace ProjectInter.Models
 
         public string ZipCodeAddress { get; set; }
 
-        public int IdCustomer { get; set; }  
+        public int IdCustomer { get; set; }
 
     }
 }

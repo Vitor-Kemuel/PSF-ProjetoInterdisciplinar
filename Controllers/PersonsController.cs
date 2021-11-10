@@ -8,11 +8,11 @@ namespace ProjectInter.Controllers
        {
            return View();
        }
-       
+
        [HttpGet]
        public ActionResult Create()
        {
            return View();
        }
-   } 
+   }
 }
