@@ -76,7 +76,7 @@ fk_produtos       int            not null   references  PRODUTOS,
 cod_pedidos       varchar(40)    not null,
 quantidade        int            not null,
 observacoes       varchar(500),
-situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega 
+situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega
 valor_total       decimal(10,2)  not null,
 data_venda        datetime       not null,
 pedido_lido       datetime       not null, --Horario
@@ -92,15 +92,15 @@ create table PRODUTOS_PEDIDOS(
 id_produtos int           not null references PRODUTOS,
 id_pedidos  int           not null references PEDIDOS,
 quantidade  int           not null,
-valor_total decimal(7,2)  not null, 
-primary key (id_produtos,id_pedidos)              
+valor_total decimal(7,2)  not null,
+primary key (id_produtos,id_pedidos)
 )
 
 go
 
 
 create table TIPO_PRODUTOS(
-id_tipo_produto   int           not null  primary key references PRODUTOS, 
+id_tipo_produto   int           not null  primary key references PRODUTOS,
 preco             decimal(10,2) not null,
 tipo_produto      bit           not null,
 )
@@ -124,7 +124,7 @@ create procedure cadCliente(
 	@bairro			 varchar(40),
 	@cep			 varchar(10)
 )
-as 
+as
 begin
 
 	declare @id as int
@@ -160,7 +160,7 @@ select * from v_listaClientes
 -----------------------------PROCEDURE CADASTRO FUNCIONARIO---------------------------------
 --------------------------------------------------------------------------------------------
 
-create procedure cadFuncionario 
+create procedure cadFuncionario
 (
 	@nome    varchar(50),
 	@celular varchar(14),
@@ -175,7 +175,7 @@ begin
 	insert into PESSOAS      values(@nome, @celular, @email, @senha)
 	insert into FUNCIONARIOS values(@@identity, @salario, @cargo)
 
-end 
+end
 
 exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 2500.00, 'Atendente'
 go
@@ -219,7 +219,7 @@ begin
 end
 
 create procedure cadTipoProduto
-(	
+(
 	@id_tipo_produto int,
 	@preco		     decimal(10,2),
 	@tipo_produto    bit           -- define se o produto é do tipo normal ou adicional
@@ -236,7 +236,7 @@ end
 exec cadProduto '1234', 1, 'açai premium', 22000.0
 go
 
-exec cadTipoProduto  1 , 122.00, 1  
+exec cadTipoProduto  1 , 122.00, 1
 go
 
 --------------------------------------------------------------------------------------------

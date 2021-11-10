@@ -5,8 +5,8 @@ namespace ProjectInter.Models
 {
     public class Order
     {
-        public int IdOrder { get; set; }  
-        public string CodeOrder { get; set; }   
+        public int IdOrder { get; set; }
+        public string CodeOrder { get; set; }
         public string Observations { get; set; }
         public int Situation { get; set; }
         public string DateToSell {get; set;}
