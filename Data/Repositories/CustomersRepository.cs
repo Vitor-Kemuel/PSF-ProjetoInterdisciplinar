@@ -31,7 +31,6 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@cep", address.ZipCodeAddress);
                 cmd.ExecuteNonQuery();
 
-
             } catch(Exception ex){
                 Console.WriteLine("Erro: " + ex.Message);
             } finally{
@@ -54,46 +53,38 @@ namespace ProjectInter.Data.Repositories
             try
             {
                 List<Customers> customers = new List<Customers>();
+
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "v_listaClientes";
-                cmd.CommandType = CommandType.TableDirect;
+                cmd.CommandText = "SELECT nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read()){
-
-                    Address address = new Address(){
-                        NameAddress = reader.GetString(5),
-                        ComplementAddress = reader.GetString(6),
-                        NumberAddress = reader.GetString(7),
-                        District = reader.GetString(8),
-                        ZipCodeAddress = reader.GetString(9),
-                    };
-
                     Customers customer = new Customers(){
-                         Name = reader.GetString(0),
-                         Cellphone = reader.GetString(1),
-                         Email = reader.GetString(2),
-                         Password = reader.GetString(3),
-                         Cpf = reader.GetString(4),
-                         Address = address
+                         Name = (string)reader["nome"],
+                         Cellphone = (string)reader["celular"],
+                         Email = (string) reader["email"],
+                         Password = (string) reader["senha"],
+                         Cpf = (string) reader["cpf"],
+                         Address = new Address(){
+                            NameAddress = (string) reader["endereco"],
+                            ComplementAddress = (string) reader["complemento"],
+                            NumberAddress = (string) reader["numero"],
+                            District = (string) reader["bairro"],
+                            ZipCodeAddress = (string) reader["cep"],
+                         }
                     };
                      
                     customers.Add(customer);
-                    return customers;
                 }
 
+                return customers;
 
-                return null;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
+            } finally {
                 Dispose();
             }
         }
