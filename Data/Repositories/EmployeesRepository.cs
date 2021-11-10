@@ -8,7 +8,24 @@ namespace ProjectInter.Data.Repositories
     {
         public void Create(Employees employee)
         {
-            throw new System.NotImplementedException();
+           try{
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "cadFuncionario";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nome", employees.Name);
+                cmd.Parameters.AddWithValue("@celular", employees.Cellphone);
+                cmd.Parameters.AddWithValue("@email", employees.Email);
+                cmd.Parameters.AddWithValue("@senha", employees.Password);
+                cmd.Parameters.AddWithValue("@salario", employees.Salario);
+                cmd.Parameters.AddWithValue("@cargo", employees.Cargo);
+                cmd.ExecuteNonQuery();
+           }catch(Exception ex){
+                Console.WriteLine("Erro: " + ex.Message);
+           }finally{
+               Dispose();
+           }
         }
 
         public void Delete(int id)
