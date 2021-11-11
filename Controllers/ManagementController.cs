@@ -35,7 +35,7 @@ namespace ProjectInter.Controllers
         public ActionResult NewEmployee(Employees employees)
         {
             repository.Create(employees);
-            return RedirectToAction("Order");
+            return RedirectToAction("Index");
         }
     }
 }
