@@ -38,7 +38,7 @@ namespace ProjectInter.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Employees GetEmployee(int id)
+        public Employees GetSingleEmployee(int id)
         {
             throw new System.NotImplementedException();
         }

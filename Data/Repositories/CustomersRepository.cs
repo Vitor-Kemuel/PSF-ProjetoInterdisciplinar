@@ -44,7 +44,7 @@ namespace ProjectInter.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Customers GetCustomer(int id)
+        public Customers GetSingleCustomer(int id)
         {
             throw new System.NotImplementedException();
         }

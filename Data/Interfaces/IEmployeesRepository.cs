@@ -9,7 +9,7 @@ namespace ProjectInter.Data.Interfaces
 
         List<Employees> GetListEmployees();
 
-        Employees GetEmployee(int id);
+        Employees GetSingleEmployee(int id);
 
         void Update(int id, Employees employee);
 
