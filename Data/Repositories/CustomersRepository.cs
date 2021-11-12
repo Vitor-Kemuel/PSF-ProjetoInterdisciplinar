@@ -5,6 +5,7 @@ using ProjectInter.Data.Interfaces;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace ProjectInter.Data.Repositories
 {
     public class CustomersRepository : BDContext, ICustomersRepository
@@ -44,8 +45,6 @@ namespace ProjectInter.Data.Repositories
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                // VER ESSA QUESTÃO DO COMMAND TEXT SE SERÁ "CADCLIENTE" OU UMA OUTRA VARIAVEL.
-                // VER ESSA QUESTÃO JUNTAMENTE COM O ALEX SOBRE O BANCO DE DADOS.
                 cmd.CommandText = "UPDATE PESSOAS set situacao = 2 where id_pessoa = @id";
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@id", id);
@@ -66,7 +65,7 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT id_ pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoa = @id";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoas = @id";
 
                 cmd.Parameters.AddWithValue("@id", id);
 
@@ -143,8 +142,30 @@ namespace ProjectInter.Data.Repositories
 
         public void Update(int id, Customers customers)
         {
-            //Criar procedure para atualizar clientes
-            throw new System.NotImplementedException();
+            try{
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "ProcedurePendente";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nome", customers.Name);
+                cmd.Parameters.AddWithValue("@celular", customers.Cellphone);
+                cmd.Parameters.AddWithValue("@email", customers.Email);
+                cmd.Parameters.AddWithValue("@senha", customers.Password);
+                cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
+                cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
+                cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
+                cmd.Parameters.AddWithValue("@numero_endereco", customers.Address.NumberAddress);
+                cmd.Parameters.AddWithValue("@bairro", customers.Address.District);
+                cmd.Parameters.AddWithValue("@cep", customers.Address.ZipCodeAddress);
+
+                cmd.ExecuteNonQuery();
+
+            }catch(Exception ex){
+                throw new Exception(ex.Message);
+            }finally{
+                Dispose();
+            }
         }
     }
 }
