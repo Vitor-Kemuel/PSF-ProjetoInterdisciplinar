@@ -32,9 +32,9 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@cep", address.ZipCodeAddress);
                 cmd.ExecuteNonQuery();
 
-            } catch(Exception ex){
+            } catch(Exception ex) {
                 Console.WriteLine("Erro: " + ex.Message);
-            } finally{
+            } finally {
                 Dispose();
             }
         }
@@ -51,22 +51,52 @@ namespace ProjectInter.Data.Repositories
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@id", id);
 
-
                 cmd.ExecuteNonQuery();
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Console.WriteLine("Erro: " + ex.Message);
-            }
-            finally{
+            } finally {
                 Dispose();
             }
         }
 
         public Customers GetSingleCustomer(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "SELECT nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoa = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.Read()){
+                    Customers customer = new Customers(){
+                         Name = (string)reader["nome"],
+                         Cellphone = (string)reader["celular"],
+                         Email = (string) reader["email"],
+                         Password = (string) reader["senha"],
+                         Cpf = (string) reader["cpf"],
+                         Address = new Address(){
+                            NameAddress = (string) reader["endereco"],
+                            ComplementAddress = (string) reader["complemento"],
+                            NumberAddress = (string) reader["numero"],
+                            District = (string) reader["bairro"],
+                            ZipCodeAddress = (string) reader["cep"],
+                         }
+                    };
+                    return customer;
+                }
+
+                return null;
+            } catch (Exception ex) {
+                throw new Exception("Erro: "+ ex.Message);
+            } finally {
+                Dispose();
+            }
         }
 
         public List<Customers> GetAllCustomers()
@@ -112,6 +142,7 @@ namespace ProjectInter.Data.Repositories
 
         public void Update(int id, Customers customers)
         {
+            //Criar procedure para atualizar clientes
             throw new System.NotImplementedException();
         }
     }
