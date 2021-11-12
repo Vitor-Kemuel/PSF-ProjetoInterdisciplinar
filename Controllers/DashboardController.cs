@@ -100,7 +100,7 @@ namespace ProjectInter.Controllers
         public ActionResult NewCustomer(Customers customer, Address address)
         {
             repository.Create(customer, address);
-            return RedirectToAction("Order");
+            return RedirectToAction("CustomerList");
         }
 
         public ActionResult NewOrder()
@@ -115,6 +115,7 @@ namespace ProjectInter.Controllers
 
         public ActionResult NewProduct()
         {
+            
             return View();
         }
 

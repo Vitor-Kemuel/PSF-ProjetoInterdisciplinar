@@ -9,7 +9,6 @@ namespace ProjectInter.Data.Repositories
 {
     public class CustomersRepository : BDContext, ICustomersRepository
     {
-        //Lembrar de perguntar para o Dezani sobre a referência de Address em Customer
         public void Create(Customers customers, Address address)
         {
             try
@@ -25,11 +24,12 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@email", customers.Email);
                 cmd.Parameters.AddWithValue("@senha", customers.Password);
                 cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
-                cmd.Parameters.AddWithValue("@endereco", address.NameAddress);
-                cmd.Parameters.AddWithValue("@complemento", address.ComplementAddress);
-                cmd.Parameters.AddWithValue("@numero_endereco", address.NumberAddress);
-                cmd.Parameters.AddWithValue("@bairro", address.District);
-                cmd.Parameters.AddWithValue("@cep", address.ZipCodeAddress);
+                cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
+                cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
+                cmd.Parameters.AddWithValue("@numero_endereco", customers.Address.NumberAddress);
+                cmd.Parameters.AddWithValue("@bairro", customers.Address.District);
+                cmd.Parameters.AddWithValue("@cep", customers.Address.ZipCodeAddress);
+
                 cmd.ExecuteNonQuery();
 
             } catch(Exception ex) {
@@ -38,7 +38,6 @@ namespace ProjectInter.Data.Repositories
                 Dispose();
             }
         }
-
         public void Delete(int id)
         {
             try
@@ -67,7 +66,7 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoa = @id";
+                cmd.CommandText = "SELECT id_ pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoa = @id";
 
                 cmd.Parameters.AddWithValue("@id", id);
 
@@ -75,18 +74,19 @@ namespace ProjectInter.Data.Repositories
 
                 if(reader.Read()){
                     Customers customer = new Customers(){
-                         Name = (string)reader["nome"],
-                         Cellphone = (string)reader["celular"],
-                         Email = (string) reader["email"],
-                         Password = (string) reader["senha"],
-                         Cpf = (string) reader["cpf"],
-                         Address = new Address(){
+                        IdPerson = (int) reader["id_pessoas"],
+                        Name = (string)reader["nome"],
+                        Cellphone = (string)reader["celular"],
+                        Email = (string) reader["email"],
+                        Password = (string) reader["senha"],
+                        Cpf = (string) reader["cpf"],
+                        Address = new Address(){
                             NameAddress = (string) reader["endereco"],
                             ComplementAddress = (string) reader["complemento"],
                             NumberAddress = (string) reader["numero"],
                             District = (string) reader["bairro"],
                             ZipCodeAddress = (string) reader["cep"],
-                         }
+                        }
                     };
                     return customer;
                 }
@@ -108,12 +108,13 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read()){
                     Customers customer = new Customers(){
+                        IdPerson = (int) reader["id_pessoas"],
                          Name = (string)reader["nome"],
                          Cellphone = (string)reader["celular"],
                          Email = (string) reader["email"],
@@ -134,7 +135,7 @@ namespace ProjectInter.Data.Repositories
                 return customers;
 
             } catch (Exception ex) {
-                throw new Exception(ex.Message);
+                 throw new Exception(ex.Message);
             } finally {
                 Dispose();
             }

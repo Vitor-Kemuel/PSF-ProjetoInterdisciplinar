@@ -1,3 +1,6 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ProjectInter.Models.Customers
+
 @{
     ViewBag.Title = "Point Dashboard";
     ViewBag.Styles = "/css/dashboard/newCustomer.css";
@@ -6,7 +9,7 @@
 }
 
 <div id="table">
-    <form id="formCadastro" asp-controller="Usuario" asp-action="Cadastro" action="/Dashboard/NewCustomer" method="POST">
+    <form id="formCadastro" asp-controller="Dashboard" asp-action="NewCustomer" method="POST">
         <div id="consumerInfo">
             <div class="formLine">
                 <input id="customerName" class="formInput" type="text" placeholder="Nome" name="Name" required>
@@ -26,15 +29,15 @@
             <div class="adress">
                 <h2 class="titleAdress">Endereço:</h2>
                 <div class="formLine">
-                    <input class="formInput cepInput" type="text" placeholder="CEP" name="ZipCodeAddress">
+                    <input class="formInput cepInput" type="text" placeholder="CEP" asp-for="Address.ZipCodeAddress">
                 </div>
                 <div class="formLine">
-                    <input class="formInput" type="text" placeholder="Endereço" name="NameAddress">
-                    <input class="formInput adressNumber" type="text" placeholder="Numero" name="NumberAddress">
+                    <input class="formInput" type="text" placeholder="Endereço" asp-for="Address.NameAddress">
+                    <input class="formInput adressNumber" type="text" placeholder="Numero" asp-for="Address.NumberAddress">
                 </div>
                 <div class="formLine">
-                    <input class="formInput" type="text" placeholder="Bairro" name="District">
-                    <input class="formInput" type="text" placeholder="Complemento" name="ComplementAddress">
+                    <input class="formInput" type="text" placeholder="Bairro" asp-for="Address.District">
+                    <input class="formInput" type="text" placeholder="Complemento" asp-for="Address.ComplementAddress">
                 </div>
             </div>
         </div>

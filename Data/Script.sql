@@ -149,7 +149,7 @@ go
 create view v_listaClientes
 as
 
-	select p.nome, p.email, p.senha, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
+	select p.id_pessoas, p.nome, p.email, p.senha, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
 	from PESSOAS p, CLIENTES c, LOGRADOUROS lg
 	where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
 
