@@ -41,7 +41,23 @@ namespace ProjectInter.Data.Repositories
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                // VER ESSA QUESTÃO DO COMMAND TEXT SE SERÁ "CADCLIENTE" OU UMA OUTRA VARIAVEL.
+                // VER ESSA QUESTÃO JUNTAMENTE COM O ALEX SOBRE O BANCO DE DADOS
+                cmd.CommandText = "cadCliente";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+            finally{
+                Dispose();
+            }
         }
 
         public Customers GetSingleCustomer(int id)
@@ -77,7 +93,7 @@ namespace ProjectInter.Data.Repositories
                             ZipCodeAddress = (string) reader["cep"],
                          }
                     };
-                     
+
                     customers.Add(customer);
                 }
 
