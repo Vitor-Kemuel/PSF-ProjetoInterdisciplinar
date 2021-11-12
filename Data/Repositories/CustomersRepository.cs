@@ -46,12 +46,16 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
                 // VER ESSA QUESTÃO DO COMMAND TEXT SE SERÁ "CADCLIENTE" OU UMA OUTRA VARIAVEL.
-                // VER ESSA QUESTÃO JUNTAMENTE COM O ALEX SOBRE O BANCO DE DADOS
-                cmd.CommandText = "cadCliente";
-                cmd.CommandType = CommandType.StoredProcedure;
+                // VER ESSA QUESTÃO JUNTAMENTE COM O ALEX SOBRE O BANCO DE DADOS.
+                cmd.CommandText = "UPDATE PESSOAS set situacao = 2 where id_pessoa = @id";
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@id", id);
+
+
+                cmd.ExecuteNonQuery();
 
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
             }
