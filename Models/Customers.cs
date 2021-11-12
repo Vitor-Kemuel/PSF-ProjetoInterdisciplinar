@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace ProjectInter.Models
 {
     public class Customers : Persons

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectInter.Models;
-using System;
 using ProjectInter.Data.Interfaces;
 
 namespace ProjectInter.Controllers
@@ -87,7 +86,7 @@ namespace ProjectInter.Controllers
         }
         [HttpGet]
         public ActionResult CustomerList()
-        {   
+        {
             var customers = repository.GetAllCustomers();
             return View(customers);
         }
