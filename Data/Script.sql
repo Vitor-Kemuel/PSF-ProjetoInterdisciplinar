@@ -205,7 +205,7 @@ select * from v_listaFuncionario
 create procedure cadProduto
 (
 	@cod_produto     varchar(40),
-	@situacao	     bit,-- 1=Ativo 2=Desativo
+	@situacao	     bit,-- 0=Ativo 1=Desativo
 	@nome		     varchar(100),
 	@estoque	     decimal(10,2),
 	@preco		     decimal(10,2),
@@ -300,7 +300,6 @@ as
 begin
 
 	insert COMPRAS values(@data_compra, @quantidade, @valor_total)
-	--set @id = @@identity
 	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY)
 	
 end
