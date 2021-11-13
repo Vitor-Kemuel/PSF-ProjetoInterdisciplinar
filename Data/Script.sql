@@ -16,6 +16,13 @@ senha        varchar(50) not null
 
 go
 
+create table CLIENTES(
+id_pessoas  int         not null primary key  references PESSOAS,
+cpf         varchar(14) not null unique,
+)
+
+go
+
 create table FUNCIONARIOS(
 id_pessoas        int            not null primary key references PESSOAS,
 salario           decimal(10,2)  not null,
@@ -24,17 +31,10 @@ cargo             varchar(50)    not null,
 
 go
 
-create table CLIENTES(
-id_pessoas  int         not null primary key  references PESSOAS,
-cpf         varchar(14) not null unique,
-)
-
-go
-
 create table LOGRADOUROS(
 id_clientes      int          not null  primary key references CLIENTES,
 endereco         varchar(40)  not null,
-complemento      varchar(100) not null,
+complemento      varchar(100),
 numero_endereco  varchar(10)  not null,
 bairro           varchar(40)  not null,
 cep              varchar(10)  not null
@@ -53,10 +53,45 @@ check (situacao in ( 1, 2))
 
 go
 
+create table TIPO_PRODUTOS(
+id_tipo_produto   int           not null  primary key references PRODUTOS, 
+preco             decimal(10,2) not null,
+tipo_produto      bit           not null,
+)
+
+go
+
+create table PEDIDOS(
+id_pedidos        int            not null   primary key   identity,
+id_clientes       int            not null   references    CLIENTES,
+id_funcionarios   int            not null   references    FUNCIONARIOS,
+cod_pedidos       varchar(40)    not null,
+observacoes       varchar(500),
+situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega 
+data_venda        datetime       not null,
+pedido_lido       datetime       not null, --Horario
+pedido_produzindo datetime       not null, --Horario
+pedido_entregue   datetime       not null, --horario
+check   (situacao in (1, 2, 3))
+)
+
+go
+
+create table PRODUTOS_PEDIDOS(
+id_produtos int           not null references PRODUTOS,
+id_pedidos  int           not null references PEDIDOS,
+quantidade  int           not null,
+valor_total decimal(7,2)  not null, 
+primary key (id_produtos,id_pedidos)              
+)
+
+go
+
 create table COMPRAS(
 id_compras     int           not null  primary key  identity,
 data_compra    datetime      not null,
-quantidade     decimal(10,2) not null
+quantidade     decimal(10,2) not null,
+valor_total    decimal(10,2) not null
 )
 
 go
@@ -69,48 +104,14 @@ primary key (id_produtos, id_compras)
 
 go
 
-create table PEDIDOS(
-id_pedidos        int            not null   primary key   identity,
-fk_clientes       int            not null   references  CLIENTES,
-fk_produtos       int            not null   references  PRODUTOS,
-cod_pedidos       varchar(40)    not null,
-quantidade        int            not null,
-observacoes       varchar(500),
-situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega
-valor_total       decimal(10,2)  not null,
-data_venda        datetime       not null,
-pedido_lido       datetime       not null, --Horario
-pedido_produzindo datetime       not null, --Horario
-pedido_entregue   datetime       not null  --horario
-check   (situacao in (1, 2, 3))
-)
-
-go
-
-
-create table PRODUTOS_PEDIDOS(
-id_produtos int           not null references PRODUTOS,
-id_pedidos  int           not null references PEDIDOS,
-quantidade  int           not null,
-valor_total decimal(7,2)  not null,
-primary key (id_produtos,id_pedidos)
-)
-
-go
-
-
-create table TIPO_PRODUTOS(
-id_tipo_produto   int           not null  primary key references PRODUTOS,
-preco             decimal(10,2) not null,
-tipo_produto      bit           not null,
-)
-
-go
-
 
 --------------------------------------------------------------------------------------------
------------------------------PROCEDURE CADASTRO CLIENTES------------------------------------
+--------------------------------PROCEDURE CADASTRAR CLIENTE---------------------------------
 --------------------------------------------------------------------------------------------
+
+
+use point_summer_foods_dev
+go
 
 create procedure cadCliente(
 	@nome			 varchar(50),
@@ -124,7 +125,7 @@ create procedure cadCliente(
 	@bairro			 varchar(40),
 	@cep			 varchar(10)
 )
-as
+as 
 begin
 
 	declare @id as int
@@ -142,14 +143,14 @@ exec cadCliente 'Guilherme Piovezan', '17 988840120', 'piovezan.guilherme@gmail.
 go
 
 --------------------------------------------------------------------------------------------
------------------------------VIEW LISTA CLIENTES--------------------------------------------
+-----------------------------VIEW LISTA CADASTRO CLIENTES--------------------------------------------
 --------------------------------------------------------------------------------------------
 
 
 create view v_listaClientes
 as
 
-	select p.id_pessoas, p.nome, p.email, p.senha, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
+	select p.nome, p.email, p.senha, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
 	from PESSOAS p, CLIENTES c, LOGRADOUROS lg
 	where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
 
@@ -160,7 +161,7 @@ select * from v_listaClientes
 -----------------------------PROCEDURE CADASTRO FUNCIONARIO---------------------------------
 --------------------------------------------------------------------------------------------
 
-create procedure cadFuncionario
+create procedure cadFuncionario 
 (
 	@nome    varchar(50),
 	@celular varchar(14),
@@ -175,7 +176,7 @@ begin
 	insert into PESSOAS      values(@nome, @celular, @email, @senha)
 	insert into FUNCIONARIOS values(@@identity, @salario, @cargo)
 
-end
+end 
 
 exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 2500.00, 'Atendente'
 go
@@ -204,39 +205,31 @@ select * from v_listaFuncionario
 -----------------------------PROCEDURE CADASTRO PRODUTO-------------------------------------
 --------------------------------------------------------------------------------------------
 
+drop procedure cadProduto
+go
+
 create procedure cadProduto
 (
-	@cod_produto  varchar(40),
-	@situacao	  bit,-- 1=Ativo 2=Desativo
-	@nome		  varchar(100),
-	@estoque	  decimal(10,2)
-)
-as
-begin
-
-	insert into PRODUTOS values(@cod_produto, @situacao, @nome, @estoque)
-
-end
-
-create procedure cadTipoProduto
-(
-	@id_tipo_produto int,
+	@cod_produto     varchar(40),
+	@situacao	     bit,-- 1=Ativo 2=Desativo
+	@nome		     varchar(100),
+	@estoque	     decimal(10,2),
 	@preco		     decimal(10,2),
 	@tipo_produto    bit           -- define se o produto é do tipo normal ou adicional
 )
 as
 begin
 
-	insert into TIPO_PRODUTOS values( @id_tipo_produto, @preco, @tipo_produto)
+	insert into PRODUTOS values(@cod_produto, @situacao, @nome, @estoque)
+	insert into TIPO_PRODUTOS values( @@IDENTITY, @preco, @tipo_produto)
+
 
 end
 
-
-
-exec cadProduto '1234', 1, 'açai premium', 22000.0
+exec cadProduto '1234', 1, 'açai premium', 22000.0, 122.00, 1  
 go
 
-exec cadTipoProduto  1 , 122.00, 1
+exec cadProduto '5678', 1, 'Banana nanica', 2.0, 2.00, 1  
 go
 
 --------------------------------------------------------------------------------------------
@@ -257,3 +250,152 @@ go
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE ALTERAR PRODUTO-------------------------------------
 --------------------------------------------------------------------------------------------
+
+create procedure altProduto
+(
+	@id_produtos     int,       
+	@cod_produto     varchar(40),
+	@situacao	     bit,          -- 1=Ativo 2=Desativo
+	@nome		     varchar(100),
+	@estoque         decimal(10,2),
+	@id_tipo_produto int,
+	@preco		     decimal(10,2),
+	@tipo_produto    bit           -- define se o produto é do tipo normal ou adicional
+)
+as
+begin
+	
+	update PRODUTOS set cod_produto = @cod_produto, situacao = @situacao, nome = @nome, estoque = @estoque
+	update TIPO_PRODUTOS set preco = @preco, tipo_produto = @tipo_produto
+
+end
+
+exec altProduto 2, '4321', 2, 'açai dourado', 19000.00, 119.00, 2
+go
+
+--------------------------------------------------------------------------------------------
+----------------------------------VIEW EXIBIÇÃO ALTERAR PRODUTO----------------------------
+--------------------------------------------------------------------------------------------
+
+
+create view v_listaAltProduto
+as
+	
+	select pro.cod_produto, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
+	from   PRODUTOS pro, TIPO_PRODUTOS tpro
+	where  pro.id_produtos = tpro.id_tipo_produto
+
+go
+
+select * from v_listaAltProduto
+
+go
+
+--------------------------------------------------------------------------------------------
+-----------------------------PROCEDURE CADASTRAR COMPRA-------------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure cadCompra
+(
+	@id_produtos int, -- tabela produtos_compras
+	@data_compra datetime,
+	@quantidade  int,
+	@valor_total decimal(10,2)
+)
+as
+begin
+
+	insert COMPRAS values(@data_compra, @quantidade, @valor_total)
+	--set @id = @@identity
+	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY)
+	
+end
+go
+
+declare @CurrentDate datetime
+set @CurrentDate = getDate()
+
+
+exec cadCompra 1, '20211109' , 30, 20.00;
+go
+
+exec cadCompra 2, '20211109' , 30, 20.00;
+go
+
+exec cadCompra 3, '20211109' , 30, 20.00;
+go
+
+
+--------------------------------------------------------------------------------------------
+----------------------------------VIEW EXIBIÇÃO CADASTRO COMPRA-----------------------------
+--------------------------------------------------------------------------------------------
+
+
+create View v_listaCadCompra
+as
+
+	select com.data_compra, com.quantidade, pro.cod_produto, pro.situacao, pro.nome, pro.estoque
+	from COMPRAS com, PRODUTOS pro, PRODUTOS_COMPRAS pc
+	where com.id_compras = pc.id_compras and pc.id_produtos = pro.id_produtos
+
+go
+
+select * from v_listaCadCompra
+go
+
+
+--------------------------------------------------------------------------------------------
+--------------------------------PROCEDURE REGISTRO DE VENDA---------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure regVenda
+(
+	@id_cliente        int,
+	@id_funcionario    int,
+	@cod_pedido        varchar(40),
+	@observacoes       varchar(500),
+	@situacao          int,
+	@data_venda        datetime,
+	@pedido_lido       datetime,
+	@pedido_produzindo datetime,
+	@pedido_entregue   datetime,
+	@id_produto        int,
+	@quantidade        int,         -- existem dois campos com o memso nome, deveriamos trocar o nome dos campos para não haver interferencia
+	@valor_total       decimal(7,1) -- existem dois campos com o memso nome, deveriamos trocar o nome dos campos para não haver interferencia
+)
+as 
+begin
+
+	insert PEDIDOS values(@id_cliente, @id_funcionario, @cod_pedido, @observacoes, @situacao, @data_venda, @pedido_lido, @pedido_produzindo, @pedido_entregue)
+	insert PRODUTOS_PEDIDOS values(@id_produto, @@IDENTITY, @quantidade, @valor_total)
+	
+end
+go
+
+exec regVenda 1, 3, '30265', 'Tirar a cebola', 1, '20211110 18:42', '20211110 18:42', '20211110 18:50', '20211110 00:00', 2, 1, 15.50
+
+--------------------------------------------------------------------------------------------
+----------------------------------VIEW REGISTRO DE VENDA------------------------------------
+--------------------------------------------------------------------------------------------
+
+create view v_listaRegVendas
+as
+
+	select ped.cod_pedidos, ped.observacoes, ped.situacao, ped.data_venda, ped.pedido_lido, ped.pedido_produzindo, ped.pedido_entregue, prop.id_produtos, prop.quantidade, prop.valor_total,pe.id_pessoas, pe.celular, pe.email, pe.nome, pe.senha, cli.cpf, fun.cargo, fun.salario
+	from PEDIDOS ped, PRODUTOS_PEDIDOS prop, PESSOAS pe, CLIENTES cli, FUNCIONARIOS fun
+	where pe.id_pessoas = cli.id_pessoas and pe.id_pessoas = ped.id_clientes and ped.id_pedidos = prop.id_pedidos
+
+go
+
+select * from v_listaRegVendas
+go
+
+
+
+
+-------------------------------------------------------------------------------------------
+----------------------------------VIEW LOGIN-----------------------------------------------
+-------------------------------------------------------------------------------------------
+
+
+
