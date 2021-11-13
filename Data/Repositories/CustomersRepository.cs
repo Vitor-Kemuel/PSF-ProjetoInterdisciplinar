@@ -45,7 +45,7 @@ namespace ProjectInter.Data.Repositories
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "UPDATE PESSOAS set situacao = 2 where id_pessoa = @id";
+                cmd.CommandText = "UPDATE PESSOAS set situacao = 1 where id_pessoa = @id";
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@id", id);
 
