@@ -63,12 +63,11 @@ go
 
 create table PEDIDOS(
 id_pedidos        int            not null   primary key   identity,
-fk_clientes       int            not null   references    CLIENTES,
+id_clientes       int            not null   references    CLIENTES,
+id_funcionarios   int            not null   references    FUNCIONARIOS,
 cod_pedidos       varchar(40)    not null,
-quantidade        int            not null,
 observacoes       varchar(500),
 situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega 
-valor_total       decimal(10,2)  not null,
 data_venda        datetime       not null,
 pedido_lido       datetime       not null, --Horario
 pedido_produzindo datetime       not null, --Horario
@@ -91,7 +90,8 @@ go
 create table COMPRAS(
 id_compras     int           not null  primary key  identity,
 data_compra    datetime      not null,
-quantidade     decimal(10,2) not null
+quantidade     decimal(10,2) not null,
+valor_total    decimal(10,2) not null
 )
 
 go
@@ -105,7 +105,9 @@ primary key (id_produtos, id_compras)
 go
 
 
---------------------------------------PROCEDURES
+--------------------------------------------------------------------------------------------
+--------------------------------PROCEDURE CADASTRAR CLIENTE---------------------------------
+--------------------------------------------------------------------------------------------
 
 
 use point_summer_foods_dev
@@ -141,7 +143,7 @@ exec cadCliente 'Guilherme Piovezan', '17 988840120', 'piovezan.guilherme@gmail.
 go
 
 --------------------------------------------------------------------------------------------
------------------------------VIEW LISTA CLIENTES--------------------------------------------
+-----------------------------VIEW LISTA CADASTRO CLIENTES--------------------------------------------
 --------------------------------------------------------------------------------------------
 
 
@@ -227,6 +229,8 @@ end
 exec cadProduto '1234', 1, 'açai premium', 22000.0, 122.00, 1  
 go
 
+exec cadProduto '5678', 1, 'Banana nanica', 2.0, 2.00, 1  
+go
 
 --------------------------------------------------------------------------------------------
 ----------------------------------VIEW EXIBIÇÃO CADASTRO PRODUTO----------------------------
@@ -242,6 +246,7 @@ go
 
 select * from v_listaProduto
 go
+
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE ALTERAR PRODUTO-------------------------------------
 --------------------------------------------------------------------------------------------
@@ -285,3 +290,112 @@ go
 select * from v_listaAltProduto
 
 go
+
+--------------------------------------------------------------------------------------------
+-----------------------------PROCEDURE CADASTRAR COMPRA-------------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure cadCompra
+(
+	@id_produtos int, -- tabela produtos_compras
+	@data_compra datetime,
+	@quantidade  int,
+	@valor_total decimal(10,2)
+)
+as
+begin
+
+	insert COMPRAS values(@data_compra, @quantidade, @valor_total)
+	--set @id = @@identity
+	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY)
+	
+end
+go
+
+declare @CurrentDate datetime
+set @CurrentDate = getDate()
+
+
+exec cadCompra 1, '20211109' , 30, 20.00;
+go
+
+exec cadCompra 2, '20211109' , 30, 20.00;
+go
+
+exec cadCompra 3, '20211109' , 30, 20.00;
+go
+
+
+--------------------------------------------------------------------------------------------
+----------------------------------VIEW EXIBIÇÃO CADASTRO COMPRA-----------------------------
+--------------------------------------------------------------------------------------------
+
+
+create View v_listaCadCompra
+as
+
+	select com.data_compra, com.quantidade, pro.cod_produto, pro.situacao, pro.nome, pro.estoque
+	from COMPRAS com, PRODUTOS pro, PRODUTOS_COMPRAS pc
+	where com.id_compras = pc.id_compras and pc.id_produtos = pro.id_produtos
+
+go
+
+select * from v_listaCadCompra
+go
+
+
+--------------------------------------------------------------------------------------------
+--------------------------------PROCEDURE REGISTRO DE VENDA---------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure regVenda
+(
+	@id_cliente        int,
+	@id_funcionario    int,
+	@cod_pedido        varchar(40),
+	@observacoes       varchar(500),
+	@situacao          int,
+	@data_venda        datetime,
+	@pedido_lido       datetime,
+	@pedido_produzindo datetime,
+	@pedido_entregue   datetime,
+	@id_produto        int,
+	@quantidade        int,         -- existem dois campos com o memso nome, deveriamos trocar o nome dos campos para não haver interferencia
+	@valor_total       decimal(7,1) -- existem dois campos com o memso nome, deveriamos trocar o nome dos campos para não haver interferencia
+)
+as 
+begin
+
+	insert PEDIDOS values(@id_cliente, @id_funcionario, @cod_pedido, @observacoes, @situacao, @data_venda, @pedido_lido, @pedido_produzindo, @pedido_entregue)
+	insert PRODUTOS_PEDIDOS values(@id_produto, @@IDENTITY, @quantidade, @valor_total)
+	
+end
+go
+
+exec regVenda 1, 3, '30265', 'Tirar a cebola', 1, '20211110 18:42', '20211110 18:42', '20211110 18:50', '20211110 00:00', 2, 1, 15.50
+
+--------------------------------------------------------------------------------------------
+----------------------------------VIEW REGISTRO DE VENDA------------------------------------
+--------------------------------------------------------------------------------------------
+
+create view v_listaRegVendas
+as
+
+	select ped.cod_pedidos, ped.observacoes, ped.situacao, ped.data_venda, ped.pedido_lido, ped.pedido_produzindo, ped.pedido_entregue, prop.id_produtos, prop.quantidade, prop.valor_total,pe.id_pessoas, pe.celular, pe.email, pe.nome, pe.senha, cli.cpf, fun.cargo, fun.salario
+	from PEDIDOS ped, PRODUTOS_PEDIDOS prop, PESSOAS pe, CLIENTES cli, FUNCIONARIOS fun
+	where pe.id_pessoas = cli.id_pessoas and pe.id_pessoas = ped.id_clientes and ped.id_pedidos = prop.id_pedidos
+
+go
+
+select * from v_listaRegVendas
+go
+
+
+
+
+-------------------------------------------------------------------------------------------
+----------------------------------VIEW LOGIN-----------------------------------------------
+-------------------------------------------------------------------------------------------
+
+
+
