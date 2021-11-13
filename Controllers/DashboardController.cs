@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectInter.Models;
-using System;
 using ProjectInter.Data.Interfaces;
 
 namespace ProjectInter.Controllers
@@ -82,18 +81,14 @@ namespace ProjectInter.Controllers
         }
         [HttpGet]
         public ActionResult Order()
-        {   
+        {
             return View(getOrders());
         }
-        // private List<Customers> getCustomers()
-        // {
-            // List<Customers> customers = repository.GetAllCustomers();
-            // return customers;
-        // }
+        [HttpGet]
         public ActionResult CustomerList()
         {
-            // return View(getCustomers());
-            return View();
+            var customers = repository.GetAllCustomers();
+            return View(customers);
         }
         [HttpGet]
         public ActionResult NewCustomer()
@@ -105,14 +100,14 @@ namespace ProjectInter.Controllers
         public ActionResult NewCustomer(Customers customer, Address address)
         {
             repository.Create(customer, address);
-            return RedirectToAction("Order");
+            return RedirectToAction("CustomerList");
         }
 
         public ActionResult NewOrder()
         {
             return View();
         }
-        
+
         public ActionResult Inventory()
         {
             return View();
@@ -120,6 +115,7 @@ namespace ProjectInter.Controllers
 
         public ActionResult NewProduct()
         {
+            
             return View();
         }
 

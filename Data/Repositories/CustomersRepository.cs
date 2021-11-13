@@ -5,6 +5,7 @@ using ProjectInter.Data.Interfaces;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace ProjectInter.Data.Repositories
 {
     public class CustomersRepository : BDContext, ICustomersRepository
@@ -24,39 +25,147 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@email", customers.Email);
                 cmd.Parameters.AddWithValue("@senha", customers.Password);
                 cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
-                cmd.Parameters.AddWithValue("@endereco", address.NameAddress);
-                cmd.Parameters.AddWithValue("@complemento", address.ComplementAddress);
-                cmd.Parameters.AddWithValue("@numero_endereco", address.NumberAddress);
-                cmd.Parameters.AddWithValue("@bairro", address.District);
-                cmd.Parameters.AddWithValue("@cep", address.ZipCodeAddress);
+                cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
+                cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
+                cmd.Parameters.AddWithValue("@numero_endereco", customers.Address.NumberAddress);
+                cmd.Parameters.AddWithValue("@bairro", customers.Address.District);
+                cmd.Parameters.AddWithValue("@cep", customers.Address.ZipCodeAddress);
+
                 cmd.ExecuteNonQuery();
 
-
-            } catch(Exception ex){
+            } catch(Exception ex) {
                 Console.WriteLine("Erro: " + ex.Message);
-            } finally{
+            } finally {
+                Dispose();
+            }
+        }
+        public void Delete(int id)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "UPDATE PESSOAS set situacao = 2 where id_pessoa = @id";
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.ExecuteNonQuery();
+
+            } catch (Exception ex) {
+                Console.WriteLine("Erro: " + ex.Message);
+            } finally {
                 Dispose();
             }
         }
 
-        public void Delete(int id)
+        public Customers GetSingleCustomer(int id)
         {
-            throw new System.NotImplementedException();
-        }
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-        public Customers GetCustomer(int id)
-        {
-            throw new System.NotImplementedException();
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoas = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.Read()){
+                    Customers customer = new Customers(){
+                        IdPerson = (int) reader["id_pessoas"],
+                        Name = (string)reader["nome"],
+                        Cellphone = (string)reader["celular"],
+                        Email = (string) reader["email"],
+                        Password = (string) reader["senha"],
+                        Cpf = (string) reader["cpf"],
+                        Address = new Address(){
+                            NameAddress = (string) reader["endereco"],
+                            ComplementAddress = (string) reader["complemento"],
+                            NumberAddress = (string) reader["numero"],
+                            District = (string) reader["bairro"],
+                            ZipCodeAddress = (string) reader["cep"],
+                        }
+                    };
+                    return customer;
+                }
+
+                return null;
+            } catch (Exception ex) {
+                throw new Exception("Erro: "+ ex.Message);
+            } finally {
+                Dispose();
+            }
         }
 
         public List<Customers> GetAllCustomers()
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                List<Customers> customers = new List<Customers>();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read()){
+                    Customers customer = new Customers(){
+                        IdPerson = (int) reader["id_pessoas"],
+                         Name = (string)reader["nome"],
+                         Cellphone = (string)reader["celular"],
+                         Email = (string) reader["email"],
+                         Password = (string) reader["senha"],
+                         Cpf = (string) reader["cpf"],
+                         Address = new Address(){
+                            NameAddress = (string) reader["endereco"],
+                            ComplementAddress = (string) reader["complemento"],
+                            NumberAddress = (string) reader["numero"],
+                            District = (string) reader["bairro"],
+                            ZipCodeAddress = (string) reader["cep"],
+                         }
+                    };
+
+                    customers.Add(customer);
+                }
+
+                return customers;
+
+            } catch (Exception ex) {
+                 throw new Exception(ex.Message);
+            } finally {
+                Dispose();
+            }
         }
 
         public void Update(int id, Customers customers)
         {
-            throw new System.NotImplementedException();
+            try{
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "ProcedurePendente";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nome", customers.Name);
+                cmd.Parameters.AddWithValue("@celular", customers.Cellphone);
+                cmd.Parameters.AddWithValue("@email", customers.Email);
+                cmd.Parameters.AddWithValue("@senha", customers.Password);
+                cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
+                cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
+                cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
+                cmd.Parameters.AddWithValue("@numero_endereco", customers.Address.NumberAddress);
+                cmd.Parameters.AddWithValue("@bairro", customers.Address.District);
+                cmd.Parameters.AddWithValue("@cep", customers.Address.ZipCodeAddress);
+
+                cmd.ExecuteNonQuery();
+
+            }catch(Exception ex){
+                throw new Exception(ex.Message);
+            }finally{
+                Dispose();
+            }
         }
     }
 }

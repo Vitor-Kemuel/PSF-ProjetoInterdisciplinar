@@ -4,7 +4,7 @@ function getSession(){
     var getSession = getSession + "</div>";
     var getSession = getSession + "</div>";
     var getSession = getSession + "<a id='OptionSession' href='NewProduct'>Novo produto +</a>";
-    
+
     var session = document.getElementById("session");
     session.innerHTML = session.innerHTML + getSession;
 }

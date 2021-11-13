@@ -7,7 +7,7 @@ namespace ProjectInter.Data.Interfaces
     {
         void Create(Customers customers, Address address);
         List<Customers> GetAllCustomers();
-        Customers GetCustomer(int id);
+        Customers GetSingleCustomer(int id);
         void Update(int id, Customers customers);
         void Delete(int id);
     }

@@ -9,5 +9,7 @@ namespace ProjectInter.Data.Interfaces
         void GetAllProducts();
 
         void UpdateProdutc(int IdProduct);
+
+        void Delete(int IdProduct);
     }
 }

@@ -9,22 +9,19 @@
 }
 
 <div id="table">
-    @* @foreach (var customer in Model)
-    {     
+    @foreach (var customer in Model)
+    {
         <div class="card">
             <div class="informationLine">
                 <h2 class="clientName">@customer.Name</h2>
-                <p class="idCustomer">#@customer.IdCustomer</p>
+                <p class="idCustomer">#@customer.IdPerson</p>
             </div>
             <div class="informationLine">
-                <p class="customerAdress">@customer.Adress</p>
+                <p class="telefone" >@customer.Cellphone</p>
             </div>
             <div class="informationLine">
-                <p class="customerAdressComplement">Complemento: @customer.Complemento</p>
-            </div>
-            <div class="informationLine">
-                <p class="customerContact">@customer.Telefone</p>
+                <p>+ Detalhes </p>
             </div>
         </div>
-    } *@
+    }
 </div>
