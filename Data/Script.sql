@@ -11,7 +11,8 @@ id_pessoas   int         not null  primary key  identity,
 nome         varchar(50) not null,
 celular      varchar(14) not null,
 email        varchar(50) not null  unique,
-senha        varchar(50) not null
+senha        varchar(50) not null,
+situacao     bit         not null -- 0 = Ativo e 1 = Desativo     EXCLUIR TABELA PESSOAS E TODAS FK PRA ADICIONAR NOVAMENTE A TABELA COM O COMPO SITUACAO
 )
 
 go
@@ -104,12 +105,6 @@ primary key (id_produtos, id_compras)
 
 go
 
-
---------------------------------------------------------------------------------------------
---------------------------------PROCEDURE CADASTRAR CLIENTE---------------------------------
---------------------------------------------------------------------------------------------
-
-
 use point_summer_foods_dev
 go
 
@@ -118,6 +113,7 @@ create procedure cadCliente(
 	@celular		 varchar(14),
 	@email		     varchar(50),
 	@senha			 varchar(50),
+	@situacao        bit,         -- 0 = Ativo e 1 = Desativo
 	@cpf			 varchar(14),
 	@endereco		 varchar(40),
 	@complemento	 varchar(100),
@@ -130,7 +126,7 @@ begin
 
 	declare @id as int
 
-	insert into PESSOAS values(@nome, @celular,@email,@senha)
+	insert into PESSOAS values(@nome, @celular, @email, @senha, @situacao)
 	set @id = @@identity
 	insert into CLIENTES values(@id, @cpf)
 	insert into LOGRADOUROS values(@id, @endereco, @complemento, @numero_endereco, @bairro, @cep)
@@ -138,19 +134,19 @@ begin
 end
 go
 
-exec cadCliente 'Guilherme Piovezan', '17 988840120', 'piovezan.guilherme@gmail.com', '1234567', '11111111111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
+exec cadCliente 'Guilherme Piovezan', '17 988840120', 'piovezan.guilherme@gmail.com', '1234567', 0, '11111111111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
 
 go
 
 --------------------------------------------------------------------------------------------
------------------------------VIEW LISTA CADASTRO CLIENTES--------------------------------------------
+-----------------------------VIEW LISTA CLIENTES--------------------------------------------
 --------------------------------------------------------------------------------------------
 
 
 create view v_listaClientes
 as
 
-	select p.nome, p.email, p.senha, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
+	select p.nome, p.email, p.senha, p.situacao, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
 	from PESSOAS p, CLIENTES c, LOGRADOUROS lg
 	where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
 
@@ -163,26 +159,27 @@ select * from v_listaClientes
 
 create procedure cadFuncionario 
 (
-	@nome    varchar(50),
-	@celular varchar(14),
-	@email   varchar(50),
-	@senha	 varchar(50), -- lembrando que senha deve ser maior que 6 caracteres
-	@salario decimal(10,2),
-	@cargo   varchar(50)
+	@nome     varchar(50),
+	@celular  varchar(14),
+	@email    varchar(50),
+	@senha	  varchar(50), -- lembrando que senha deve ser maior que 6 caracteres
+	@situacao bit,         -- 0 = Ativo e 1 = Desativo
+	@salario  decimal(10,2),
+	@cargo    varchar(50)
 )
 as
 begin
 
-	insert into PESSOAS      values(@nome, @celular, @email, @senha)
+	insert into PESSOAS      values(@nome, @celular, @email, @senha, @situacao)
 	insert into FUNCIONARIOS values(@@identity, @salario, @cargo)
 
 end 
 
-exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 2500.00, 'Atendente'
+exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 0, 2500.00, 'Atendente'
 go
-exec cadFuncionario 'Dener Gabriel de Matos', '017 98804-2353', 'gabriel.dener@gmail.com', '1234567', 2500.00, 'Atendente'
+exec cadFuncionario 'Dener Gabriel de Matos', '017 98804-2353', 'gabriel.dener@gmail.com', '1234567', 0,  2500.00, 'Atendente'
 go
-exec cadFuncionario 'João Gustavo', '017 98804-1243', 'gustavo.joao@gmail.com', '1234567', 1800.00, 'Motorista'
+exec cadFuncionario 'João Gustavo', '017 98804-1243', 'gustavo.joao@gmail.com', '1234567', 0,  1800.00, 'Motorista'
 go
 
 --------------------------------------------------------------------------------------------
@@ -192,7 +189,7 @@ go
 create view v_listaFuncionario
 as
 
-	select pe.nome, pe.celular, pe.email, pe.senha, fun.salario, fun.cargo
+	select pe.nome, pe.celular, pe.email, pe.senha, pe.situacao, fun.salario, fun.cargo
 	from PESSOAS pe, FUNCIONARIOS fun
 	where pe.id_pessoas = fun.id_pessoas
 
@@ -204,9 +201,6 @@ select * from v_listaFuncionario
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE CADASTRO PRODUTO-------------------------------------
 --------------------------------------------------------------------------------------------
-
-drop procedure cadProduto
-go
 
 create procedure cadProduto
 (
@@ -270,7 +264,7 @@ begin
 
 end
 
-exec altProduto 2, '4321', 2, 'açai dourado', 19000.00, 119.00, 2
+exec altProduto 2, '4321', 2, 'açai dourado', 19000.00, 2, 119.00, 2
 go
 
 --------------------------------------------------------------------------------------------
@@ -312,10 +306,6 @@ begin
 end
 go
 
-declare @CurrentDate datetime
-set @CurrentDate = getDate()
-
-
 exec cadCompra 1, '20211109' , 30, 20.00;
 go
 
@@ -343,7 +333,6 @@ go
 select * from v_listaCadCompra
 go
 
-
 --------------------------------------------------------------------------------------------
 --------------------------------PROCEDURE REGISTRO DE VENDA---------------------------------
 --------------------------------------------------------------------------------------------
@@ -354,7 +343,7 @@ create procedure regVenda
 	@id_funcionario    int,
 	@cod_pedido        varchar(40),
 	@observacoes       varchar(500),
-	@situacao          int,
+	@situacao          bit,
 	@data_venda        datetime,
 	@pedido_lido       datetime,
 	@pedido_produzindo datetime,
@@ -372,11 +361,9 @@ begin
 end
 go
 
+
 exec regVenda 1, 3, '30265', 'Tirar a cebola', 1, '20211110 18:42', '20211110 18:42', '20211110 18:50', '20211110 00:00', 2, 1, 15.50
 
---------------------------------------------------------------------------------------------
-----------------------------------VIEW REGISTRO DE VENDA------------------------------------
---------------------------------------------------------------------------------------------
 
 create view v_listaRegVendas
 as
@@ -392,8 +379,7 @@ go
 
 
 
-
--------------------------------------------------------------------------------------------
+-------------------------------------------------z------------------------------------------
 ----------------------------------VIEW LOGIN-----------------------------------------------
 -------------------------------------------------------------------------------------------
 
