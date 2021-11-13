@@ -39,7 +39,10 @@ namespace ProjectInter.Data.Repositories
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "DELETE * FROM FUNCIONARIOS where id = @id";
+                cmd.CommandText = "UPDATE PESSOAS SET SITUACAO = 1 WHERE id_pessoa = @id";
+                cmd.Parameters.AddWithValue("@id",id);
+
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -66,6 +69,11 @@ namespace ProjectInter.Data.Repositories
                 if(reader.Read()){
                     Employees employee = new Employees(){
                         IdPerson = (int) reader["id_pessoas"],
+                            Name = (string) reader["nome"],
+                            Cellphone = (string)reader["celular"],
+                            Email = (string) reader["email"],
+                            Password = (string) reader["senha"],
+                            Cpf = (string) reader["cpf"],
                             Wage = (decimal)reader["salario"],
                             Responsibility = (string)reader["cargo"],
                     };
@@ -97,6 +105,11 @@ namespace ProjectInter.Data.Repositories
                 while(reader.Read()){
                     Employees employee = new Employees(){
                         IdPerson = (int) reader["id_pessoas"],
+                            Name = (string) reader["nome"],
+                            Cellphone = (string)reader["celular"],
+                            Email = (string) reader["email"],
+                            Password = (string) reader["senha"],
+                            Cpf = (string) reader["cpf"],
                             Wage = (decimal)reader["salario"],
                             Responsibility = (string)reader["cargo"],
                     };
