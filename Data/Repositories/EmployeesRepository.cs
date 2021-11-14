@@ -73,7 +73,6 @@ namespace ProjectInter.Data.Repositories
                             Cellphone = (string)reader["celular"],
                             Email = (string) reader["email"],
                             Password = (string) reader["senha"],
-                            Cpf = (string) reader["cpf"],
                             Wage = (decimal)reader["salario"],
                             Responsibility = (string)reader["cargo"],
                     };
@@ -109,7 +108,6 @@ namespace ProjectInter.Data.Repositories
                             Cellphone = (string)reader["celular"],
                             Email = (string) reader["email"],
                             Password = (string) reader["senha"],
-                            Cpf = (string) reader["cpf"],
                             Wage = (decimal)reader["salario"],
                             Responsibility = (string)reader["cargo"],
                     };
