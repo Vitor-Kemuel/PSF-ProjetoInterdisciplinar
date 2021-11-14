@@ -53,7 +53,27 @@ namespace ProjectInter.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void UpdateProduct(Products products, int IdProduct)
+        public void Delete(int IdProduct)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "UPDATE PRODUTOS set situacao = 1 where id_produtos = @id";
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@id", IdProduct);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }finally{
+                Dispose();
+            }
+        }
+
+        public void UpdateProdutc(Products products, int IdProduct)
         {
             try
             {
@@ -77,31 +97,6 @@ namespace ProjectInter.Data.Repositories
             }finally{
                 Dispose();
             }
-        }
-
-        public void Delete(int IdProduct)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = connection;
-                cmd.CommandText = "UPDATE PRODUTOS set situacao = 1 where id_produtos = @id";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@id", IdProduct);
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }finally{
-                Dispose();
-            }
-        }
-
-        public void UpdateProdutc(Products products, int IdProduct)
-        {
-            throw new NotImplementedException();
         }
     }
 }
