@@ -1,14 +1,15 @@
+using ProjectInter.Models;
 namespace ProjectInter.Data.Interfaces
 {
     public interface IProductsRepository
     {
-        void Create();
+        void Create(Products products);
 
         void GetProducts(int IdProduct);
 
         void GetAllProducts();
 
-        void UpdateProdutc(int IdProduct);
+        void UpdateProdutc(Products products, int IdProduct);
 
         void Delete(int IdProduct);
     }
