@@ -8,28 +8,26 @@ namespace ProjectInter.Data.Repositories
 {
     public class ProductsRepository : BDContext, IProductsRepository
     {
+        //Um produto pode ter vários tipos
         public void Create(Products products)
         {
-            try
-            {
+            try{
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
                 cmd.CommandText = "cadProduto";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@cod_produto", products.CodeProducts);
                 cmd.Parameters.AddWithValue("@nome", products.Name);
                 cmd.Parameters.AddWithValue("@estoque", products.Inventory);
-                //cmd.Parameters.AddWithValue("@preco", products.Price);
-                cmd.Parameters.AddWithValue("@tipoproduto", products.TypeProduct);
+                cmd.Parameters.AddWithValue("@situacao", products.Status);
+                cmd.Parameters.AddWithValue("@preco", products.TypeProduct.Price);
+                cmd.Parameters.AddWithValue("@tamanho", products.TypeProduct.ProductSize);
 
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception(ex.Message);
-            }finally{
+            } finally {
                 Dispose();
             }
         }
@@ -48,7 +46,7 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void GetProducts(int IdProduct)
+        public void GetSingleProducts(int IdProduct)
         {
             throw new System.NotImplementedException();
         }
@@ -73,21 +71,24 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void UpdateProdutc(Products products, int IdProduct)
+        //Um produto pode ter vários tipos e está faltando comparar com o idProduct
+        public void UpdateProduct(Products products, int IdProduct)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "ProcedurePendente";
+                cmd.CommandText = "altProduto where id_produtos = @id";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@cod_produto", products.CodeProducts);
+                cmd.Parameters.AddWithValue("@id", IdProduct);
+
                 cmd.Parameters.AddWithValue("@nome", products.Name);
                 cmd.Parameters.AddWithValue("@estoque", products.Inventory);
-                //cmd.Parameters.AddWithValue("@preco", products.Price);
-                cmd.Parameters.AddWithValue("@tipoproduto", products.TypeProduct);
+                cmd.Parameters.AddWithValue("@situacao", products.Status);
+                cmd.Parameters.AddWithValue("@preco", products.TypeProduct.Price);
+                cmd.Parameters.AddWithValue("@tipoproduto", products.TypeProduct.TypeProduct);
 
                 cmd.ExecuteNonQuery();
             }

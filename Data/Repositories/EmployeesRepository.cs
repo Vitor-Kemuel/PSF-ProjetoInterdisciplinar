@@ -132,6 +132,7 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.CommandText = "ProcedurePendente";
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", employee.Name);
                 cmd.Parameters.AddWithValue("@celular", employee.Cellphone);
                 cmd.Parameters.AddWithValue("@email", employee.Email);

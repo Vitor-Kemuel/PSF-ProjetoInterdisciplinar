@@ -45,7 +45,6 @@ go
 
 create table PRODUTOS(
 id_produtos     int            not null  primary key  identity,
-cod_produto     varchar(40)    not null,
 situacao        bit            not null,-- 1=Ativo 2=Desativo
 nome            varchar(100)   not null,
 estoque         decimal(10,2)  not null,

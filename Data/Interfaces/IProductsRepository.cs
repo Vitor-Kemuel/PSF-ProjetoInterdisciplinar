@@ -5,11 +5,11 @@ namespace ProjectInter.Data.Interfaces
     {
         void Create(Products products);
 
-        void GetProducts(int IdProduct);
+        void GetSingleProducts(int IdProduct);
 
         void GetAllProducts();
 
-        void UpdateProdutc(Products products, int IdProduct);
+        void UpdateProduct(Products products, int IdProduct);
 
         void Delete(int IdProduct);
     }
