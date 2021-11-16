@@ -3,15 +3,19 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectInter.Models;
 using ProjectInter.Data.Interfaces;
+using System.IO;
+using System;
+
 
 namespace ProjectInter.Controllers
 {
     public class DashboardController : Controller
     {
 
-        private ICustomersRepository repository;
+        //private ICustomersRepository repository;
+        private IProductsRepository repository;
 
-        public DashboardController(ICustomersRepository repository)
+        public DashboardController(IProductsRepository repository)
         {
             this.repository = repository;
         }
@@ -85,11 +89,11 @@ namespace ProjectInter.Controllers
             return View(getOrders());
         }
         [HttpGet]
-        public ActionResult CustomerList()
-        {
-            var customers = repository.GetAllCustomers();
-            return View(customers);
-        }
+        // public ActionResult CustomerList()
+        // {
+        //     var customers = repository.GetAllCustomers();
+        //     return View(customers);
+        // }
         [HttpGet]
         public ActionResult NewCustomer()
         {
@@ -97,11 +101,11 @@ namespace ProjectInter.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewCustomer(Customers customer, Address address)
-        {
-            repository.Create(customer, address);
-            return RedirectToAction("CustomerList");
-        }
+        // public ActionResult NewCustomer(Customers customer, Address address)
+        // {
+        //     repository.Create(customer, address);
+        //     return RedirectToAction("CustomerList");
+        // }
 
         public ActionResult NewOrder()
         {
@@ -112,10 +116,26 @@ namespace ProjectInter.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult NewProduct()
-        {
-            
+        {      
+                    return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewProduct(Products products)
+        {      
+            var img = products.Image;
+
+            if (products.Image != null)
+            {
+                var uploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+                var filePath = Path.Combine(uploads, "teste.png");
+                using (var stream = System.IO.File.Create(filePath)){
+                    products.Image.CopyTo(stream);
+                }
+            }
+
             return View();
         }
 

@@ -17,7 +17,8 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.CommandText = "cadProduto";
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                
+                cmd.Parameters.AddWithValue("@imagem", products.Image);
                 cmd.Parameters.AddWithValue("@nome", products.Name);
                 cmd.Parameters.AddWithValue("@estoque", products.Inventory);
                 cmd.Parameters.AddWithValue("@situacao", products.Status);
