@@ -1,3 +1,5 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -36,25 +38,25 @@
 
 <div id="taskBar">
     <nav id="options">
-        <a class="option" href="/Dashboard/Order">
+        <a class="option" asp-controller="DashboardOrder" asp-action="Order">
             <div class="optionIcon">
                 <i class="fas fa-solid fa-utensils"></i>
             </div>
             <p class="descrition">Cozinha</p>
         </a>
-        <a class="option" href="CustomerList">
+        <a class="option" asp-controller="DashboardCustomer" asp-action="CustomerList">
             <div class="optionIcon">
                 <i class="fas fa-user-plus"></i>
             </div>
             <p class="descrition">Clientes</p>
         </a>
-        <a class="option" href="NewOrder">
+        <a class="option" asp-controller="DashboardProducts" asp-action="NewOrder">
             <div class="optionIcon">
                 <i class="fas fa-hamburger"></i>
             </div>
             <p class="descrition">Pedido</p>
         </a>
-        <a class="option" href="Inventory">
+        <a class="option" asp-controller="DashboardProducts" asp-action="Inventory">
             <div class="optionIcon">
                 <i class="far fa-clipboard"></i>
             </div>

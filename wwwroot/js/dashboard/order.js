@@ -52,7 +52,7 @@ function getSession(){
     var getSession = getSession + "<i id='gridDirectionBtn' class='fas fa-th''></i>";
     var getSession = getSession + "</div>";
     var getSession = getSession + "</div>";
-    var getSession = getSession + "<a id='OptionSession' href='NewOrder'>Fazer Pedido <i class='fas fa-cart-plus'></i></i></a>";
+    var getSession = getSession + "<a id='OptionSession' href='../DashboardProducts/NewOrder'>Fazer Pedido <i class='fas fa-cart-plus'></i></i></a>";
 
     var session = document.getElementById("session");
     session.innerHTML = session.innerHTML + getSession;

@@ -13,7 +13,7 @@ namespace ProjectInter.Controllers
         [HttpPost]
         public ActionResult Index(IFormCollection Login)
         {
-            return RedirectToAction("Order", "Dashboard");
+            return RedirectToAction("Order", "DashboardOrder");
         }
     }
 }

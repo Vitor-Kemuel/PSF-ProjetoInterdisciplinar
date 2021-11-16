@@ -107,13 +107,18 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
+                /*
+                    Id_Pessoas não é retornado pelo banco de dados
+                */
+
+                // cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
+                cmd.CommandText = "SELECT nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read()){
                     Customers customer = new Customers(){
-                        IdPerson = (int) reader["id_pessoas"],
+                        // IdPerson = (int) reader["id_pessoas"],
                          Name = (string)reader["nome"],
                          Cellphone = (string)reader["celular"],
                          Email = (string) reader["email"],
