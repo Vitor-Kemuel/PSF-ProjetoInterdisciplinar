@@ -112,7 +112,7 @@ create procedure cadCliente(
 	@celular		 varchar(14),
 	@email		     varchar(50),
 	@senha			 varchar(50),
-	@situacao        bit,         -- 0 = Ativo e 1 = Desativo
+	@situacao        bit,         -- 0 = Desativo e 1 = Ativado
 	@cpf			 varchar(14),
 	@endereco		 varchar(40),
 	@complemento	 varchar(100),
@@ -145,7 +145,7 @@ go
 create view v_listaClientes
 as
 
-	select p.nome, p.email, p.senha, p.situacao, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
+	select p.id_pessoas, p.nome, p.email, p.senha, p.situacao, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
 	from PESSOAS p, CLIENTES c, LOGRADOUROS lg
 	where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
 
