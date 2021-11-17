@@ -24,6 +24,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@celular", customers.Cellphone);
                 cmd.Parameters.AddWithValue("@email", customers.Email);
                 cmd.Parameters.AddWithValue("@senha", customers.Password);
+                cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO );
                 cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
                 cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
                 cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
@@ -45,7 +46,7 @@ namespace ProjectInter.Data.Repositories
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "UPDATE PESSOAS set situacao = 1 where id_pessoa = @id";
+                cmd.CommandText = "UPDATE PESSOAS set situacao = 0 where id_pessoa = @id";
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@id", id);
 
@@ -107,7 +108,7 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes where situacao = 1";
                
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -152,6 +153,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@celular", customers.Cellphone);
                 cmd.Parameters.AddWithValue("@email", customers.Email);
                 cmd.Parameters.AddWithValue("@senha", customers.Password);
+                cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO );
                 cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
                 cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
                 cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
