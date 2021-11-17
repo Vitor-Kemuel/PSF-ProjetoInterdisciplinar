@@ -47,6 +47,7 @@ input[type="file"]{
     width: 100%;
     margin: 0 0 0 30px;
 }
+
 .medida{
     margin: 0 15px 0 0;
     display: flex;
@@ -54,12 +55,33 @@ input[type="file"]{
     align-items: center;
     justify-content: center;
 }
-.medida input{
+/* .medida input{
     height: auto;
     width: auto;
-}
+} */
 .medida label{
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+input[type=radio]{
+    display: none;
+}
+input[type=radio]:checked + label{
+    background: rgba(111, 56, 87, 1);
+    color: #fff;
+    /* border: none; */
+    border-color: rgba(111, 56, 87, 1);
+}
+#btnSubmit{
+    border: 1px inline #fff;
+    background: rgba(111, 56, 87, 1);
+    color: #fff;
+    padding: 30px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 20px;
+}
+#btnSubmit:hover{
+    background: rgb(158, 79, 124);
 }

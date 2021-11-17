@@ -15,36 +15,35 @@
             <input id="productImage" asp-for="Image" accept="image/*"/>
             <div id="productInfoBox" class="formLine">
                 <div class="formLine">
-                <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
+                    <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
+                    <input id="productPrice" class="formInput" type="text" placeholder="Preço" name="Price">
                 </div>
                 <div class="formLine">
                     <input id="quantidade" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
                     <div class="medida">
-                        <label>
-                            <input type="radio" name="Medida" id="ml" class="formInput">
+                            <input type="radio" name="Medida" id="ml">
+                        <label for="ml" id="labelMl" class="formInput radioBtn">
                             ml
                         </label>
-                        <label>
-                            <input type="radio" name="Medida" id="quantidade" class="formInput">
+                            <input type="radio" name="Medida" id="medidaQuantidade">
+                        <label for="medidaQuantidade" id="labelQuantidade" class="formInput radioBtn">
                             Quantidade
+                        </label>
+                            <input type="radio" name="ProductType" id="productTypePrimario">
+                        <label for="productTypePrimario" id="labelProductTypePrimario" class="formInput radioBtn">
+                            Primario
+                        </label>
+                            <input type="radio" name="ProductType" id="productTypeAdicional">
+                        <label for="productTypeAdicional" id="labelProductTypeAdicional" class="formInput radioBtn">
+                            Adicional
                         </label>
                     </div>
                 </div>
+                <h2 class="formSubTitle">Descrição</h2>
                 <div class="formLine">
-                        <label>
-                            <input type="radio" name="Medida" id="ml" class="formInput">
-                            ml
-                        </label>
-                        <label>
-                            <input type="radio" name="Medida" id="quantidade" class="formInput">
-                            Quantidade
-                        </label>
+                    <input type="text" name="Descrição" id="description" class="formInput">
                 </div>
             </div>
-        </div>
-        <h2 class="formSubTitle">Descrição</h2>
-        <div class="formLine">
-            <input type="text" name="Descrição" id="description" class="formInput">
         </div>
         <div id="formOptionsBtn">
             <button id="btnSubmit" class="btnForm" type="submit">Salvar <i class="far fa-save"></i></button>
