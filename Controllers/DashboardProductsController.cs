@@ -47,7 +47,8 @@ namespace ProjectInter.Controllers
                 }
             }
 
-            return View();
+            repository.Create(products);
+            return RedirectToAction("Inventory");
         }
     }
 }

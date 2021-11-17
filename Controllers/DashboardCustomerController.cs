@@ -1,10 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 using ProjectInter.Models;
 using ProjectInter.Data.Interfaces;
-using System.IO;
-using System;
 
 
 namespace ProjectInter.Controllers
@@ -30,9 +26,9 @@ namespace ProjectInter.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewCustomer(Customers customer, Address address)
+        public ActionResult NewCustomer(Customers customer)
         {
-            repository.Create(customer, address);
+            repository.Create(customer);
             return RedirectToAction("CustomerList");
         }
     }
