@@ -23,7 +23,8 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@estoque", products.Inventory);
                 cmd.Parameters.AddWithValue("@situacao", products.Status);
                 cmd.Parameters.AddWithValue("@preco", products.TypeProduct.Price);
-                cmd.Parameters.AddWithValue("@tamanho", products.TypeProduct.ProductSize);
+                cmd.Parameters.AddWithValue("@tipo_medida", products.TypeProduct.TypeUnit);
+                cmd.Parameters.AddWithValue("@tipo_produto", products.TypeProduct.TypeProduct);
 
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {

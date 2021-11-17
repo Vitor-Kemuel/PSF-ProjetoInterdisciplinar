@@ -56,12 +56,13 @@ go
 create table TIPO_PRODUTOS(
 id_tipo_produto   int           not null  primary key references PRODUTOS, 
 preco             decimal(10,2) not null,
-tipo_produto      bit           not null,
+tipo_produto      bit           not null, -- 1 = primário e 2 - adicional 
 tipo_medida       int           not null, -- 1 = ml e 2 =  quantidade
-check(tipo_medida int (1, 2))
+check(tipo_produto in (1, 2)),
+check(tipo_medida in (1, 2))
 )
-
 go
+
 
 create table PEDIDOS(
 id_pedidos        int            not null   primary key   identity,
@@ -252,7 +253,7 @@ go
 
 create view v_listaProduto
 as
-	select pro.cod_produto, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
+	select pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
 	from PRODUTOS pro, TIPO_PRODUTOS tpro
 	where pro.id_produtos = tpro.id_tipo_produto
 

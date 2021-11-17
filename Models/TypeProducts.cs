@@ -4,7 +4,7 @@ namespace ProjectInter.Models
     {
         public int IdTypeProducts { get; set; }
         public double Price { get; set; }
-        public string ProductSize { get; set; }
+        public string TypeUnit { get; set; }
         public bool TypeProduct { get; set; }
     }
 }
