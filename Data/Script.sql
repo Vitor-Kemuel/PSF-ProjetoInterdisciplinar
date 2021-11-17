@@ -12,7 +12,7 @@ nome         varchar(50) not null,
 celular      varchar(14) not null,
 email        varchar(50) not null  unique,
 senha        varchar(50) not null,
-situacao     bit         not null -- 0 = Ativo e 1 = Desativo     EXCLUIR TABELA PESSOAS E TODAS FK PRA ADICIONAR NOVAMENTE A TABELA COM O COMPO SITUACAO
+situacao     bit         not null -- 1 = Ativo e 0 = Desativo     EXCLUIR TABELA PESSOAS E TODAS FK PRA ADICIONAR NOVAMENTE A TABELA COM O COMPO SITUACAO
 )
 
 go
@@ -45,10 +45,10 @@ go
 
 create table PRODUTOS(
 id_produtos     int            not null  primary key  identity,
-situacao        bit            not null,-- 1=Ativo 2=Desativo
+situacao        bit            not null,-- 0=Desativo 1=Ativo
 nome            varchar(100)   not null,
 estoque         decimal(10,2)  not null,
-check (situacao in ( 1, 2))
+check (situacao in ( 0, 1))
 )
 
 go
@@ -57,6 +57,8 @@ create table TIPO_PRODUTOS(
 id_tipo_produto   int           not null  primary key references PRODUTOS, 
 preco             decimal(10,2) not null,
 tipo_produto      bit           not null,
+tipo_medida       int           not null, -- 1 = ml e 2 =  quantidade
+check(tipo_medida int (1, 2))
 )
 
 go
@@ -107,12 +109,15 @@ go
 use point_summer_foods_dev
 go
 
+use point_summer_foods_dev
+go
+
 create procedure cadCliente(
 	@nome			 varchar(50),
 	@celular		 varchar(14),
 	@email		     varchar(50),
 	@senha			 varchar(50),
-	@situacao        bit,         -- 0 = Desativo e 1 = Ativado
+	@situacao        bit,         -- 0 = Ativo e 1 = Desativo
 	@cpf			 varchar(14),
 	@endereco		 varchar(40),
 	@complemento	 varchar(100),
@@ -137,21 +142,36 @@ exec cadCliente 'Guilherme Piovezan', '17 988840120', 'piovezan.guilherme@gmail.
 
 go
 
+exec cadCliente 'Vitor kemuel Carreiro Ponte', '17 988840120', 'pikvezan.guilherme@gmail.com', '1234567', 0, '11111111112', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
+
+go
+
+exec cadCliente 'Alex Gomes da Silva Filho', '17 988840120', 'puovezan.guilherme@gmail.com', '1234567', 0, '11112111111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
+
+go
+
+exec cadCliente 'Heitor Piva Carreira', '17 988840120', 'fjkavezan.guilherme@gmail.com', '1234567', 0, '1111213111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
+
+go
+
+
 --------------------------------------------------------------------------------------------
 -----------------------------VIEW LISTA CLIENTES--------------------------------------------
 --------------------------------------------------------------------------------------------
 
 
 create view v_listaClientes
-as
 
-	select p.id_pessoas, p.nome, p.email, p.senha, p.situacao, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
-	from PESSOAS p, CLIENTES c, LOGRADOUROS lg
-	where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
+as
+    select p.id_pessoas, p.nome, p.email, p.senha, p.situacao, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
+    from PESSOAS p, CLIENTES c, LOGRADOUROS lg
+    where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
 
 go
 
 select * from v_listaClientes
+order by nome asc
+go
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE CADASTRO FUNCIONARIO---------------------------------
 --------------------------------------------------------------------------------------------
@@ -174,11 +194,11 @@ begin
 
 end 
 
-exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 0, 2500.00, 'Atendente'
+exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 1, 2500.00, 'Atendente'
 go
-exec cadFuncionario 'Dener Gabriel de Matos', '017 98804-2353', 'gabriel.dener@gmail.com', '1234567', 0,  2500.00, 'Atendente'
+exec cadFuncionario 'Dener Gabriel de Matos', '017 98804-2353', 'delete.email@gmail.com', '1234567', 1,  2500.00, 'Atendente'
 go
-exec cadFuncionario 'João Gustavo', '017 98804-1243', 'gustavo.joao@gmail.com', '1234567', 0,  1800.00, 'Motorista'
+exec cadFuncionario 'João Gustavo', '017 98804-1243', 'gustavo.joao@gmail.com', '1234567', 1,  1800.00, 'Motorista'
 go
 
 --------------------------------------------------------------------------------------------
@@ -195,6 +215,8 @@ as
 go
 
 select * from v_listaFuncionario
+order by nome asc
+go
 
 
 --------------------------------------------------------------------------------------------
@@ -203,8 +225,7 @@ select * from v_listaFuncionario
 
 create procedure cadProduto
 (
-	@cod_produto     varchar(40),
-	@situacao	     bit,-- 0=Ativo 1=Desativo
+	@situacao	     bit,-- 1=Ativo 2=Desativo
 	@nome		     varchar(100),
 	@estoque	     decimal(10,2),
 	@preco		     decimal(10,2),
@@ -238,6 +259,7 @@ as
 go
 
 select * from v_listaProduto
+order by nome asc
 go
 
 --------------------------------------------------------------------------------------------
@@ -375,11 +397,20 @@ go
 select * from v_listaRegVendas
 go
 
+--------------------------------------------------------------------------------------------
+--------------------------------PROCEDURE DELETAR CLIENTE------------------------------------
+--------------------------------------------------------------------------------------------
 
+create procedure delCliente(
+	@id_pessoas int,
+	@situacao   bit
+)
+as
+	update PESSOAS set situacao = @situacao
+	where id_pessoas = @id_pessoas
 
--------------------------------------------------z------------------------------------------
-----------------------------------VIEW LOGIN-----------------------------------------------
--------------------------------------------------------------------------------------------
+go
+
 
 
 
