@@ -12,18 +12,33 @@
     <form id="formCadastroProduct" asp-controller="Dashboard" asp-action="NewProduct"  method="POST" enctype="multipart/form-data" >
         <div class="formLine">
             <img id="productImagePreview" src="/img/camera.png" alt="Adicionar imagem" />
-            <input id="productImage" asp-for="Image" />
+            <input id="productImage" asp-for="Image" accept="image/*"/>
             <div id="productInfoBox" class="formLine">
                 <div class="formLine">
                 <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
                 </div>
                 <div class="formLine">
-                <input id="productCode" class="formInput" type="text" placeholder="Codigo" name="codeProduct">
-                <input id="productType" class="formInput" type="text" placeholder="tipo" name="productType">
+                    <input id="quantidade" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
+                    <div class="medida">
+                        <label>
+                            <input type="radio" name="Medida" id="ml" class="formInput">
+                            ml
+                        </label>
+                        <label>
+                            <input type="radio" name="Medida" id="quantidade" class="formInput">
+                            Quantidade
+                        </label>
+                    </div>
                 </div>
                 <div class="formLine">
-                    <input id="CustomerPassword" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
-                    <label class="formInput" for="">medidas</label>
+                        <label>
+                            <input type="radio" name="Medida" id="ml" class="formInput">
+                            ml
+                        </label>
+                        <label>
+                            <input type="radio" name="Medida" id="quantidade" class="formInput">
+                            Quantidade
+                        </label>
                 </div>
             </div>
         </div>
