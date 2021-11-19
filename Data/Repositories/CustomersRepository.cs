@@ -27,7 +27,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO );
                 cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
                 cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
-                cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
+                cmd.Parameters.AddWithValue("@complemento", (object) customers.Address.ComplementAddress?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@numero_endereco", customers.Address.NumberAddress);
                 cmd.Parameters.AddWithValue("@bairro", customers.Address.District);
                 cmd.Parameters.AddWithValue("@cep", customers.Address.ZipCodeAddress);
@@ -82,7 +82,7 @@ namespace ProjectInter.Data.Repositories
                         Cpf = (string) reader["cpf"],
                         Address = new Address(){
                             NameAddress = (string) reader["endereco"],
-                            ComplementAddress = (string) reader["complemento"],
+                            ComplementAddress = (string) (reader["complemento"] == DBNull.Value ? "" : reader["complemento"]),
                             NumberAddress = (string) reader["numero"],
                             District = (string) reader["bairro"],
                             ZipCodeAddress = (string) reader["cep"],
@@ -122,7 +122,7 @@ namespace ProjectInter.Data.Repositories
                          Cpf = (string) reader["cpf"],
                          Address = new Address(){
                             NameAddress = (string) reader["endereco"],
-                            ComplementAddress = (string) reader["complemento"],
+                            ComplementAddress = (string) (reader["complemento"] == DBNull.Value ? "" : reader["complemento"]),
                             NumberAddress = (string) reader["numero"],
                             District = (string) reader["bairro"],
                             ZipCodeAddress = (string) reader["cep"],
