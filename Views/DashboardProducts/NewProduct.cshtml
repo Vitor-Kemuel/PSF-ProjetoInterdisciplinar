@@ -12,7 +12,7 @@
     <form id="formCadastroProduct" asp-controller="DashboardProducts" asp-action="NewProduct"  method="POST" enctype="multipart/form-data" >
         <div class="formLine">
             <img id="productImagePreview" src="/img/camera.png" alt="Adicionar imagem" />
-            <input id="productImage" asp-for="Image" accept="image/*"/>
+            <input id="productImage" asp-for="ImageFile" accept="image/*"/>
             <div id="productInfoBox" class="formLine">
                 <div class="formLine">
                     <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
