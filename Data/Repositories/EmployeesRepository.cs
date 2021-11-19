@@ -96,7 +96,7 @@ namespace ProjectInter.Data.Repositories
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-
+                // Heitor tem que corrigir, trazer todos os dados de pessoa, e não somente id_pessoas
                 cmd.CommandText = "SELECT id_pessoas, salario, cargo FROM v_listaFuncionario";
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -120,6 +120,46 @@ namespace ProjectInter.Data.Repositories
             } catch (Exception ex) {
                  throw new Exception(ex.Message);
             } finally {
+                Dispose();
+            }
+        }
+
+        public Employees Login(Employees employees){
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = " SELECT * FROM v_listaFuncionario WHERE email = @email AND senha = @senha";
+
+                cmd.Parameters.AddWithValue("@email", employees.Email);
+                cmd.Parameters.AddWithValue("@senha", employees.Password);
+                
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                if(reader.Read()){
+                    Employees ObjEmployee  = new Employees(){
+                        IdPerson = (int)            reader["id_pessoas"],
+                        Name     = (string)         reader["nome"],
+                        Cellphone = (string)        reader["celular"],
+                        Email = (string)            reader["email"],
+                        Password = (string)         reader["senha"],
+                        Wage = (decimal)            reader["salario"],
+                        Responsibility = (string)   reader["cargo"],
+                    };
+                 
+                 return ObjEmployee;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
                 Dispose();
             }
         }
