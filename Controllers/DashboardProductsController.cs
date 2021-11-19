@@ -36,14 +36,13 @@ namespace ProjectInter.Controllers
         [HttpPost]
         public ActionResult NewProduct(Products products)
         {
-            var img = products.Image;
 
             if (products.Image != null)
             {
                 var uploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-                var filePath = Path.Combine(uploads, "teste.png");
+                var filePath = Path.Combine(uploads, new Guid().ToString());
                 using (var stream = System.IO.File.Create(filePath)){
-                    products.Image.CopyTo(stream);
+                   products.Image.CopyTo(stream);
                 }
             }
 
