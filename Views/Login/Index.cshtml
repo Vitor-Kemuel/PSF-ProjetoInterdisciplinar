@@ -1,3 +1,5 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewBag.Title = "Point Login";
     ViewBag.Styles = "css/login/login.css";
@@ -12,14 +14,14 @@
         </div>
 
         <div id="right">
-            <form id="formLogin" asp-controller="Usuario" asp-action="Login" method="POST">
+            <form id="formLogin" asp-controller="Login" asp-action="Index" method="POST">
                 <h1 id="title">Bem-Vindo</h1>
                 <div id="inputContainer">
                     <div id="emailContainer">
-                        <input class="loginInput" type="email" placeholder="email" />
+                        <input class="loginInput" type="email" placeholder="email" name="Email" />
                     </div>
                     <div id="passwordContainer">
-                        <input id="password" class="loginInput" type="password" placeholder="senha" /><span id="hideShowPassword" class="fas fa-eye-slash" onclick="hideShowPassword()"></span>
+                        <input id="password" class="loginInput" type="password" placeholder="senha" name="Password" /><span id="hideShowPassword" class="fas fa-eye-slash" onclick="hideShowPassword()"></span>
                     </div>
                     <button id="loginBtn" type="submit">
                         Entrar
