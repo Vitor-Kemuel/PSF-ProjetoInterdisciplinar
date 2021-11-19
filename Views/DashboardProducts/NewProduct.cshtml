@@ -9,39 +9,40 @@
 }
 
 <div id="table">
-    <form id="formCadastroProduct" asp-controller="Dashboard" asp-action="NewProduct"  method="POST" enctype="multipart/form-data" >
+    <form id="formCadastroProduct" asp-controller="DashboardProducts" asp-action="NewProduct"  method="POST" enctype="multipart/form-data" >
         <div class="formLine">
             <img id="productImagePreview" src="/img/camera.png" alt="Adicionar imagem" />
             <input id="productImage" asp-for="Image" accept="image/*"/>
             <div id="productInfoBox" class="formLine">
                 <div class="formLine">
                     <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
-                    <input id="productPrice" class="formInput" type="text" placeholder="Preço" name="Price">
+                    <input id="productPrice" class="formInput" type="text" placeholder="Preço"  asp-for="TypeProduct.Price">
                 </div>
                 <div class="formLine">
-                    <input id="quantidade" class="formInput" type="text" placeholder="Quantidade" name="Quantity">
                     <div class="medida">
-                            <input type="radio" name="Medida" id="ml">
-                        <label for="ml" id="labelMl" class="formInput radioBtn">
-                            ml
-                        </label>
-                            <input type="radio" name="Medida" id="medidaQuantidade">
-                        <label for="medidaQuantidade" id="labelQuantidade" class="formInput radioBtn">
-                            Quantidade
-                        </label>
-                            <input type="radio" name="ProductType" id="productTypePrimario">
-                        <label for="productTypePrimario" id="labelProductTypePrimario" class="formInput radioBtn">
-                            Primario
-                        </label>
-                            <input type="radio" name="ProductType" id="productTypeAdicional">
-                        <label for="productTypeAdicional" id="labelProductTypeAdicional" class="formInput radioBtn">
-                            Adicional
-                        </label>
+                        <div class="tipoMedida">
+                            <h2>Unidade medida</h2>
+                                <input type="radio" value="1" id="ml" asp-for="TypeProduct.TypeUnit">
+                            <label for="ml" id="labelMl" class="formInput radioBtn">
+                                ml
+                            </label>
+                                <input type="radio" value="2" id="medidaQuantidade" asp-for="TypeProduct.TypeUnit">
+                            <label for="medidaQuantidade" id="labelQuantidade" class="formInput radioBtn">
+                                Quantidade
+                            </label>
+                        </div>
+                        <div class="tipoProduto">
+                            <h2>Tipo produto</h2>
+                                <input type="radio" value="1" asp-for="TypeProduct.TypeProduct" id="productTypePrimario">
+                            <label for="productTypePrimario" id="labelProductTypePrimario" class="formInput radioBtn">
+                                Primario
+                            </label>
+                                <input type="radio" value="2" asp-for="TypeProduct.TypeProduct" id="productTypeAdicional">
+                            <label for="productTypeAdicional" id="labelProductTypeAdicional" class="formInput radioBtn">
+                                Adicional
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <h2 class="formSubTitle">Descrição</h2>
-                <div class="formLine">
-                    <input type="text" name="Descrição" id="description" class="formInput">
                 </div>
             </div>
         </div>
