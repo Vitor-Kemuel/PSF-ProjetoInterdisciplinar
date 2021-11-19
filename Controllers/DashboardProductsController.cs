@@ -37,13 +37,17 @@ namespace ProjectInter.Controllers
         public ActionResult NewProduct(Products products)
         {
 
-            if (products.Image != null)
+            IFormFile file = products.ImageFile;
+            if (products.ImageFile != null)
             {
+                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                 var uploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-                var filePath = Path.Combine(uploads, new Guid().ToString());
+                var filePath = Path.Combine(uploads, fileName);
                 using (var stream = System.IO.File.Create(filePath)){
-                   products.Image.CopyTo(stream);
+                   products.ImageFile.CopyTo(stream);
                 }
+                products.Image = fileName;
+                //Não esquecer de updload no html
             }
 
             repository.Create(products);
