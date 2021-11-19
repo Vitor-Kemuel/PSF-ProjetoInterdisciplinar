@@ -48,35 +48,13 @@ input[type="file"]{
     margin: 0 0 0 30px;
 }
 
-.medida{
-    margin: 0 15px 0 0;
-    display: flex;
-    flex-direction: row;
-}
-/* .medida input{
-    height: auto;
-    width: auto;
-} */
-.medida label{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.tipoMedida{
-    width: 120%;
-    margin: 0 40px 0 -280px;
-}
-.tipoProduto{
-    width: 100%;
-    margin: 0 -40px 0 180px;
-}
+
 input[type=radio]{
     display: none;
 }
 input[type=radio]:checked + label{
     background: rgba(111, 56, 87, 1);
     color: #fff;
-    /* border: none; */
     border-color: rgba(111, 56, 87, 1);
 }
 #btnSubmit{
@@ -90,4 +68,22 @@ input[type=radio]:checked + label{
 }
 #btnSubmit:hover{
     background: rgb(158, 79, 124);
+}
+
+.radioBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.medida{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.radioBtn{
+    width: auto;
+    margin-top: 5px;
+}
+.titleRadio{
+    margin: 0 0 0 15px;
 }
