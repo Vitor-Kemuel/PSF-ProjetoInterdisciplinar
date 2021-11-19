@@ -253,7 +253,7 @@ go
 
 create view v_listaProduto
 as
-	select pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto, tpro.tipo_medida
+	select pro.imagem, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto, tpro.tipo_medida
 	from PRODUTOS pro, TIPO_PRODUTOS tpro
 	where pro.id_produtos = tpro.id_tipo_produto
 go
