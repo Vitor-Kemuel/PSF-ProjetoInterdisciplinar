@@ -18,13 +18,13 @@ namespace ProjectInter.Data.Repositories
                 cmd.CommandText = "cadProduto";
                 cmd.CommandType = CommandType.StoredProcedure;
                 
-                cmd.Parameters.AddWithValue("@imagem", products.Image);
+                cmd.Parameters.AddWithValue("@imagem", products.Image.ToString());
                 cmd.Parameters.AddWithValue("@nome", products.Name);
-                cmd.Parameters.AddWithValue("@estoque", products.Inventory);
-                cmd.Parameters.AddWithValue("@situacao", products.Status);
+                cmd.Parameters.AddWithValue("@estoque", Constants.INITIAL_INVENTORY);
+                cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO);
                 cmd.Parameters.AddWithValue("@preco", products.TypeProduct.Price);
-                cmd.Parameters.AddWithValue("@tipo_medida", products.TypeProduct.TypeUnit);
-                cmd.Parameters.AddWithValue("@tipo_produto", products.TypeProduct.TypeProduct);
+                cmd.Parameters.AddWithValue("@tipo_medida", Convert.ToInt32(products.TypeProduct.TypeUnit));
+                cmd.Parameters.AddWithValue("@tipo_produto", Convert.ToInt32(products.TypeProduct.TypeProduct));
 
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
