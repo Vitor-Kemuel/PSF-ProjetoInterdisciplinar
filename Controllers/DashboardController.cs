@@ -12,12 +12,12 @@ namespace ProjectInter.Controllers
     public class DashboardController : Controller
     {
         [HttpGet]
-        public ActionResult LoguinAdmin()
+        public ActionResult LoginAdmin()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult LoguinAdmin(IFormCollection LoginAdmin)
+        public ActionResult LoginAdmin(IFormCollection LoginAdmin)
         {
             return RedirectToAction("Index", "Management");
         }
