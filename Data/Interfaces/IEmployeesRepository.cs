@@ -13,6 +13,8 @@ namespace ProjectInter.Data.Interfaces
 
         void Update(int id, Employees employee);
 
+        Employees Login(Employees employee);
+
         void Delete(int id);
     }
 }
