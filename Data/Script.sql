@@ -45,18 +45,18 @@ go
 
 create table PRODUTOS(
 id_produtos     int            not null  primary key  identity,
+imagem          varchar(100),
 situacao        bit            not null,-- 0=Desativo 1=Ativo
 nome            varchar(100)   not null,
 estoque         decimal(10,2)  not null,
 check (situacao in ( 0, 1))
 )
-
 go
 
 create table TIPO_PRODUTOS(
 id_tipo_produto   int           not null  primary key references PRODUTOS, 
 preco             decimal(10,2) not null,
-tipo_produto      bit           not null, -- 1 = primário e 2 - adicional 
+tipo_produto      int           not null, -- 1 = primário e 2 - adicional 
 tipo_medida       int           not null, -- 1 = ml e 2 =  quantidade
 check(tipo_produto in (1, 2)),
 check(tipo_medida in (1, 2))
@@ -87,7 +87,6 @@ quantidade  int           not null,
 valor_total decimal(7,2)  not null, 
 primary key (id_produtos,id_pedidos)              
 )
-
 go
 
 create table COMPRAS(
@@ -104,7 +103,6 @@ id_produtos int not null references PRODUTOS,
 id_compras  int not null references COMPRAS,
 primary key (id_produtos, id_compras)
 )
-
 go
 
 use point_summer_foods_dev
@@ -226,20 +224,21 @@ go
 
 create procedure cadProduto
 (
+	@imagem          varchar(100),
 	@situacao	     bit,-- 1=Ativo 2=Desativo
 	@nome		     varchar(100),
 	@estoque	     decimal(10,2),
 	@preco		     decimal(10,2),
-	@tipo_produto    bit           -- define se o produto é do tipo normal ou adicional
+	@tipo_produto    bit,         -- define se o produto é do tipo normal ou adicional
+    @tipo_medida     bit          -- define se a medida do produto é do tipo ml ou quantidade
 )
 as
 begin
 
-	insert into PRODUTOS values(@cod_produto, @situacao, @nome, @estoque)
-	insert into TIPO_PRODUTOS values( @@IDENTITY, @preco, @tipo_produto)
-
-
+	insert into PRODUTOS values(@imagem, @situacao, @nome, @estoque)
+	insert into TIPO_PRODUTOS values( @@IDENTITY, @preco, @tipo_produto, @tipo_medida)
 end
+
 
 exec cadProduto '1234', 1, 'açai premium', 22000.0, 122.00, 1  
 go
@@ -247,16 +246,16 @@ go
 exec cadProduto '5678', 1, 'Banana nanica', 2.0, 2.00, 1  
 go
 
+
 --------------------------------------------------------------------------------------------
 ----------------------------------VIEW EXIBIÇÃO CADASTRO PRODUTO----------------------------
 --------------------------------------------------------------------------------------------
 
 create view v_listaProduto
 as
-	select pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
+	select pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto, tpro.tipo_medida
 	from PRODUTOS pro, TIPO_PRODUTOS tpro
 	where pro.id_produtos = tpro.id_tipo_produto
-
 go
 
 select * from v_listaProduto
