@@ -207,7 +207,7 @@ go
 create view v_listaFuncionario
 as
 
-	select pe.nome, pe.celular, pe.email, pe.senha, pe.situacao, fun.salario, fun.cargo
+	select pe.id_pessoas, pe.nome, pe.celular, pe.email, pe.senha, pe.situacao, fun.salario, fun.cargo
 	from PESSOAS pe, FUNCIONARIOS fun
 	where pe.id_pessoas = fun.id_pessoas
 
