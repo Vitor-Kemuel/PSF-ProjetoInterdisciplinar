@@ -4,7 +4,7 @@ namespace ProjectInter.Models
     {
         public int IdTypeProducts { get; set; }
         public double Price { get; set; }
-        public string TypeUnit { get; set; }
-        public bool TypeProduct { get; set; }
+        public int TypeUnit { get; set; }
+        public int TypeProduct { get; set; }
     }
 }
