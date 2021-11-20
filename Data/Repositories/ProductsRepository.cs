@@ -36,9 +36,33 @@ namespace ProjectInter.Data.Repositories
 
         public List<Products> GetAllProducts()
         {
+
             try
             {
-                 throw new System.NotImplementedException();
+               List<Products> products = new List<Products>();
+
+               SqlCommand cmd = new SqlCommand();
+               cmd.Connection = connection;
+
+               cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
+
+               SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.Read()){
+                    Products product = new Products(){
+                        IdProducts = (int) reader["id_produtos"],
+                        Image = (string)reader["imagem"],
+                        Name = (string)reader["nome"],
+                        Inventory = (float) reader["estoque"],
+                        Price = (double) reader["preco"],
+                        TypeUnit = (int) reader["tipo_medida"],
+                        TypeProduct = (int) reader["tipo_produto"],
+                    };
+                    products.add(product);
+                }
+
+                return products;
+
             }
             catch (Exception ex)
             {
@@ -50,7 +74,39 @@ namespace ProjectInter.Data.Repositories
 
         public Products GetSingleProducts(int IdProduct)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE id_produtos= @id";
+                cmd.Parameters.AddWithValue("@id", id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.Read()){
+                    Products product = new Products(){
+                        IdProducts = (int) reader["id_produtos"],
+                        Image = (string)reader["imagem"],
+                        Name = (string)reader["nome"],
+                        Inventory = (float) reader["estoque"],
+                        Price = (double) reader["preco"],
+                        TypeUnit = (int) reader["tipo_medida"],
+                        TypeProduct = (int) reader["tipo_produto"],
+                    };
+                    return product;
+                }
+
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }finally{
+                Dispose();
+            }
         }
 
         public void Delete(int IdProduct)
