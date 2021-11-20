@@ -17,7 +17,7 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.CommandText = "cadProduto";
                 cmd.CommandType = CommandType.StoredProcedure;
-                
+
                 cmd.Parameters.AddWithValue("@imagem", products.Image);
                 cmd.Parameters.AddWithValue("@nome", products.Name);
                 cmd.Parameters.AddWithValue("@estoque", Constants.INITIAL_INVENTORY);
@@ -34,7 +34,7 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void GetAllProducts()
+        public List<Products> GetAllProducts()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void GetSingleProducts(int IdProduct)
+        public Products GetSingleProducts(int IdProduct)
         {
             throw new System.NotImplementedException();
         }

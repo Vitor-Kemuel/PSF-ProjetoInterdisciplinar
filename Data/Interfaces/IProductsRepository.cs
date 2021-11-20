@@ -5,9 +5,9 @@ namespace ProjectInter.Data.Interfaces
     {
         void Create(Products products);
 
-        void GetSingleProducts(int IdProduct);
+        Products GetSingleProducts(int IdProduct);
 
-        void GetAllProducts();
+        List<Products> GetAllProducts();
 
         void UpdateProduct(Products products, int IdProduct);
 
