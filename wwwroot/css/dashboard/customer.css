@@ -35,3 +35,23 @@
 .clientName{
     font-weight: bold;
 }
+.addressLine{
+    border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.addressList{
+    display: none;
+}
+
+.spanHide{
+    display: none;
+}
+.emailContainer{
+    font-size: 12px;
+}
+.emailLine{
+    margin: 0;
+}
+.btnSpan{
+    cursor: pointer;
+}
