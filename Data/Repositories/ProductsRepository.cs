@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System;
 using ProjectInter.Models;
 using System.Data;
+using System.Collections.Generic;
 
 namespace ProjectInter.Data.Repositories
 {
@@ -48,17 +49,19 @@ namespace ProjectInter.Data.Repositories
 
                SqlDataReader reader = cmd.ExecuteReader();
 
-                if(reader.Read()){
+                while(reader.Read()){
                     Products product = new Products(){
                         IdProducts = (int) reader["id_produtos"],
                         Image = (string)reader["imagem"],
                         Name = (string)reader["nome"],
                         Inventory = (float) reader["estoque"],
-                        Price = (double) reader["preco"],
-                        TypeUnit = (int) reader["tipo_medida"],
-                        TypeProduct = (int) reader["tipo_produto"],
+                        TypeProduct = new TypeProducts(){
+                            Price = (double) reader["preco"],
+                            TypeUnit = (int) reader["tipo_medida"],
+                            TypeProduct = (int) reader["tipo_produto"],
+                        }
                     };
-                    products.add(product);
+                    products.Add(product);
                 }
 
                 return products;
@@ -80,7 +83,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Connection = connection;
 
                 cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE id_produtos= @id";
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", IdProduct);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -90,9 +93,11 @@ namespace ProjectInter.Data.Repositories
                         Image = (string)reader["imagem"],
                         Name = (string)reader["nome"],
                         Inventory = (float) reader["estoque"],
-                        Price = (double) reader["preco"],
-                        TypeUnit = (int) reader["tipo_medida"],
-                        TypeProduct = (int) reader["tipo_produto"],
+                        TypeProduct = new TypeProducts(){
+                            Price = (double) reader["preco"],
+                            TypeUnit = (int) reader["tipo_medida"],
+                            TypeProduct = (int) reader["tipo_produto"],
+                        }
                     };
                     return product;
                 }
@@ -129,7 +134,6 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        //Um produto pode ter vários tipos e está faltando comparar com o idProduct
         public void UpdateProduct(Products products, int IdProduct)
         {
             try
