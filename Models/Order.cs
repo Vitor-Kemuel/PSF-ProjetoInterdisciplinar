@@ -12,12 +12,10 @@ namespace ProjectInter.Models
         public string OrderRead { get; set; }
         public string OrderAccepted { get; set; }
         public string OrderDelivery { get; set; }
-        public double TotalValue { get; set; }
-        public int IdCustomer { get; set; }
 
         #region foreign key
-             public List<ProductsOrders> Itens { get; set; }
-             public List<Employees> Employees { get; set; }
+             public ProductsOrders Itens { get; set; }
+             public Employees Employees { get; set; }
         #endregion
     }
 }

@@ -361,7 +361,6 @@ create procedure regVenda
 (
 	@id_cliente        int,
 	@id_funcionario    int,
-	@cod_pedido        varchar(40),
 	@observacoes       varchar(500),
 	@situacao          bit,
 	@data_venda        datetime,
