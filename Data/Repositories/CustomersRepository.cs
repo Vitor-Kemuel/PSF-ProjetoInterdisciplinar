@@ -46,9 +46,10 @@ namespace ProjectInter.Data.Repositories
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "UPDATE PESSOAS set situacao = 0 where id_pessoa = @id";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.CommandText = "delCliente";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_pessoas", id);
+                cmd.Parameters.AddWithValue("@situacao", Constants.DESATIVADO);
 
                 cmd.ExecuteNonQuery();
 
@@ -149,6 +150,7 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.CommandText = "ProcedurePendente";
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_pessoas", id);
                 cmd.Parameters.AddWithValue("@nome", customers.Name);
                 cmd.Parameters.AddWithValue("@celular", customers.Cellphone);
                 cmd.Parameters.AddWithValue("@email", customers.Email);
