@@ -7,3 +7,26 @@ function getSession(){
     var session = document.getElementById("session");
     session.innerHTML = session.innerHTML + getSession;
 }
+
+function showAddress(index){
+    console.log(index);
+    var address = document.getElementById(index);
+    address.style.display = "flex";
+    address.style.flexDirection = "column";
+
+    var btn = document.getElementById("spanShow "+index);
+    btn.style.display = "none";
+    var btn = document.getElementById("spanHide "+index);
+    btn.style.display = "flex";
+}
+
+function hideAddress(index){
+    console.log(index);
+    var address = document.getElementById(index);
+    address.style.display = "none";
+
+    var btn = document.getElementById("spanShow "+index);
+    btn.style.display = "flex";
+    var btn = document.getElementById("spanHide "+index);
+    btn.style.display = "none";
+}
