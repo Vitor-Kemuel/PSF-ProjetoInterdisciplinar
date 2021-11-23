@@ -10,5 +10,7 @@ namespace ProjectInter.Data.Interfaces
         Customers GetSingleCustomer(int id);
         void Update(int id, Customers customers);
         void Delete(int id);
+
+        void SearchCustomer(string name);
     }
 }
