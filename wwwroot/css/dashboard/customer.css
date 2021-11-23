@@ -6,16 +6,16 @@
 /* Definição da tabela de Pedidos */
 #table{
     display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-    margin: 30px 20px;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 300px;
     padding: 60px 0 0 0;
+    width: auto;
 }
 
 /* Definição IDs e Classes dos cards da dashboard */
 .card{
-    /* width: auto; */
-    width: 500px;
+    width: 100%;
     margin: 10px;
     justify-content: space-between;
     padding: 20px;
