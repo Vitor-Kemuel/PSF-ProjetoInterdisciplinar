@@ -23,12 +23,23 @@ namespace ProjectInter.Data.Repositories
             cmd.Parameters.AddWithValue("@pedido_lido", order.OrderRead);
             cmd.Parameters.AddWithValue("@pedido_produzido", order.OrderAccepted);
             cmd.Parameters.AddWithValue("@pedido_entregue", order.OrderDelivery);
-            cmd.Parameters.AddWithValue("@id_produto", idProduto);
-            cmd.Parameters.AddWithValue("@id_produto", order.Itens.Products);
-            cmd.Parameters.AddWithValue("@quantidade", order.Itens.Quantify);
-            cmd.Parameters.AddWithValue("@valor_total", order.Itens.ValueTotal);
-
             cmd.ExecuteNonQuery();
+            
+
+            foreach( var item in order.Itens){
+
+                SqlCommand cmdItem = new SqlCommand();
+                cmdItem.CommandText = "PRODUTO_PEDIDOS";
+                cmdItem.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_produto", item.IdProduto);
+                cmd.Parameters.AddWithValue("@quantidade", item.Quantify);
+                cmd.Parameters.AddWithValue("@valor_total", item.ValueTotal); /* Naturalmente é calculado e não cadastrado */
+
+
+                cmdItem.ExecuteNonQuery();
+            }
+
         }
 
         public void GetAllOrders()
