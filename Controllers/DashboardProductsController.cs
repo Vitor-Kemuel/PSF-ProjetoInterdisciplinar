@@ -18,16 +18,21 @@ namespace ProjectInter.Controllers
             this.repository = repository;
         }
 
+        private List<Products> GetProductsFromView(){
+            List<Products> products = repository.GetAllProducts();
+            return products;
+        }
+
         public ActionResult NewOrder()
         {
-            return View();
+            return View(GetProductsFromView());
         }
 
         [HttpGet]
         public ActionResult Inventory()
         {
-            List<Products> products = repository.GetAllProducts();
-            return View(products);
+            // List<Products> products = repository.GetAllProducts();
+            return View(GetProductsFromView());
         }
         [HttpGet]
         public ActionResult NewProduct()
