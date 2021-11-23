@@ -25,7 +25,8 @@ namespace ProjectInter.Controllers
 
         public ActionResult Inventory()
         {
-            return View();
+            List<Products> products = repository.GetAllProducts();
+            return View(products);
         }
         [HttpGet]
         public ActionResult NewProduct()
@@ -41,7 +42,7 @@ namespace ProjectInter.Controllers
             if (products.ImageFile != null)
             {
                 var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                var uploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+                var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
                 var filePath = Path.Combine(uploads, fileName);
                 using (var stream = System.IO.File.Create(filePath)){
                    products.ImageFile.CopyTo(stream);

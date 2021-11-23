@@ -16,7 +16,8 @@
             <div id="productInfoBox" class="formLine">
                 <div class="formLine">
                     <input id="productName" class="formInput" type="text" placeholder="Nome" name="Name">
-                    <input id="productPrice" class="formInput" type="text" placeholder="Preço"  asp-for="TypeProduct.Price">
+                    <i id="money" class="formInput">R$</i>
+                    <input id="productPrice" class="formInput" data-mask="##0,00" data-mask-reverse="true" data-mask-selectonfocus="true" type="text" placeholder="Preço"  asp-for="TypeProduct.Price">
                 </div>
                 <div class="medida">
                     <div class="radioBox">

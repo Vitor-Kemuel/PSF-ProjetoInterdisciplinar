@@ -1,6 +1,22 @@
+@using ProjectInter.Models
+@model List<Products>
+
 @{
     ViewBag.Title = "Point Dashboard";
     ViewBag.Styles = "/css/dashboard/inventory.css";
     ViewBag.Script = "/js/dashboard/inventory.js";
     Layout = "/Views/Shared/_layoutDashboard.cshtml";
 }
+
+<div id="table">
+    @foreach (var product in Model)
+    {
+        <div class="productCard">
+            <img class="productImage" src="/uploads/@product.Image">
+            <div class="productInfo">
+                <h2 class="productName">@product.Name</h2>
+                <hr class="productLine">
+            </div>
+        </div>
+    }
+</div>
