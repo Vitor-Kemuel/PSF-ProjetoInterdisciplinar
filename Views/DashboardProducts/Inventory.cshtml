@@ -11,6 +11,12 @@
 <div id="table">
     @foreach (var product in Model)
     {
-        <img src="/uploads/@product.Image">
+        <div class="productCard">
+            <img class="productImage" src="/uploads/@product.Image">
+            <div class="productInfo">
+                <h2 class="productName">@product.Name</h2>
+                <hr class="productLine">
+            </div>
+        </div>
     }
 </div>
