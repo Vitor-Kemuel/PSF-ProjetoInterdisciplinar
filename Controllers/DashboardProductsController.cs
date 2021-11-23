@@ -23,6 +23,7 @@ namespace ProjectInter.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Inventory()
         {
             List<Products> products = repository.GetAllProducts();
