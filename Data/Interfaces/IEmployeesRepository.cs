@@ -16,5 +16,7 @@ namespace ProjectInter.Data.Interfaces
         Employees Login(Employees employee);
 
         void Delete(int id);
+
+        void SearchEmployee(string name);
     }
 }
