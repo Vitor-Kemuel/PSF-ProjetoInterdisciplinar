@@ -1,5 +1,6 @@
 @using ProjectInter.Models
 @model List<Products>
+@using System.Globalization
 
 @{
     ViewBag.Title = "Point Dashboard";
@@ -21,7 +22,7 @@
                 <p>Tipo do Produto: @typeProduct</p>
                 @{string typeUnit = product.TypeProduct.TypeUnit == 1 ? "Quantidade" : "ml";}
                 <p>Medida: @typeUnit</p>
-                <p>Preço: R$@product.TypeProduct.Price</p>
+                <p>Preço: R$@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</p>
             </div>
         </div>
     }
