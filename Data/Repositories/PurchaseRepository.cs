@@ -20,8 +20,8 @@ namespace ProjectInter.Data.Repositories
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@data_compra", purchase.PurchaseDate);
-                cmd.Parameters.AddWithValue("@quantidade", purchase.Quantify);
-                cmd.Parameters.AddWithValue("@valor_total", purchase.TotalValue);
+                // cmd.Parameters.AddWithValue("@quantidade", purchase.Quantify);
+                // cmd.Parameters.AddWithValue("@valor_total", purchase.TotalValue);
 
                 cmd.ExecuteNonQuery();
             }
@@ -50,8 +50,8 @@ namespace ProjectInter.Data.Repositories
                     Purchase purchase = new Purchase(){
                         IdPurchase = (int) reader["id_produtos"],
                         PurchaseDate = (DateTime)reader["data_compra"],
-                        Quantify = (int)reader["quantidade"],
-                        TotalValue = (double) reader["valor_total"],
+                        // Quantify = (int)reader["quantidade"],
+                        // TotalValue = (double) reader["valor_total"],
                     };
                     purchases.Add(purchase);
                 }
@@ -82,8 +82,8 @@ namespace ProjectInter.Data.Repositories
                     Purchase purchase = new Purchase(){
                         IdPurchase = (int) reader["id_produtos"],
                         PurchaseDate = (DateTime)reader["data_compra"],
-                        Quantify = (int)reader["quantidade"],
-                        TotalValue = (double) reader["valor_total"],
+                        // Quantify = (int)reader["quantidade"],
+                        // TotalValue = (double) reader["valor_total"],
 
                     };
                     return purchase;

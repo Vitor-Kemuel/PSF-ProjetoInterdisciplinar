@@ -9,7 +9,7 @@ namespace ProjectInter.Models
         public IFormFile ImageFile { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
-        public float Inventory { get; set; }
+        public double Inventory { get; set; }
         public int Status { get; set; } // 1 - Ativo 2 - Inativo
 
         #region Foreign Key
