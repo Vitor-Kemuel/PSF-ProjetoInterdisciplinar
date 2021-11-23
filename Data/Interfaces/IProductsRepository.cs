@@ -13,5 +13,7 @@ namespace ProjectInter.Data.Interfaces
         void UpdateProduct(Products products, int IdProduct);
 
         void Delete(int IdProduct);
+
+        void SearchProdutos(string name);
     }
 }
