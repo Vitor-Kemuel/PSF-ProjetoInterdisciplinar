@@ -40,27 +40,40 @@ namespace ProjectInter.Data.Repositories
 
             try
             {
-               List<Products> products = new List<Products>();
+                List<Products> products = new List<Products>();
 
-               SqlCommand cmd = new SqlCommand();
-               cmd.Connection = connection;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-               cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
+                /*
+                    Id não é retornado pelo banco de dados
+                */
 
-               SqlDataReader reader = cmd.ExecuteReader();
+                //cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
+                cmd.CommandText = "SELECT imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                /*
+                    atribuição de id comentada, pois, não se tem o retorno dela pelo banco de dados
+                    atribuição de quantidade comentada, pois, está com erro ao alterar tipo de dado
+                    atribuição de preço comentada, pois, está com erro ao alterar tipo de dado
+                */
 
                 while(reader.Read()){
                     Products product = new Products(){
-                        IdProducts = (int) reader["id_produtos"],
+                        // IdProducts = (int) reader["id_produtos"],
                         Image = (string)reader["imagem"],
                         Name = (string)reader["nome"],
-                        Inventory = (float) reader["estoque"],
+                        // Inventory = (float) reader["estoque"],
                         TypeProduct = new TypeProducts(){
-                            Price = (double) reader["preco"],
+                            // Price = (double) reader["preco"],
                             TypeUnit = (int) reader["tipo_medida"],
                             TypeProduct = (int) reader["tipo_produto"],
                         }
                     };
+                    Console.WriteLine("hello");
                     products.Add(product);
                 }
 
