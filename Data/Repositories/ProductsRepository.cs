@@ -19,7 +19,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.CommandText = "cadProduto";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@imagem", products.Image);
+                cmd.Parameters.AddWithValue("@imagem", (object) products.Image?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@nome", products.Name);
                 cmd.Parameters.AddWithValue("@estoque", Constants.INITIAL_INVENTORY);
                 cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO);
@@ -51,7 +51,7 @@ namespace ProjectInter.Data.Repositories
                 while(reader.Read()){
                     Products product = new Products(){
                         IdProducts = (int) reader["id_produtos"],
-                        Image = (string)reader["imagem"],
+                        Image = (string) (reader["image"] == DBNull.Value ? null : reader["image"]),
                         Name = (string)reader["nome"],
                         Inventory = Convert.ToDouble((reader["estoque"])),
                         TypeProduct = new TypeProducts(){
@@ -88,7 +88,7 @@ namespace ProjectInter.Data.Repositories
                 if(reader.Read()){
                     Products product = new Products(){
                         IdProducts = (int) reader["id_produtos"],
-                        Image = (string)reader["imagem"],
+                        Image = (string) (reader["image"] == DBNull.Value ? null : reader["image"] ) ,
                         Name = (string)reader["nome"],
                         Inventory = (float) reader["estoque"],
                         TypeProduct = new TypeProducts(){
