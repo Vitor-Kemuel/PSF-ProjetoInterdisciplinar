@@ -59,9 +59,9 @@ namespace ProjectInter.Data.Repositories
                         IdProducts = (int) reader["id_produtos"],
                         Image = (string)reader["imagem"],
                         Name = (string)reader["nome"],
-                        Inventory = Convert.ToDouble(reader["estoque"]),
+                        Inventory = Math.Round(Convert.ToDouble((reader["estoque"])), 2),
                         TypeProduct = new TypeProducts(){
-                            Price = Convert.ToDouble(reader["preco"]),
+                            Price = Math.Round(Convert.ToDouble(reader["preco"]), 2),
                             TypeUnit = (int) reader["tipo_medida"],
                             TypeProduct = (int) reader["tipo_produto"],
                         }
