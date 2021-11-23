@@ -3,10 +3,10 @@ namespace ProjectInter.Data.Interfaces
 {
     public interface IdOrderRepository
     {
-        void Create(Order order, ProductsOrders itens, int idCliente, int idFuncionario, int idProduto );
+        void Create(Order order);
 
         void GetAllOrders();
 
-        void GetOrderForSilgeCustomer(int idCustomer);
+        void GetSingleOrder(int idOrder);
     }
 }
