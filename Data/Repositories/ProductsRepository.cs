@@ -24,8 +24,8 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@estoque", Constants.INITIAL_INVENTORY);
                 cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO);
                 cmd.Parameters.AddWithValue("@preco", products.TypeProduct.Price);
-                cmd.Parameters.AddWithValue("@tipo_medida", Convert.ToInt32(products.TypeProduct.TypeUnit));
-                cmd.Parameters.AddWithValue("@tipo_produto", Convert.ToInt32(products.TypeProduct.TypeProduct));
+                cmd.Parameters.AddWithValue("@tipo_medida", products.TypeProduct.TypeUnit);
+                cmd.Parameters.AddWithValue("@tipo_produto", products.TypeProduct.TypeProduct);
 
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
@@ -44,14 +44,7 @@ namespace ProjectInter.Data.Repositories
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-
-                /*
-                    Id não é retornado pelo banco de dados
-                */
-
-                //cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
-                cmd.CommandText = "SELECT imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
-
+                cmd.CommandText = "SELECT id_produtos, imagem, nome, estoque, preco, tipo_medida, tipo_produto FROM v_listaProduto WHERE situacao = 1";
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -63,12 +56,12 @@ namespace ProjectInter.Data.Repositories
 
                 while(reader.Read()){
                     Products product = new Products(){
-                        // IdProducts = (int) reader["id_produtos"],
+                        IdProducts = (int) reader["id_produtos"],
                         Image = (string)reader["imagem"],
                         Name = (string)reader["nome"],
-                        // Inventory = (float) reader["estoque"],
+                        Inventory = Convert.ToDouble(reader["estoque"]),
                         TypeProduct = new TypeProducts(){
-                            // Price = (double) reader["preco"],
+                            Price = Convert.ToDouble(reader["preco"]),
                             TypeUnit = (int) reader["tipo_medida"],
                             TypeProduct = (int) reader["tipo_produto"],
                         }
