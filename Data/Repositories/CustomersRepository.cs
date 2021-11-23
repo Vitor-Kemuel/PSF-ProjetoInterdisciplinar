@@ -116,12 +116,12 @@ namespace ProjectInter.Data.Repositories
                 while(reader.Read()){
                     Customers customer = new Customers(){
                         IdPerson = (int) reader["id_pessoas"],
-                         Name = (string)reader["nome"],
-                         Cellphone = (string)reader["celular"],
-                         Email = (string) reader["email"],
-                         Password = (string) reader["senha"],
-                         Cpf = (string) reader["cpf"],
-                         Address = new Address(){
+                        Name = (string)reader["nome"],
+                        Cellphone = (string)reader["celular"],
+                        Email = (string) reader["email"],
+                        Password = (string) reader["senha"],
+                        Cpf = (string) reader["cpf"],
+                        Address = new Address(){
                             NameAddress = (string) reader["endereco"],
                             ComplementAddress = (string) (reader["complemento"] == DBNull.Value ? "" : reader["complemento"]),
                             NumberAddress = (string) reader["numero"],
