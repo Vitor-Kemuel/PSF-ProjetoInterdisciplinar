@@ -1,3 +1,7 @@
+@using ProjectInter.Models
+@model List<Products>
+@using System.Globalization
+
 @{
     ViewBag.Title = "Point Dashboard";
     ViewBag.Styles = "/css/dashboard/newOrder.css";
@@ -6,12 +10,29 @@
 }
 
 <div id="table">
-    <form id="formNewOrder" asp-controller="NewOrder" asp-action="Order" method="POST">
-        <div id="consumerInfo">
-            <div class="formLine">
-                <input id="searchCustomers" class="formInput" type="search" name="Cliente">
-                <input id="confirm" type="submit" value="Confirmar">
+    @foreach (var product in Model)
+    {
+        @if (product.TypeProduct.TypeProduct == 0)
+        {
+            <div class="productCard">
+                <img class="productImage" src="/uploads/@product.Image">
+                <div class="productInfo">
+                    <div class="invetoriContainer">
+                        <div>
+                            <div class="productNameContainer">
+                                <h2 class="productName">@product.Name</h2>
+                                <hr class="productLine">
+                            </div>
+                        </div>
+                        <div class="priceContainer">
+                            <div class="cardLine priceLine">
+                                <p class="productInformation productPrice">Preço: R$@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</p>
+                                <p class="productInformation productAddBtn">Adicionar ao Carrinho</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
+        }
+    }
 </div>
