@@ -66,7 +66,6 @@ namespace ProjectInter.Data.Repositories
                             TypeProduct = (int) reader["tipo_produto"],
                         }
                     };
-                    Console.WriteLine("hello");
                     products.Add(product);
                 }
 
