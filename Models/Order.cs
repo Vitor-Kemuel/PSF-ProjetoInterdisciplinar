@@ -14,7 +14,7 @@ namespace ProjectInter.Models
         public string OrderDelivery { get; set; }
 
         #region foreign key
-             public ProductsOrders Itens { get; set; }
+             public List<ProductsOrders> Itens { get; set; }
              public Employees Employees { get; set; }
              public Customers Customer { get; set; }
         #endregion
