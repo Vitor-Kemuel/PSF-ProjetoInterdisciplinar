@@ -48,12 +48,6 @@ namespace ProjectInter.Data.Repositories
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                /*
-                    atribuição de id comentada, pois, não se tem o retorno dela pelo banco de dados
-                    atribuição de quantidade comentada, pois, está com erro ao alterar tipo de dado
-                    atribuição de preço comentada, pois, está com erro ao alterar tipo de dado
-                */
-
                 while(reader.Read()){
                     Products product = new Products(){
                         IdProducts = (int) reader["id_produtos"],
@@ -70,7 +64,6 @@ namespace ProjectInter.Data.Repositories
                 }
 
                 return products;
-
             }
             catch (Exception ex)
             {
@@ -165,6 +158,11 @@ namespace ProjectInter.Data.Repositories
             }finally{
                 Dispose();
             }
+        }
+
+        public void SearchProdutos(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

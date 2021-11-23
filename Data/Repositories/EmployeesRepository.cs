@@ -189,5 +189,10 @@ namespace ProjectInter.Data.Repositories
                 Dispose();
             }
         }
+
+        public void SearchEmployee(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

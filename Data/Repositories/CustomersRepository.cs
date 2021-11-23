@@ -171,5 +171,10 @@ namespace ProjectInter.Data.Repositories
                 Dispose();
             }
         }
+
+        public void SearchCustomer(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
