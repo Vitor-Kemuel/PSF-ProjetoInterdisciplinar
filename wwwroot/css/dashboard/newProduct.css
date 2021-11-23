@@ -1,5 +1,11 @@
 #table{
-    margin: 100px 0 0 0 ;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px 20px 30px;
+    padding: 10px 0;
+    background: rgba(165, 165, 165, 0.7);
+    justify-content: center;
+    border-radius: 20px;
 }
 #formCadastroProduct{
     display: flex;
@@ -22,6 +28,7 @@
     border-radius: 13px;
     border: 2px rgb(122, 122, 122) solid;
     margin: 0 7px;
+    background: #fff;
 }
 input[type="file"]{
     display: none;
@@ -33,6 +40,7 @@ input[type="file"]{
     padding: 15px;
     border: 2px rgb(122, 122, 122) solid;
     border-radius: 23px;
+    background: #fff;
 }
 #productInfoBox{
     width: 70%;
@@ -40,13 +48,13 @@ input[type="file"]{
     justify-content: space-around;
 }
 
-.formSubTitle{
+/* .formSubTitle{
     font-size: 30px;
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 100%;
     margin: 0 0 0 30px;
-}
+} */
 
 
 input[type=radio]{
@@ -86,4 +94,22 @@ input[type=radio]:checked + label{
 }
 .titleRadio{
     margin: 0 0 0 15px;
+    color: #3f3f3f;
 }
+
+
+#money{
+    /* border-right: none; */
+    border-radius: 13px 0 0 13px;
+    margin-right: 0;
+    width: min-content;
+}
+#productPrice{
+    border-left: none;
+    border-radius: 0 13px 13px 0;
+    margin-left: 0;
+    width: 20%;
+}
+/* #productName{
+    width: 100%;
+} */
