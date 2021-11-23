@@ -22,6 +22,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@celular", employee.Cellphone);
                 cmd.Parameters.AddWithValue("@email", employee.Email);
                 cmd.Parameters.AddWithValue("@senha", employee.Password);
+                cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO);
                 cmd.Parameters.AddWithValue("@salario", employee.Wage);
                 cmd.Parameters.AddWithValue("@cargo", employee.Responsibility);
                 cmd.ExecuteNonQuery();
