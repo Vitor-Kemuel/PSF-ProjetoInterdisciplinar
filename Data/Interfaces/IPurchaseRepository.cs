@@ -1,11 +1,14 @@
+using ProjectInter.Models;
+using System.Collections.Generic;
+
 namespace ProjectInter.Data.Interfaces
 {
     public interface IPurchaseRepository
     {
-        void Create(int IdProducts);
+        void Create(Purchase purchase);
 
-        void GetAllPurchases();
+        List<Purchase> GetAllPurchases();
 
-        void GetSinglePurchase(int IdPurchase);
+        Purchase GetSinglePurchase(int IdPurchase);
     }
 }

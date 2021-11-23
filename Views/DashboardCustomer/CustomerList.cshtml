@@ -12,15 +12,36 @@
     @foreach (var customer in Model)
     {
         <div class="card">
+            <div class="informationLine emailLine">
+            </div>
             <div class="informationLine">
                 <h2 class="clientName">@customer.Name</h2>
                 <p class="idCustomer">#@customer.IdPerson</p>
             </div>
+                <p class="emailContainer">@customer.Email</p>
+            <div id="@customer.IdPerson" class="addressList">
             <div class="informationLine">
-                <p class="telefone" >@customer.Cellphone</p>
+                <p class="telefone">Numero: @customer.Cellphone</p>
+                <p class="CPF">CPF: @customer.Cpf</p>
             </div>
-            <div class="informationLine">
-                <p>+ Detalhes </p>
+                @* @foreach (var adress in Model)
+                { *@
+                    <hr class="addressLine">
+                    <div class="informationLine">
+                        <p class="cep">CEP: @customer.Address.ZipCodeAddress</p>
+                    </div>
+                    <div class="informationLine">
+                        <p class="nameAddress">@customer.Address.NameAddress. @customer.Address.NumberAddress</p>
+                        <p class="district">@customer.Address.District</p>
+                    </div>
+                    <div class="informationLine">
+                    </div>
+                @* } *@
+            </div>
+            @{var index = customer.IdPerson;}
+            <div id="btn@index" class="informationLine">
+                <span id="spanShow @index" class="btnSpan" onclick="showAddress(@index)">Mais detalhes</span>
+                <span id="spanHide @index" class="btnSpan spanHide" onclick="hideAddress(@index)">Ocultar</span>
             </div>
         </div>
     }
