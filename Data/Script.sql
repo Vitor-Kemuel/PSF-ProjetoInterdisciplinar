@@ -58,8 +58,8 @@ id_tipo_produto   int           not null  primary key references PRODUTOS,
 preco             decimal(10,2) not null,
 tipo_produto      int           not null, -- 1 = primário e 2 - adicional 
 tipo_medida       int           not null, -- 1 = ml e 2 =  quantidade
-check(tipo_produto in (1, 2)),
-check(tipo_medida in (1, 2))
+check(tipo_produto 	in (0, 1)),
+check(tipo_medida 	in (0, 1))
 )
 go
 
@@ -253,7 +253,7 @@ go
 
 create view v_listaProduto
 as
-	select pro.imagem, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto, tpro.tipo_medida
+	select pro.id_produtos, pro.imagem, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto, tpro.tipo_medida
 	from PRODUTOS pro, TIPO_PRODUTOS tpro
 	where pro.id_produtos = tpro.id_tipo_produto
 go
