@@ -1,42 +1,75 @@
 #table{
-    margin: 100px 0 0 0 ;
-}
-#formNewOrder{
     display: flex;
-    /* width: 100%; */
+    margin: 100px 0 0 0;
+    flex-direction: column;
+    align-items: center;
+}
+.productCard{
+    display: flex;
+    width: 80%;
+    min-width: 750px;
+    height: 300px;
+    background: rgb(254, 220, 86);
+    margin: 20px;
+    padding: 15px;
+    border-radius: 13px;
+    flex-direction: row;
+}
+.productImage{
+    min-width: 300px;
+    width: 300px;
+    height: 300px;
+    border-radius: 13px;
+    margin: 0 20px 0 0;
+    background: #fff;
+}
+
+.productInfo{
+    width: 100%;
+    margin: 5px 15px;
+}
+
+.productName{
+    font-size: 70px;
+    margin: 0 0 0 15px;
+}
+
+.productLine{
+    border: 1px solid rgba(0, 0, 0, .4);
+    width: 100%;
+}
+
+.invetoriContainer{
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    margin: 20px;
+    height: 100%;
 }
-#consumerInfo{
+
+.cardLine{
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
 }
-.formLine{
-    width: 100%;
-    display: flex;
-    margin: 5px 0;
+
+.productInformation{
+    font-size: 23px;
+    margin: 3px 10px;
 }
-.formInput{
-    width: 100%;
-    margin: 0 7px;
-    height: 30px;
-    border-radius: 13px;
-    padding: 10px 20px;
-    font-size: 25px;
-    border: 2px rgb(122, 122, 122) solid;
-}
-#searchCustomers{
-    padding: 25px 20px;
-}
-#confirm{
-    width: 20%;
+
+.productPrice{
     color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    border: inset #939393;
-    border-radius: 13px;
-    background:rgba(156, 39, 173, 1);
+    background: rgb(111, 56, 87);
+    padding: 5px;
+    border-radius: 7px;
+}
+.productAddBtn{
+    color: #fff;
+    background: blue;
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.priceLine{
+    justify-content: right;
 }
