@@ -33,3 +33,43 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
+
+/* Definição da tabela de Pedidos */
+#table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 86px 0 0;
+    padding: 80px;
+    width: 100%;
+}
+
+/* Definição IDs e Classes dos cards da dashboard */
+.card{
+    width: 70%;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 25px;
+    background: rgb(240, 240, 240);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+}
+.informationLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.idEmployee{
+    color:rgba(0, 0, 0, 0.6);
+}
+.EmployeeName{
+    font-weight: bold;
+}
+
+.emailContainer{
+    font-size: 12px;
+}
+.emailLine{
+    margin: 0;
+}
