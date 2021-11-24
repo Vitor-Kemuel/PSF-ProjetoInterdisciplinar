@@ -51,18 +51,19 @@ nome            varchar(100)   not null,
 estoque         decimal(10,2)  not null,
 check (situacao in ( 0, 1))
 )
+
 go
 
 create table TIPO_PRODUTOS(
 id_tipo_produto   int           not null  primary key references PRODUTOS, 
 preco             decimal(10,2) not null,
-tipo_produto      int           not null, -- 1 = primário e 2 - adicional 
-tipo_medida       int           not null, -- 1 = ml e 2 =  quantidade
-check(tipo_produto 	in (0, 1)),
-check(tipo_medida 	in (0, 1))
+tipo_produto      int           not null,-- 0 = primário e 1 - adicional
+tipo_medida       int           not null, -- 0 = ml e 1 =  quantidade
+check(tipo_medida  in (0, 1)),
+check(tipo_produto in (0, 1))
 )
-go
 
+go
 
 create table PEDIDOS(
 id_pedidos        int            not null   primary key   identity,
@@ -83,17 +84,15 @@ go
 create table PRODUTOS_PEDIDOS(
 id_produtos int           not null references PRODUTOS,
 id_pedidos  int           not null references PEDIDOS,
-quantidade  int           not null,
-valor_total decimal(7,2)  not null, 
+quantidade  int           not null,             
 primary key (id_produtos,id_pedidos)              
 )
+
 go
 
 create table COMPRAS(
 id_compras     int           not null  primary key  identity,
-data_compra    datetime      not null,
-quantidade     decimal(10,2) not null,
-valor_total    decimal(10,2) not null
+data_compra    datetime      not null
 )
 
 go
@@ -101,11 +100,10 @@ go
 create table PRODUTOS_COMPRAS(
 id_produtos int not null references PRODUTOS,
 id_compras  int not null references COMPRAS,
+quantidade     decimal(10,2) not null,
 primary key (id_produtos, id_compras)
 )
-go
 
-use point_summer_foods_dev
 go
 
 use point_summer_foods_dev
@@ -261,7 +259,6 @@ go
 select * from v_listaProduto
 order by nome asc
 go
-
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE ALTERAR PRODUTO-------------------------------------
 --------------------------------------------------------------------------------------------
@@ -357,25 +354,22 @@ go
 --------------------------------PROCEDURE REGISTRO DE VENDA---------------------------------
 --------------------------------------------------------------------------------------------
 
-create procedure regVenda
+create procedure regPedidos
 (
 	@id_cliente        int,
 	@id_funcionario    int,
+	@cod_pedido        varchar(40),
 	@observacoes       varchar(500),
 	@situacao          bit,
 	@data_venda        datetime,
 	@pedido_lido       datetime,
 	@pedido_produzindo datetime,
 	@pedido_entregue   datetime,
-	@id_produto        int,
-	@quantidade        int,         -- existem dois campos com o memso nome, deveriamos trocar o nome dos campos para não haver interferencia
-	@valor_total       decimal(7,1) -- existem dois campos com o memso nome, deveriamos trocar o nome dos campos para não haver interferencia
 )
 as 
 begin
 
 	insert PEDIDOS values(@id_cliente, @id_funcionario, @cod_pedido, @observacoes, @situacao, @data_venda, @pedido_lido, @pedido_produzindo, @pedido_entregue)
-	insert PRODUTOS_PEDIDOS values(@id_produto, @@IDENTITY, @quantidade, @valor_total)
 	
 end
 go
@@ -410,6 +404,133 @@ as
 
 go
 
+--------------------------------------------------------------------------------------------
+--------------------------------PROCEDURE ITENS PEDIDOS-------------------------------------
+--------------------------------------------------------------------------------------------
 
+create procedure itensPed(
+	@id_produtos int,
+	@id_pedidos  int,
+	@quantidade  int
+)
+as
+begin
+
+	insert into PRODUTOS_PEDIDOS values (@id_produtos, @id_pedidos, @quantidade)
+
+end
+go
+
+exec itensPed 3, 3, 10
+
+
+--------------------------------------------------------------------------------------------
+--------------------------------VIEW ITENS PEDIDOS------------------------------------------
+--------------------------------------------------------------------------------------------
+
+create view v_itensPed
+as
+	select pp.id_produtos, pp.id_pedidos, pp.quantidade
+	from PRODUTOS_PEDIDOS pp
+	where pp.id_produtos = pp.id_pedidos
+go
+
+select * from v_itensPed
+go
+
+
+--------------------------------------------------------------------------------------------
+--------------------------------PROCEDURE CADASTRAR COMPRAS---------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure cadCompras(
+	@id_compras int,
+	@data_compra datetime
+)
+as
+begin
+
+	insert into COMPRAS values(@id_compras, @data_compra)
+
+end
+go
+
+--------------------------------------------------------------------------------------------
+--------------------------------VIEW CADASTRAR COMPRAS--------------------------------------
+--------------------------------------------------------------------------------------------
+
+create view v_cadCompra
+as
+	select com.id_compras, com.data_compra
+	from COMPRAS com
+
+go
+
+select * from v_cadCompra
+go
+
+--------------------------------------------------------------------------------------------
+-------------------------------PROCEDURE ITENS COMPRAS--------------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure itensCompras(
+	
+	@id_compras  int,   
+	@id_produtos int,
+	@quantidade  int,
+	@valor_total int
+)
+as 
+begin
+
+	insert COMPRAS values (@id_compras)
+	insert PRODUTOS_PEDIDOS values (@id_produtos, @quantidade)
+
+end
+go
+
+--------------------------------------------------------------------------------------------
+------------------------------------VIEW ITENS COMPRAS--------------------------------------
+--------------------------------------------------------------------------------------------
+
+create view v_itensCompras
+as
+
+	select c.id_compras, prop.id_produtos, prop.quantidade
+	from COMPRAS c, PRODUTOS_PEDIDOS prop
+	where c.id_compras = prop.id_produtos
+
+go
+
+select * from v_itensCompras
+go
+
+--------------------------------------------------------------------------------------------
+-------------------------------PROCEDURE ALTERAR CLIENTES-----------------------------------
+--------------------------------------------------------------------------------------------
+
+create procedure altClientes(
+	@nome			 varchar(50),
+	@celular		 varchar(14),
+	@email		     varchar(50),
+	@senha			 varchar(50),
+	@situacao        bit,         -- 0 = Ativo e 1 = Desativo
+	@id_pessoas      int,
+	@cpf			 varchar(14),
+	@endereco		 varchar(40),
+	@complemento	 varchar(100),
+	@numero_endereco varchar(10),
+	@bairro			 varchar(40),
+	@cep			 varchar(10)
+)
+as 
+begin
+
+	update PESSOAS     set nome = @nome, celular = @celular, email = @email, senha = @senha, situacao=  @situacao where id_pessoas = @id_pessoas
+	update CLIENTES    set cpf =  @cpf where id_pessoas = @id_pessoas
+	update LOGRADOUROS set endereco = @endereco, complemento = @complemento, numero_endereco = @numero_endereco, bairro = @bairro, cep = @cep where id_clientes = @id_pessoas
+
+end
+go
 
 
