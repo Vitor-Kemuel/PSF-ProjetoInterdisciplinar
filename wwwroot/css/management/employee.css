@@ -33,3 +33,49 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
+
+/* Definindo elementos do layout que n devem ser mostrados na pagina */
+#changeDirection{
+    display: none;
+}
+
+/* Definição da tabela de Pedidos */
+#table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px 20% 0;
+    padding: 60px 0 0 0;
+    width: auto;
+}
+
+/* Definição IDs e Classes dos cards da dashboard */
+.card{
+    width: 100%;
+    margin: 10px;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 25px;
+    background: rgba(219, 219, 219, .9);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.9));
+}
+.informationLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.idEmployee{
+    color:rgba(0, 0, 0, 0.6);
+}
+.EmployeeName{
+    font-weight: bold;
+}
+
+.emailContainer{
+    font-size: 12px;
+}
+.emailLine{
+    margin: 0;
+}
+

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectInter.Models;
 using ProjectInter.Data.Interfaces;
-
+using System.Collections.Generic;
 
 namespace ProjectInter.Controllers
 {
@@ -22,12 +22,14 @@ namespace ProjectInter.Controllers
         [HttpGet]
         public ActionResult Employee()
         {
-            return View();
+            List<Employees> employees = repository.GetListEmployees();
+            return View(employees);
         }
 
         [HttpGet]
         public ActionResult NewEmployee()
         {
+
             return View();
         }
 

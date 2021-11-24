@@ -98,7 +98,7 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
                 // Heitor tem que corrigir, trazer todos os dados de pessoa, e não somente id_pessoas
-                cmd.CommandText = "SELECT id_pessoas, salario, cargo FROM v_listaFuncionario";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, salario, cargo FROM v_listaFuncionario";
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -136,9 +136,9 @@ namespace ProjectInter.Data.Repositories
 
                 cmd.Parameters.AddWithValue("@email", employees.Email);
                 cmd.Parameters.AddWithValue("@senha", employees.Password);
-                
+
                 SqlDataReader reader = cmd.ExecuteReader();
-                
+
                 if(reader.Read()){
                     Employees ObjEmployee  = new Employees(){
                         IdPerson = (int)            reader["id_pessoas"],
@@ -149,7 +149,7 @@ namespace ProjectInter.Data.Repositories
                         Wage = (decimal)            reader["salario"],
                         Responsibility = (string)   reader["cargo"],
                     };
-                 
+
                  return ObjEmployee;
                 }
 

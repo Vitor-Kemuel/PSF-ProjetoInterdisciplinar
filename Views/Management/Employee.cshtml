@@ -1,3 +1,6 @@
+@using ProjectInter.Models
+@model List<Employees>
+
 @{
     ViewBag.Title = "Administração";
     ViewBag.Styles = "/css/management/employee.css";
@@ -10,4 +13,22 @@
         <h2 class="subTitle">Funcionarios</h2>
     </div>
     <a id="OptionSession" href="NewEmployee">Novo funcionario <i class="fas fa-regular fa-user-plus"></i></a>
+</div>
+
+<div id="table">
+    @foreach (var employee in Model)
+    {
+        <div class="card">
+            <div class="informationLine emailLine">
+            </div>
+            <div class="informationLine">
+                <h2 class="employeetName">@employee.Name</h2>
+                <p class="idemployee">#@employee.IdPerson</p>
+            </div>
+                <p class="emailContainer">@employee.Email</p>
+            <div class="informationLine">
+                <p class="telefone">Numero: @employee.Cellphone</p>
+            </div>
+        </div>
+    }
 </div>
