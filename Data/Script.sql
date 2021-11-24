@@ -287,7 +287,7 @@ create procedure regPedidos
 	@data_venda        datetime,
 	@pedido_lido       datetime,
 	@pedido_produzindo datetime,
-	@pedido_entregue   datetime,
+	@pedido_entregue   datetime
 )
 as
 begin
