@@ -172,20 +172,22 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public Customers SearchCustomer(string name)
+        public List<Customers> SearchCustomer(string name)
         {
-             try
+            try
             {
+                List<Customers> customers = new List<Customers>();
+
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoas = @id";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE nome LIKE %@name%";
 
-                //cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@name", name);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                if(reader.Read()){
+                while(reader.Read()){
                     Customers customer = new Customers(){
                         IdPerson = (int) reader["id_pessoas"],
                         Name = (string)reader["nome"],
@@ -201,10 +203,10 @@ namespace ProjectInter.Data.Repositories
                             ZipCodeAddress = (string) reader["cep"],
                         }
                     };
-                    return customer;
+                    customers.Add(customer);
                 }
 
-                return null;
+                return customers;
             } catch (Exception ex) {
                 throw new Exception("Erro: "+ ex.Message);
             } finally {
