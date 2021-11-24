@@ -31,8 +31,8 @@ namespace ProjectInter.Controllers
         [HttpGet]
         public ActionResult Inventory()
         {
-            // List<Products> products = repository.GetAllProducts();
-            return View(GetProductsFromView());
+            List<Products> products = repository.GetAllProducts();
+            return View(products);
         }
         [HttpGet]
         public ActionResult NewProduct()
@@ -54,7 +54,6 @@ namespace ProjectInter.Controllers
                    products.ImageFile.CopyTo(stream);
                 }
                 products.Image = fileName;
-                //Não esquecer de updload no html
             }
 
             repository.Create(products);

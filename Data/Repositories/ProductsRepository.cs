@@ -37,7 +37,6 @@ namespace ProjectInter.Data.Repositories
 
         public List<Products> GetAllProducts()
         {
-
             try
             {
                 List<Products> products = new List<Products>();
@@ -51,7 +50,7 @@ namespace ProjectInter.Data.Repositories
                 while(reader.Read()){
                     Products product = new Products(){
                         IdProducts = (int) reader["id_produtos"],
-                        Image = (string) (reader["image"] == DBNull.Value ? null : reader["image"]),
+                        Image = (string) (reader["imagem"] == DBNull.Value ? " " : reader["imagem"]),
                         Name = (string)reader["nome"],
                         Inventory = Convert.ToDouble((reader["estoque"])),
                         TypeProduct = new TypeProducts(){
@@ -62,7 +61,6 @@ namespace ProjectInter.Data.Repositories
                     };
                     products.Add(product);
                 }
-
                 return products;
             }
             catch (Exception ex)
@@ -88,7 +86,7 @@ namespace ProjectInter.Data.Repositories
                 if(reader.Read()){
                     Products product = new Products(){
                         IdProducts = (int) reader["id_produtos"],
-                        Image = (string) (reader["image"] == DBNull.Value ? null : reader["image"] ) ,
+                        Image = (string) (reader["imagem"] == DBNull.Value ? null : reader["imagem"] ) ,
                         Name = (string)reader["nome"],
                         Inventory = (float) reader["estoque"],
                         TypeProduct = new TypeProducts(){
