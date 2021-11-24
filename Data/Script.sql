@@ -1,9 +1,7 @@
 Create database point_summer_foods_dev
-
 go
 
 use point_summer_foods_dev
-
 go
 
 create table PESSOAS (
@@ -14,14 +12,12 @@ email        varchar(50) not null  unique,
 senha        varchar(50) not null,
 situacao     bit         not null -- 1 = Ativo e 0 = Desativo     EXCLUIR TABELA PESSOAS E TODAS FK PRA ADICIONAR NOVAMENTE A TABELA COM O COMPO SITUACAO
 )
-
 go
 
 create table CLIENTES(
 id_pessoas  int         not null primary key  references PESSOAS,
 cpf         varchar(14) not null unique,
 )
-
 go
 
 create table FUNCIONARIOS(
@@ -29,7 +25,6 @@ id_pessoas        int            not null primary key references PESSOAS,
 salario           decimal(10,2)  not null,
 cargo             varchar(50)    not null,
 )
-
 go
 
 create table LOGRADOUROS(
@@ -40,7 +35,6 @@ numero_endereco  varchar(10)  not null,
 bairro           varchar(40)  not null,
 cep              varchar(10)  not null
 )
-
 go
 
 create table PRODUTOS(
@@ -51,18 +45,16 @@ nome            varchar(100)   not null,
 estoque         decimal(10,2)  not null,
 check (situacao in ( 0, 1))
 )
-
 go
 
 create table TIPO_PRODUTOS(
-id_tipo_produto   int           not null  primary key references PRODUTOS, 
+id_tipo_produto   int           not null  primary key references PRODUTOS,
 preco             decimal(10,2) not null,
 tipo_produto      int           not null,-- 0 = primário e 1 - adicional
 tipo_medida       int           not null, -- 0 = ml e 1 =  quantidade
 check(tipo_medida  in (0, 1)),
 check(tipo_produto in (0, 1))
 )
-
 go
 
 create table PEDIDOS(
@@ -71,30 +63,27 @@ id_clientes       int            not null   references    CLIENTES,
 id_funcionarios   int            not null   references    FUNCIONARIOS,
 cod_pedidos       varchar(40)    not null,
 observacoes       varchar(500),
-situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega 
+situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega
 data_venda        datetime       not null,
 pedido_lido       datetime       not null, --Horario
 pedido_produzindo datetime       not null, --Horario
 pedido_entregue   datetime       not null, --horario
 check   (situacao in (1, 2, 3))
 )
-
 go
 
 create table PRODUTOS_PEDIDOS(
 id_produtos int           not null references PRODUTOS,
 id_pedidos  int           not null references PEDIDOS,
-quantidade  int           not null,             
-primary key (id_produtos,id_pedidos)              
+quantidade  int           not null,
+primary key (id_produtos,id_pedidos)
 )
-
 go
 
 create table COMPRAS(
 id_compras     int           not null  primary key  identity,
 data_compra    datetime      not null
 )
-
 go
 
 create table PRODUTOS_COMPRAS(
@@ -103,7 +92,6 @@ id_compras  int not null references COMPRAS,
 quantidade     decimal(10,2) not null,
 primary key (id_produtos, id_compras)
 )
-
 go
 
 use point_summer_foods_dev
@@ -122,58 +110,37 @@ create procedure cadCliente(
 	@bairro			 varchar(40),
 	@cep			 varchar(10)
 )
-as 
+as
 begin
-
 	declare @id as int
 
 	insert into PESSOAS values(@nome, @celular, @email, @senha, @situacao)
 	set @id = @@identity
 	insert into CLIENTES values(@id, @cpf)
 	insert into LOGRADOUROS values(@id, @endereco, @complemento, @numero_endereco, @bairro, @cep)
-
 end
 go
-
-exec cadCliente 'Guilherme Piovezan', '17 988840120', 'piovezan.guilherme@gmail.com', '1234567', 0, '11111111111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
-
-go
-
-exec cadCliente 'Vitor kemuel Carreiro Ponte', '17 988840120', 'pikvezan.guilherme@gmail.com', '1234567', 0, '11111111112', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
-
-go
-
-exec cadCliente 'Alex Gomes da Silva Filho', '17 988840120', 'puovezan.guilherme@gmail.com', '1234567', 0, '11112111111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
-
-go
-
-exec cadCliente 'Heitor Piva Carreira', '17 988840120', 'fjkavezan.guilherme@gmail.com', '1234567', 0, '1111213111', 'av.São Paulo', 'mansão', '890', 'Centro', '15200000'
-
-go
-
 
 --------------------------------------------------------------------------------------------
 -----------------------------VIEW LISTA CLIENTES--------------------------------------------
 --------------------------------------------------------------------------------------------
 
-
 create view v_listaClientes
-
 as
     select p.id_pessoas, p.nome, p.email, p.senha, p.situacao, p.celular, c.cpf, lg.endereco, lg.numero_endereco as numero, lg.bairro, lg.complemento, lg.cep
     from PESSOAS p, CLIENTES c, LOGRADOUROS lg
     where p.id_pessoas = c.id_pessoas and lg.id_clientes = c.id_pessoas
-
 go
 
 select * from v_listaClientes
 order by nome asc
 go
+
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE CADASTRO FUNCIONARIO---------------------------------
 --------------------------------------------------------------------------------------------
 
-create procedure cadFuncionario 
+create procedure cadFuncionario
 (
 	@nome     varchar(50),
 	@celular  varchar(14),
@@ -185,18 +152,9 @@ create procedure cadFuncionario
 )
 as
 begin
-
 	insert into PESSOAS      values(@nome, @celular, @email, @senha, @situacao)
 	insert into FUNCIONARIOS values(@@identity, @salario, @cargo)
-
-end 
-
-exec cadFuncionario 'Heitor Piva Carreira', '017 98804-4110', 'piva.heitor@gmail.com', '1234567', 1, 2500.00, 'Atendente'
-go
-exec cadFuncionario 'Dener Gabriel de Matos', '017 98804-2353', 'delete.email@gmail.com', '1234567', 1,  2500.00, 'Atendente'
-go
-exec cadFuncionario 'João Gustavo', '017 98804-1243', 'gustavo.joao@gmail.com', '1234567', 1,  1800.00, 'Motorista'
-go
+end
 
 --------------------------------------------------------------------------------------------
 ----------------------------------VIEW EXIBIÇÃO CADASTRO FUNCIONARIO------------------------
@@ -204,17 +162,14 @@ go
 
 create view v_listaFuncionario
 as
-
 	select pe.id_pessoas, pe.nome, pe.celular, pe.email, pe.senha, pe.situacao, fun.salario, fun.cargo
 	from PESSOAS pe, FUNCIONARIOS fun
 	where pe.id_pessoas = fun.id_pessoas
-
 go
 
 select * from v_listaFuncionario
 order by nome asc
 go
-
 
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE CADASTRO PRODUTO-------------------------------------
@@ -232,18 +187,9 @@ create procedure cadProduto
 )
 as
 begin
-
 	insert into PRODUTOS values(@imagem, @situacao, @nome, @estoque)
 	insert into TIPO_PRODUTOS values( @@IDENTITY, @preco, @tipo_produto, @tipo_medida)
 end
-
-
-exec cadProduto '1234', 1, 'açai premium', 22000.0, 122.00, 1  
-go
-
-exec cadProduto '5678', 1, 'Banana nanica', 2.0, 2.00, 1  
-go
-
 
 --------------------------------------------------------------------------------------------
 ----------------------------------VIEW EXIBIÇÃO CADASTRO PRODUTO----------------------------
@@ -259,13 +205,14 @@ go
 select * from v_listaProduto
 order by nome asc
 go
+
 --------------------------------------------------------------------------------------------
 -----------------------------PROCEDURE ALTERAR PRODUTO-------------------------------------
 --------------------------------------------------------------------------------------------
 
 create procedure altProduto
 (
-	@id_produtos     int,       
+	@id_produtos     int,
 	@cod_produto     varchar(40),
 	@situacao	     bit,          -- 1=Ativo 2=Desativo
 	@nome		     varchar(100),
@@ -276,31 +223,22 @@ create procedure altProduto
 )
 as
 begin
-	
 	update PRODUTOS set cod_produto = @cod_produto, situacao = @situacao, nome = @nome, estoque = @estoque
 	update TIPO_PRODUTOS set preco = @preco, tipo_produto = @tipo_produto
-
 end
-
-exec altProduto 2, '4321', 2, 'açai dourado', 19000.00, 2, 119.00, 2
-go
 
 --------------------------------------------------------------------------------------------
 ----------------------------------VIEW EXIBIÇÃO ALTERAR PRODUTO----------------------------
 --------------------------------------------------------------------------------------------
 
-
 create view v_listaAltProduto
 as
-	
 	select pro.cod_produto, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
 	from   PRODUTOS pro, TIPO_PRODUTOS tpro
 	where  pro.id_produtos = tpro.id_tipo_produto
-
 go
 
 select * from v_listaAltProduto
-
 go
 
 --------------------------------------------------------------------------------------------
@@ -316,35 +254,20 @@ create procedure cadCompra
 )
 as
 begin
-
 	insert COMPRAS values(@data_compra, @quantidade, @valor_total)
 	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY)
-	
 end
 go
-
-exec cadCompra 1, '20211109' , 30, 20.00;
-go
-
-exec cadCompra 2, '20211109' , 30, 20.00;
-go
-
-exec cadCompra 3, '20211109' , 30, 20.00;
-go
-
 
 --------------------------------------------------------------------------------------------
 ----------------------------------VIEW EXIBIÇÃO CADASTRO COMPRA-----------------------------
 --------------------------------------------------------------------------------------------
 
-
 create View v_listaCadCompra
 as
-
 	select com.data_compra, com.quantidade, pro.cod_produto, pro.situacao, pro.nome, pro.estoque
 	from COMPRAS com, PRODUTOS pro, PRODUTOS_COMPRAS pc
 	where com.id_compras = pc.id_compras and pc.id_produtos = pro.id_produtos
-
 go
 
 select * from v_listaCadCompra
@@ -366,25 +289,17 @@ create procedure regPedidos
 	@pedido_produzindo datetime,
 	@pedido_entregue   datetime,
 )
-as 
+as
 begin
-
 	insert PEDIDOS values(@id_cliente, @id_funcionario, @cod_pedido, @observacoes, @situacao, @data_venda, @pedido_lido, @pedido_produzindo, @pedido_entregue)
-	
 end
 go
 
-
-exec regVenda 1, 3, '30265', 'Tirar a cebola', 1, '20211110 18:42', '20211110 18:42', '20211110 18:50', '20211110 00:00', 2, 1, 15.50
-
-
 create view v_listaRegVendas
 as
-
 	select ped.cod_pedidos, ped.observacoes, ped.situacao, ped.data_venda, ped.pedido_lido, ped.pedido_produzindo, ped.pedido_entregue, prop.id_produtos, prop.quantidade, prop.valor_total,pe.id_pessoas, pe.celular, pe.email, pe.nome, pe.senha, cli.cpf, fun.cargo, fun.salario
 	from PEDIDOS ped, PRODUTOS_PEDIDOS prop, PESSOAS pe, CLIENTES cli, FUNCIONARIOS fun
 	where pe.id_pessoas = cli.id_pessoas and pe.id_pessoas = ped.id_clientes and ped.id_pedidos = prop.id_pedidos
-
 go
 
 select * from v_listaRegVendas
@@ -401,7 +316,6 @@ create procedure delCliente(
 as
 	update PESSOAS set situacao = @situacao
 	where id_pessoas = @id_pessoas
-
 go
 
 --------------------------------------------------------------------------------------------
@@ -415,14 +329,9 @@ create procedure itensPed(
 )
 as
 begin
-
 	insert into PRODUTOS_PEDIDOS values (@id_produtos, @id_pedidos, @quantidade)
-
 end
 go
-
-exec itensPed 3, 3, 10
-
 
 --------------------------------------------------------------------------------------------
 --------------------------------VIEW ITENS PEDIDOS------------------------------------------
@@ -438,7 +347,6 @@ go
 select * from v_itensPed
 go
 
-
 --------------------------------------------------------------------------------------------
 --------------------------------PROCEDURE CADASTRAR COMPRAS---------------------------------
 --------------------------------------------------------------------------------------------
@@ -449,9 +357,7 @@ create procedure cadCompras(
 )
 as
 begin
-
 	insert into COMPRAS values(@id_compras, @data_compra)
-
 end
 go
 
@@ -463,7 +369,6 @@ create view v_cadCompra
 as
 	select com.id_compras, com.data_compra
 	from COMPRAS com
-
 go
 
 select * from v_cadCompra
@@ -474,18 +379,15 @@ go
 --------------------------------------------------------------------------------------------
 
 create procedure itensCompras(
-	
-	@id_compras  int,   
+	@id_compras  int,
 	@id_produtos int,
 	@quantidade  int,
 	@valor_total int
 )
-as 
+as
 begin
-
 	insert COMPRAS values (@id_compras)
 	insert PRODUTOS_PEDIDOS values (@id_produtos, @quantidade)
-
 end
 go
 
@@ -495,11 +397,9 @@ go
 
 create view v_itensCompras
 as
-
 	select c.id_compras, prop.id_produtos, prop.quantidade
 	from COMPRAS c, PRODUTOS_PEDIDOS prop
 	where c.id_compras = prop.id_produtos
-
 go
 
 select * from v_itensCompras
@@ -523,14 +423,10 @@ create procedure altClientes(
 	@bairro			 varchar(40),
 	@cep			 varchar(10)
 )
-as 
+as
 begin
-
 	update PESSOAS     set nome = @nome, celular = @celular, email = @email, senha = @senha, situacao=  @situacao where id_pessoas = @id_pessoas
 	update CLIENTES    set cpf =  @cpf where id_pessoas = @id_pessoas
 	update LOGRADOUROS set endereco = @endereco, complemento = @complemento, numero_endereco = @numero_endereco, bairro = @bairro, cep = @cep where id_clientes = @id_pessoas
-
 end
 go
-
-
