@@ -213,7 +213,6 @@ go
 create procedure altProduto
 (
 	@id_produtos     int,
-	@cod_produto     varchar(40),
 	@situacao	     bit,          -- 1=Ativo 2=Desativo
 	@nome		     varchar(100),
 	@estoque         decimal(10,2),
@@ -223,7 +222,7 @@ create procedure altProduto
 )
 as
 begin
-	update PRODUTOS set cod_produto = @cod_produto, situacao = @situacao, nome = @nome, estoque = @estoque
+	update PRODUTOS set situacao = @situacao, nome = @nome, estoque = @estoque
 	update TIPO_PRODUTOS set preco = @preco, tipo_produto = @tipo_produto
 end
 
@@ -233,7 +232,7 @@ end
 
 create view v_listaAltProduto
 as
-	select pro.cod_produto, pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
+	select pro.situacao, pro.nome, pro.estoque, tpro.preco, tpro.tipo_produto
 	from   PRODUTOS pro, TIPO_PRODUTOS tpro
 	where  pro.id_produtos = tpro.id_tipo_produto
 go
@@ -265,7 +264,7 @@ go
 
 create View v_listaCadCompra
 as
-	select com.data_compra, com.quantidade, pro.cod_produto, pro.situacao, pro.nome, pro.estoque
+	select com.data_compra, com.quantidade, pro.situacao, pro.nome, pro.estoque
 	from COMPRAS com, PRODUTOS pro, PRODUTOS_COMPRAS pc
 	where com.id_compras = pc.id_compras and pc.id_produtos = pro.id_produtos
 go
