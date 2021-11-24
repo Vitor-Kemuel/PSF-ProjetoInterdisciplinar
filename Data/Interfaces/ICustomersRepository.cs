@@ -11,6 +11,6 @@ namespace ProjectInter.Data.Interfaces
         void Update(int id, Customers customers);
         void Delete(int id);
 
-        void SearchCustomer(string name);
+        Customers SearchCustomer(string name);
     }
 }

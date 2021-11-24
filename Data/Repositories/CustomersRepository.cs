@@ -172,9 +172,44 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void SearchCustomer(string name)
+        public Customers SearchCustomer(string name)
         {
-            throw new NotImplementedException();
+             try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes WHERE id_pessoas = @id";
+
+                //cmd.Parameters.AddWithValue("@id", id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.Read()){
+                    Customers customer = new Customers(){
+                        IdPerson = (int) reader["id_pessoas"],
+                        Name = (string)reader["nome"],
+                        Cellphone = (string)reader["celular"],
+                        Email = (string) reader["email"],
+                        Password = (string) reader["senha"],
+                        Cpf = (string) reader["cpf"],
+                        Address = new Address(){
+                            NameAddress = (string) reader["endereco"],
+                            ComplementAddress = (string) (reader["complemento"] == DBNull.Value ? "" : reader["complemento"]),
+                            NumberAddress = (string) reader["numero"],
+                            District = (string) reader["bairro"],
+                            ZipCodeAddress = (string) reader["cep"],
+                        }
+                    };
+                    return customer;
+                }
+
+                return null;
+            } catch (Exception ex) {
+                throw new Exception("Erro: "+ ex.Message);
+            } finally {
+                Dispose();
+            }
         }
     }
 }
