@@ -30,14 +30,17 @@ function editProduct(index, nameProduct, priceValue){
 
     var productEditBtnContainer = document.getElementById("productEditBtnContainer " + index);
     var productEditBtn = document.getElementById("productEditBtn " + index);
+    var productAddInventoryBtn = document.getElementById("productAddInventoryBtn " + index);
 
     productEditBtnContainer.removeChild(productEditBtn);
+    productEditBtnContainer.removeChild(productAddInventoryBtn);
 
     productEditBtn.setAttribute('onclick', 'cancelEditProduct("' + index + '","' + nameProduct + '","' + priceValue + '")');
 
     productEditBtn.innerHTML = "Cancelar";
 
     productEditBtnContainer.appendChild(productEditBtn)
+
 
     var priceContainer = document.getElementById("productPriceContaier " + index);
     var price = document.getElementById("priceValue " + index);
@@ -63,7 +66,8 @@ function editProduct(index, nameProduct, priceValue){
     saveBtn.setAttribute('value', 'Salvar')
 
     var priceContainerDiv = document.getElementById("productPriceContaierDiv " + index);
-    priceContainerDiv.appendChild(saveBtn);
+    // priceContainerDiv.appendChild(saveBtn);
+    productEditBtnContainer.appendChild(saveBtn);
 }
 
 function cancelEditProduct(index, nameProduct, priceValue){
@@ -88,10 +92,17 @@ function cancelEditProduct(index, nameProduct, priceValue){
 
     productEditBtnContainer.removeChild(productEditBtn);
 
+    var productAddInventoryBtn = document.createElement('span');
+    productAddInventoryBtn.setAttribute('id', 'productAddInventoryBtn ' + index);
+    productAddInventoryBtn.setAttribute('class', 'productInformation productEditBtn')
+    productAddInventoryBtn.setAttribute('onClick', '')
+    productAddInventoryBtn.innerHTML = "Adicionar Estoque"
+
     productEditBtn.setAttribute('onclick', 'editProduct("' + index + '","' + nameProduct + '","' + priceValue + '")');
 
     productEditBtn.innerHTML = "Editar";
 
+    productEditBtnContainer.appendChild(productAddInventoryBtn)
     productEditBtnContainer.appendChild(productEditBtn)
 
     var priceContainer = document.getElementById("productPriceContaier " + index);
@@ -109,5 +120,6 @@ function cancelEditProduct(index, nameProduct, priceValue){
     var priceContainerDiv = document.getElementById("productPriceContaierDiv " + index);
     var saveBtn = document.getElementById('submit ' + index);
 
-    priceContainerDiv.removeChild(saveBtn)
+    // priceContainerDiv.removeChild(saveBtn)
+    productEditBtnContainer.removeChild(saveBtn)
 }
