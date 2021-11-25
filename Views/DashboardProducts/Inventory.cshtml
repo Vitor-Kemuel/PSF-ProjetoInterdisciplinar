@@ -12,40 +12,43 @@
 <div id="table">
     @foreach (var product in Model)
     {
-        <div class="productCard">
-        @{string typeUnit = product.TypeProduct.TypeUnit == 1 ? "" : "ml";}
-        @{string typeProduct = product.TypeProduct.TypeProduct == 1 ? "Adicional" : "Primario";}
-            @if (product.TypeProduct.TypeProduct == 0)
-            {
-                <img class="productImage" src="/uploads/@product.Image">
-            }
-            <div class="productInfo">
-                <div class="invetoriContainer">
-                    <div>
-                    <div class="productNameContainer">
-                        <h2 class="productName">@product.Name</h2>
-                        <hr class="productLine">
-                    </div>
-                    <div class="inventoryInformation">
-                        <div class="cardLine">
-                            <h3 class="estoqueTitle">Estoque:</h3>
+        <form asp-controller="DashboardProducts" asp-action="NewProduct"  method="POST">
+            <div class="productCard">
+            @{string typeUnit = product.TypeProduct.TypeUnit == 1 ? "" : "ml";}
+            @{string typeProduct = product.TypeProduct.TypeProduct == 1 ? "Adicional" : "Primario";}
+                @if (product.TypeProduct.TypeProduct == 0)
+                {
+                    <img class="productImage" src="/uploads/@product.Image">
+                }
+                <div class="productInfo">
+                    <div class="invetoriContainer">
+                        <div>
+                            <div id="productNameContainer @product.IdProducts" class="productNameContainer">
+                                <h2 id="productName @product.IdProducts" class="productName">@product.Name</h2>
+                                <hr id="productLine @product.IdProducts" class="productLine">
+                            </div>
+                            <div class="inventoryInformation">
+                                <div class="cardLine">
+                                    <h3 class="estoqueTitle">Estoque:</h3>
+                                </div>
+                                <div class="cardLine">
+                                    <p id="typeProduct @product.IdProducts" class="productInformation typeProduct">Tipo: @typeProduct</p>
+                                    <p id="productInventory @product.IdProducts" class="productInformation productInventory">Quantidade: @product.Inventory @typeUnit</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="cardLine">
-                            <p class="productInformation typeProduct">Tipo: @typeProduct</p>
-                            <p class="productInformation productInventory">Quantidade: @product.Inventory @typeUnit</p>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="priceContainer">
-                        <div class="cardLine priceLine">
-                            <p class="productInformation productEditBtn">Editar</p>
-                        </div>
-                        <div class="cardLine priceLine">
-                            <p class="productInformation productPrice">Preço: R$@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</p>
+                        <div class="priceContainer">
+                            <div id="productEditBtnContainer @product.IdProducts" class="cardLine priceLine">
+                                <span class="productInformation productEditBtn">Adicionar Estoque</span>
+                                <span id="productEditBtn @product.IdProducts" onclick="editProduct(@product.IdProducts,'@product.Name', '@product.TypeProduct.Price')" class="productInformation productEditBtn">Editar</span>
+                            </div>
+                            <div id="productPriceContaierDiv @product.IdProducts" class="cardLine priceLine">
+                                <p id="productPriceContaier @product.IdProducts" class="productInformation productPrice">Preço: R$<i id="priceValue @product.IdProducts">@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</i></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     }
 </div>
