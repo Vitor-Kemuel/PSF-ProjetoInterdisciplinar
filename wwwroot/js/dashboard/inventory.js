@@ -18,6 +18,7 @@ function editProduct(index, nameProduct, priceValue){
     nameContainer.removeChild(hr);
 
     var inputName = document.createElement('input');
+    inputName.setAttribute('id', "productName " + index);
     inputName.setAttribute('class', 'formInput');
     inputName.setAttribute('type', 'text');
     inputName.setAttribute('placeholder', 'Nome');
@@ -27,24 +28,37 @@ function editProduct(index, nameProduct, priceValue){
     nameContainer.appendChild(inputName);
     nameContainer.appendChild(hr);
 
+    var productEditBtnContainer = document.getElementById("productEditBtnContainer " + index);
+    var productEditBtn = document.getElementById("productEditBtn " + index);
+
+    productEditBtnContainer.removeChild(productEditBtn);
+
+    productEditBtn.setAttribute('onclick', 'cancelEditProduct("' + index + '","' + nameProduct + '","' + priceValue + '")');
+
+    productEditBtn.innerHTML = "Cancelar";
+
+    productEditBtnContainer.appendChild(productEditBtn)
+
     var priceContainer = document.getElementById("productPriceContaier " + index);
     var price = document.getElementById("priceValue " + index);
 
     priceContainer.removeChild(price);
 
-    var inputprice = document.createElement('input');
-    inputprice.setAttribute('class', 'formInput');
-    inputprice.setAttribute('data-mask', '##0,00');
-    inputprice.setAttribute('data-mask-reverse', 'true');
-    inputprice.setAttribute('data-mask-selectonfocus', 'true');
-    inputprice.setAttribute('type', 'text');
-    inputprice.setAttribute('placeholder', 'Preço');
-    inputprice.setAttribute('value', priceValue);
-    inputprice.setAttribute('asp-for', "TypeProduct.Price");
+    var inputPrice = document.createElement('input');
+    inputPrice.setAttribute('id', 'priceValue ' + index);
+    inputPrice.setAttribute('class', 'formInput');
+    inputPrice.setAttribute('data-mask', '##0,00');
+    inputPrice.setAttribute('data-mask-reverse', 'true');
+    inputPrice.setAttribute('data-mask-selectonfocus', 'true');
+    inputPrice.setAttribute('type', 'text');
+    inputPrice.setAttribute('placeholder', 'Preço');
+    inputPrice.setAttribute('value', priceValue);
+    inputPrice.setAttribute('asp-for', "TypeProduct.Price");
 
-    priceContainer.appendChild(inputprice);
+    priceContainer.appendChild(inputPrice);
 
     var saveBtn = document.createElement('input');
+    saveBtn.setAttribute('id', 'submit ' + index);
     saveBtn.setAttribute('type', 'submit')
     saveBtn.setAttribute('value', 'Salvar')
 
@@ -52,3 +66,48 @@ function editProduct(index, nameProduct, priceValue){
     priceContainerDiv.appendChild(saveBtn);
 }
 
+function cancelEditProduct(index, nameProduct, priceValue){
+    var nameContainer = document.getElementById("productNameContainer " + index);
+    var inputName = document.getElementById("productName " + index);
+    var hr = document.getElementById("productLine " + index);
+
+    nameContainer.removeChild(inputName);
+    nameContainer.removeChild(hr);
+
+    var name = document.createElement('h2');
+    name.setAttribute('id', 'productName ' + index);
+    name.setAttribute('class', 'productName');
+
+    name.innerHTML = nameProduct;
+
+    nameContainer.appendChild(name);
+    nameContainer.appendChild(hr);
+
+    var productEditBtnContainer = document.getElementById("productEditBtnContainer " + index);
+    var productEditBtn = document.getElementById("productEditBtn " + index);
+
+    productEditBtnContainer.removeChild(productEditBtn);
+
+    productEditBtn.setAttribute('onclick', 'editProduct("' + index + '","' + nameProduct + '","' + priceValue + '")');
+
+    productEditBtn.innerHTML = "Editar";
+
+    productEditBtnContainer.appendChild(productEditBtn)
+
+    var priceContainer = document.getElementById("productPriceContaier " + index);
+    var inputPrice = document.getElementById("priceValue " + index);
+
+    priceContainer.removeChild(inputPrice);
+
+    var price = document.createElement('i');
+    price.setAttribute('id', 'priceValue ' + index);
+
+    price.innerHTML = parseFloat(priceValue).toFixed(2);
+
+    priceContainer.appendChild(price);
+
+    var priceContainerDiv = document.getElementById("productPriceContaierDiv " + index);
+    var saveBtn = document.getElementById('submit ' + index);
+
+    priceContainerDiv.removeChild(saveBtn)
+}
