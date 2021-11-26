@@ -30,14 +30,17 @@ function editProduct(index, nameProduct, priceValue){
 
     var productEditBtnContainer = document.getElementById("productEditBtnContainer " + index);
     var productEditBtn = document.getElementById("productEditBtn " + index);
+    var productAddInventoryBtn = document.getElementById("productAddInventoryBtn " + index);
 
     productEditBtnContainer.removeChild(productEditBtn);
+    productEditBtnContainer.removeChild(productAddInventoryBtn);
 
     productEditBtn.setAttribute('onclick', 'cancelEditProduct("' + index + '","' + nameProduct + '","' + priceValue + '")');
 
     productEditBtn.innerHTML = "Cancelar";
 
     productEditBtnContainer.appendChild(productEditBtn)
+
 
     var priceContainer = document.getElementById("productPriceContaier " + index);
     var price = document.getElementById("priceValue " + index);
@@ -61,9 +64,9 @@ function editProduct(index, nameProduct, priceValue){
     saveBtn.setAttribute('id', 'submit ' + index);
     saveBtn.setAttribute('type', 'submit')
     saveBtn.setAttribute('value', 'Salvar')
+    saveBtn.setAttribute('class', 'productInformation productEditBtn');
 
-    var priceContainerDiv = document.getElementById("productPriceContaierDiv " + index);
-    priceContainerDiv.appendChild(saveBtn);
+    productEditBtnContainer.appendChild(saveBtn);
 }
 
 function cancelEditProduct(index, nameProduct, priceValue){
@@ -88,10 +91,17 @@ function cancelEditProduct(index, nameProduct, priceValue){
 
     productEditBtnContainer.removeChild(productEditBtn);
 
+    var productAddInventoryBtn = document.createElement('span');
+    productAddInventoryBtn.setAttribute('id', 'productAddInventoryBtn ' + index);
+    productAddInventoryBtn.setAttribute('class', 'productInformation productEditBtn')
+    productAddInventoryBtn.setAttribute('onClick', 'addInventory("' + index + '","' + nameProduct + '","' + priceValue + '")');
+    productAddInventoryBtn.innerHTML = "Adicionar Estoque";
+
     productEditBtn.setAttribute('onclick', 'editProduct("' + index + '","' + nameProduct + '","' + priceValue + '")');
 
     productEditBtn.innerHTML = "Editar";
 
+    productEditBtnContainer.appendChild(productAddInventoryBtn)
     productEditBtnContainer.appendChild(productEditBtn)
 
     var priceContainer = document.getElementById("productPriceContaier " + index);
@@ -106,8 +116,67 @@ function cancelEditProduct(index, nameProduct, priceValue){
 
     priceContainer.appendChild(price);
 
-    var priceContainerDiv = document.getElementById("productPriceContaierDiv " + index);
     var saveBtn = document.getElementById('submit ' + index);
 
-    priceContainerDiv.removeChild(saveBtn)
+    productEditBtnContainer.removeChild(saveBtn)
+}
+
+function addInventory(index, nameProduct, priceValue){
+    var productEditBtnContainer = document.getElementById("productEditBtnContainer " + index);
+    var productEditBtn = document.getElementById("productEditBtn " + index);
+    var productAddInventoryBtn = document.getElementById("productAddInventoryBtn " + index);
+
+    var inputAmount = document.createElement('input');
+    inputAmount.setAttribute('id', 'amount ' + index);
+    inputAmount.setAttribute('class', 'formInput');
+    inputAmount.setAttribute('data-mask', '###.##0,00');
+    inputAmount.setAttribute('data-mask-reverse', 'true');
+    inputAmount.setAttribute('data-mask-selectonfocus', 'true');
+    inputAmount.setAttribute('type', 'text');
+    inputAmount.setAttribute('placeholder', 'Quantidade');
+    inputAmount.setAttribute('name', 'Amount')
+
+    productEditBtnContainer.appendChild(inputAmount)
+
+    productEditBtnContainer.removeChild(productEditBtn);
+    productEditBtnContainer.removeChild(productAddInventoryBtn);
+
+    productAddInventoryBtn.setAttribute('onclick', 'cancelAddInventory("' + index +'","' + nameProduct + '","' + priceValue +  '")');
+
+    productAddInventoryBtn.innerHTML = "Cancelar";
+
+    productEditBtnContainer.appendChild(productAddInventoryBtn)
+
+    var saveBtn = document.createElement('input');
+    saveBtn.setAttribute('id', 'submit ' + index);
+    saveBtn.setAttribute('type', 'submit');
+    saveBtn.setAttribute('value', 'Salvar');
+    saveBtn.setAttribute('class', 'productInformation productEditBtn');
+
+    productEditBtnContainer.appendChild(saveBtn)
+}
+
+function cancelAddInventory(index, nameProduct, priceValue){
+    var productEditBtnContainer = document.getElementById("productEditBtnContainer " + index);
+    var saveBtn = document.getElementById('submit ' + index);
+
+    productEditBtnContainer.removeChild(saveBtn);
+
+    var inputAmount = document.getElementById('amount ' + index);
+
+    productEditBtnContainer.removeChild(inputAmount);
+
+    var cancelBtn = document.getElementById('productAddInventoryBtn ' + index);
+    cancelBtn.setAttribute('onclick', 'addInventory("' + index + '","' + nameProduct + '","' + priceValue + '")');
+
+    cancelBtn.innerHTML = "Adicionar Estoque";
+
+    var productEditBtn = document.createElement('span');
+    productEditBtn.setAttribute('id', 'productEditBtn ' + index);
+    productEditBtn.setAttribute('class', 'productInformation productEditBtn')
+    productEditBtn.setAttribute('onclick', 'editProduct("' + index +'","' + nameProduct + '","' + priceValue +  '")');
+
+    productEditBtn.innerHTML = "Editar";
+
+    productEditBtnContainer.appendChild(productEditBtn)
 }

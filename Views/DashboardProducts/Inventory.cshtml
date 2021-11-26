@@ -38,12 +38,14 @@
                             </div>
                         </div>
                         <div class="priceContainer">
-                            <div id="productEditBtnContainer @product.IdProducts" class="cardLine priceLine">
-                                <span class="productInformation productEditBtn">Adicionar Estoque</span>
-                                <span id="productEditBtn @product.IdProducts" onclick="editProduct(@product.IdProducts,'@product.Name', '@product.TypeProduct.Price')" class="productInformation productEditBtn">Editar</span>
-                            </div>
                             <div id="productPriceContaierDiv @product.IdProducts" class="cardLine priceLine">
-                                <p id="productPriceContaier @product.IdProducts" class="productInformation productPrice">Preço: R$<i id="priceValue @product.IdProducts">@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</i></p>
+                                <p id="productPriceContaier @product.IdProducts" class="productInformation productPrice">
+                                    Preço: R$<i id="priceValue @product.IdProducts">@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</i>
+                                </p>
+                            </div>
+                            <div id="productEditBtnContainer @product.IdProducts" class="cardLine priceLine">
+                                <span id="productAddInventoryBtn @product.IdProducts" class="productInformation productEditBtn" onclick="addInventory(@product.IdProducts,'@product.Name', '@product.TypeProduct.Price')">Adicionar Estoque</span>
+                                <span id="productEditBtn @product.IdProducts" class="productInformation productEditBtn" onclick="editProduct(@product.IdProducts,'@product.Name', '@product.TypeProduct.Price')">Editar</span>
                             </div>
                         </div>
                     </div>
