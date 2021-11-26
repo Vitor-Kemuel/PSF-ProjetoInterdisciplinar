@@ -12,27 +12,38 @@
 <div id="table">
     @foreach (var product in Model)
     {
-        @if (product.TypeProduct.TypeProduct == 0)
-        {
-            <div class="productCard">
-                <img class="productImage" src="/uploads/@product.Image">
-                <div class="productInfo">
-                    <div class="invetoriContainer">
-                        <div>
-                            <div class="productNameContainer">
-                                <h2 class="productName">@product.Name</h2>
-                                <hr class="productLine">
+        <form>
+            @if (product.TypeProduct.TypeProduct == 0)
+            {
+                <div class="productCard">
+                    <img class="productImage" src="/uploads/@product.Image">
+                    <div class="productInfo">
+                        <div class="invetoriContainer">
+                            <div>
+                                <div class="productNameContainer">
+                                    <h2 class="productName">@product.Name</h2>
+                                    <hr class="productLine">
+                                </div>
+                                @foreach (var adicional in Model)
+                                {
+                                    @if (adicional.TypeProduct.TypeProduct == 1)
+                                    {
+                                        <input id="@adicional.Name" type="checkbox">
+                                        <label for="@adicional.Name">@adicional.Name</label>
+                                    }
+                                }
                             </div>
-                        </div>
-                        <div class="priceContainer">
-                            <div class="cardLine priceLine">
-                                <p class="productInformation productPrice">Preço: R$@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</p>
-                                <p class="productInformation productAddBtn">Adicionar ao Carrinho</p>
+                            <div class="priceContainer">
+                                <div class="cardLine priceLine">
+                                    <p class="productInformation productPrice">Preço: R$@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</p>
+                                    <span class="productInformation productAddBtn">Selecionar</span>
+                                    <input type="submit" value="Salvar">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </form>
     }
 </div>
