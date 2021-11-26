@@ -34,6 +34,17 @@ namespace ProjectInter.Controllers
             List<Products> products = repository.GetAllProducts();
             return View(products);
         }
+        [HttpPost]
+        public ActionResult Inventory(Products products)
+        {
+            /*
+                se(products.Name != empyt && preço != null)
+                   fazer lógica para alterar a quantidade e o preço
+                senão
+                   faz a compra
+            */
+            return View();
+        }
         [HttpGet]
         public ActionResult NewProduct()
         {
