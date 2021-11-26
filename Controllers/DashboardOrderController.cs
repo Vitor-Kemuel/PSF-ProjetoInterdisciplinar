@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using ProjectInter.Models;
+using System;
 
 
 namespace ProjectInter.Controllers
@@ -13,54 +14,54 @@ namespace ProjectInter.Controllers
 
             Order order01 = new Order();
             order01.IdOrder = 1;
-            order01.DateToSell = "15/10";
+            order01.DateToSell = new DateTime(2021, 11, 16, 18, 25, 00);
             order01.Situation = 3;
             order01.CodeOrder = "001282";
             order01.Observations = "Sem cebola";
             // order01.QuantityItens = 2; quantidade deve ser por itens
-            order01.OrderRead = "15:15";
-            order01.OrderAccepted = "15:15";
-            order01.OrderDelivery = "15:20";
+            order01.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order01.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order01.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
 
             Order order02 = new Order();
             order02.IdOrder = 2;
-            order02.DateToSell = "15/10";
+            order02.DateToSell = new System.DateTime(2021, 11, 28);
             order02.Situation = 3;
             order02.CodeOrder = "001282";
             order02.Observations = "Sem cebola";
-            order02.OrderRead = "15:15";
-            order02.OrderAccepted = "15:15";
-            order02.OrderDelivery = "15:20";
+            order02.OrderRead = new System.DateTime(2021, 11, 28, 15, 20, 0);
+            order02.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order02.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
 
             Order order03 = new Order();
             order03.IdOrder = 3;
-            order03.DateToSell = "15/10";
+            order03.DateToSell = new System.DateTime(2021, 11, 16);
             order03.Situation = 3;
             order03.CodeOrder = "001282";
             order03.Observations = "Sem cebola";
-            order03.OrderRead = "15:15";
-            order03.OrderAccepted = "15:15";
-            order03.OrderDelivery = "15:20";
+            order03.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order03.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order03.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
 
             Order order04 = new Order();
             order04.IdOrder = 4;
-            order04.DateToSell = "15/10";
+            order04.DateToSell = new System.DateTime(2021, 11, 16);
             order04.Situation = 3;
             order04.CodeOrder = "001282";
             order04.Observations = "Sem cebola";
-            order04.OrderRead = "15:15";
-            order04.OrderAccepted = "15:15";
-            order04.OrderDelivery = "15:20";
+            order04.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order04.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order04.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
 
             Order order05 = new Order();
             order05.IdOrder = 5;
-            order05.DateToSell = "15/10";
+            order05.DateToSell = new System.DateTime(2021, 11, 16);
             order05.Situation = 3;
             order05.CodeOrder = "001282";
             order05.Observations = "Sem cebola";
-            order05.OrderRead = "15:15";
-            order05.OrderAccepted = "15:15";
-            order05.OrderDelivery = "15:20";
+            order05.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order05.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
+            order05.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
 
             orders.Add(order01);
             orders.Add(order02);
