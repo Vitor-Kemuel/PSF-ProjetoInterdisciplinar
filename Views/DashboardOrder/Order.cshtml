@@ -17,7 +17,7 @@
                 <div class="orderInformationLine">
                     <div class="orderBasicInformations">
                         <p class="idOrder">#@order.IdOrder -&nbsp</p>
-                        <p class="dataOrder">@order.DateToSell:&nbsp</p>
+                        <p class="dataOrder">@order.DateToSell.ToString("dd/MM/yyyy") &nbsp</p>
                     </div>
                     <div class="consumerName">
                         <p class="clientName">Joana da Silva Ferreira Dutra de Solza Filho</p>
@@ -33,9 +33,9 @@
             </div>
             <div class="orderInformationLine">
                 <div class="timeOrderInformation">
-                    <p class="orderDispatched timeInformation"><i class="far fa-paper-plane"></i> @order.OrderRead</p>
-                    <p class="orderRead timeInformation"><i class="fas fa-book-open"></i> @order.OrderAccepted</p>
-                    <p class="completedOrder timeInformation"><i class="fas fa-truck"></i> @order.OrderDelivery</p>
+                    <p class="orderDispatched timeInformation"><i class="far fa-paper-plane"></i> @order.OrderRead.ToString("HH:mm")</p>
+                    <p class="orderRead timeInformation"><i class="fas fa-book-open"></i> @order.OrderAccepted.ToString("HH:mm")</p>
+                    <p class="completedOrder timeInformation"><i class="fas fa-truck"></i> @order.OrderDelivery.ToString("HH:mm")</p>
                 </div>
             </div>
         </div>

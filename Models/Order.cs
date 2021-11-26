@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ProjectInter.Models
@@ -8,10 +9,10 @@ namespace ProjectInter.Models
         public string CodeOrder { get; set; }
         public string Observations { get; set; }
         public int Situation { get; set; }
-        public string DateToSell {get; set;}
-        public string OrderRead { get; set; }
-        public string OrderAccepted { get; set; }
-        public string OrderDelivery { get; set; }
+        public DateTime DateToSell {get; set;}
+        public DateTime OrderRead { get; set; }
+        public DateTime OrderAccepted { get; set; }
+        public DateTime OrderDelivery { get; set; }
 
         #region foreign key
              public List<ProductsOrders> Itens { get; set; }
