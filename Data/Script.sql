@@ -82,14 +82,14 @@ go
 
 create table COMPRAS(
 id_compras     int           not null  primary key  identity,
-data_compra    datetime      not null
+data_compra    smallDateTime      not null
 )
 go
 
 create table PRODUTOS_COMPRAS(
 id_produtos int not null references PRODUTOS,
 id_compras  int not null references COMPRAS,
-quantidade     decimal(10,2) not null,
+quantidade  decimal(10,2) not null,
 primary key (id_produtos, id_compras)
 )
 go
@@ -249,12 +249,14 @@ create procedure cadCompra
 	@id_produtos int, -- tabela produtos_compras
 	@data_compra datetime,
 	@quantidade  int,
-	@valor_total decimal(10,2)
+	@valor_total decimal(10,2),
+	@estoque float
 )
 as
 begin
-	insert COMPRAS values(@data_compra, @quantidade, @valor_total)
-	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY)
+	insert 	COMPRAS values(@data_compra)
+	insert  PRODUTOS_COMPRAS values(@id_produtos, @quantidade, @valor_total, @@IDENTITY)
+	UPDATE 	PRODUCT SET estoque = @estoque
 end
 go
 
@@ -429,3 +431,38 @@ begin
 	update LOGRADOUROS set endereco = @endereco, complemento = @complemento, numero_endereco = @numero_endereco, bairro = @bairro, cep = @cep where id_clientes = @id_pessoas
 end
 go
+
+
+---------------------------------------------------------------------------------------
+----------------------------PROCEDURE E VIEW   ----------------------------------------
+---------------------------------------------------------------------------------------
+
+
+create procedure cadCompra
+(
+	@id_produtos int, -- tabela produtos_compras
+	@data_compra datetime,
+	@quantidade  decimal(10,2),
+	@estoque decimal(10,2)
+)
+as
+begin
+	insert 	COMPRAS values(@data_compra)
+	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY, @quantidade )
+	UPDATE 	PRODUTOS SET estoque = @estoque where id_produtos = @id_produtos
+end
+go
+
+select * from PRODUTOS
+go
+
+exec cadCompra   3, '20211116 18:24', 15.00, 15.00
+go
+
+select * from PRODUTOS
+GO
+
+select c.id_compras, c.data_compra, pc.quantidade
+from COMPRAS c
+INNER JOIN PRODUTOS_COMPRAS pc
+ON C.id_compras = PC.id_compras
