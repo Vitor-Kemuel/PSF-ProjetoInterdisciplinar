@@ -440,7 +440,7 @@ go
 
 create procedure cadCompra
 (
-	@id_produtos int, -- tabela produtos_compras
+	@id_produto int, -- tabela produtos_compras
 	@data_compra datetime,
 	@quantidade  decimal(10,2),
 	@estoque decimal(10,2)
@@ -448,21 +448,28 @@ create procedure cadCompra
 as
 begin
 	insert 	COMPRAS values(@data_compra)
-	insert  PRODUTOS_COMPRAS values(@id_produtos, @@IDENTITY, @quantidade )
-	UPDATE 	PRODUTOS SET estoque = @estoque where id_produtos = @id_produtos
+	insert  PRODUTOS_COMPRAS values(@id_produto, @@IDENTITY, @quantidade )
+	UPDATE 	PRODUTOS SET estoque = @estoque where id_produtos = @id_produto
 end
-go
-
-select * from PRODUTOS
 go
 
 exec cadCompra   3, '20211116 18:24', 15.00, 15.00
 go
 
-select * from PRODUTOS
+CREATE VIEW V_LISTACOMPRAS
+AS
+	select c.id_compras, P.nome, P.estoque, TP.preco, c.data_compra, pc.quantidade, (TP.preco * PC.quantidade) AS valor_total
+	from COMPRAS c
+	INNER JOIN PRODUTOS_COMPRAS pc
+	ON C.id_compras = PC.id_compras
+	INNER JOIN PRODUTOS P
+	on P.id_produtos = PC.id_produtos
+	INNER JOIN TIPO_PRODUTOS TP
+	ON TP.id_tipo_produto = P.id_produtos
 GO
 
-select c.id_compras, c.data_compra, pc.quantidade
-from COMPRAS c
-INNER JOIN PRODUTOS_COMPRAS pc
-ON C.id_compras = PC.id_compras
+select * from V_LISTACOMPRAS
+
+
+
+
