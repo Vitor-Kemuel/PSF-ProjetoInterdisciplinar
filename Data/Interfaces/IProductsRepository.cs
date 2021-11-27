@@ -10,7 +10,7 @@ namespace ProjectInter.Data.Interfaces
 
         List<Products> GetAllProducts();
 
-        void UpdateProduct(Products products, int IdProduct);
+        void UpdateProduct(int IdProduct);
 
         void Delete(int IdProduct);
 

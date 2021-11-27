@@ -130,10 +130,11 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void UpdateProduct(Products products, int IdProduct)
+        public void UpdateProduct(int IdProduct)
         {
             try
             {
+                Products products = new Products();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
