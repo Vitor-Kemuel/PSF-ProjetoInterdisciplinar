@@ -11,15 +11,17 @@ namespace ProjectInter.Controllers
 {
     public class DashboardProductsController : Controller
     {
-        private IProductsRepository repository;
+        private IProductsRepository repositoryProducts;
+        private IPurchaseRepository repositoryPurchase;
 
-        public DashboardProductsController(IProductsRepository repository)
+        public DashboardProductsController(IProductsRepository repositoryProducts, IPurchaseRepository repositoryPurchase)
         {
-            this.repository = repository;
+            this.repositoryProducts = repositoryProducts;
+            this.repositoryPurchase = repositoryPurchase;
         }
 
         private List<Products> GetProductsFromView(){
-            List<Products> products = repository.GetAllProducts();
+            List<Products> products = repositoryProducts.GetAllProducts();
             return products;
         }
 
@@ -31,20 +33,20 @@ namespace ProjectInter.Controllers
         [HttpGet]
         public ActionResult Inventory()
         {
-            List<Products> products = repository.GetAllProducts();
+            List<Products> products = repositoryProducts.GetAllProducts();
             return View(products);
         }
         [HttpPost]
-        public ActionResult Inventory(Products products)
+        public ActionResult Inventory(int idProduct, string name, double amount, string price, double inventory)
         {
-            /*
-                se(products.Name != empyt && preço != null)
-                   fazer lógica para alterar a quantidade e o preço
-                senão
-                   faz a compra
-            */
-            return View();
-        }
+            if (name != null && price != null)
+                Console.WriteLine(name, price.ToString(), idProduct);
+                //repositoryProducts.UpdateProduct(idProduct);
+            else
+                repositoryPurchase.Create(amount, idProduct, inventory);
+                
+            return RedirectToAction("Inventory");    
+        }    
         [HttpGet]
         public ActionResult NewProduct()
         {
@@ -67,7 +69,7 @@ namespace ProjectInter.Controllers
                 products.Image = fileName;
             }
 
-            repository.Create(products);
+            repositoryProducts.Create(products);
             return RedirectToAction("Inventory");
         }
     }
