@@ -22,7 +22,7 @@ function editProduct(index, nameProduct, priceValue){
     inputName.setAttribute('class', 'formInput');
     inputName.setAttribute('type', 'text');
     inputName.setAttribute('placeholder', 'Nome');
-    inputName.setAttribute('name', 'Name');
+    inputName.setAttribute('name', 'name');
     inputName.setAttribute('value', nameProduct);
 
     nameContainer.appendChild(inputName);
@@ -55,8 +55,8 @@ function editProduct(index, nameProduct, priceValue){
     inputPrice.setAttribute('data-mask-selectonfocus', 'true');
     inputPrice.setAttribute('type', 'text');
     inputPrice.setAttribute('placeholder', 'Preço');
+    inputPrice.setAttribute('name', 'price');
     inputPrice.setAttribute('value', priceValue);
-    inputPrice.setAttribute('asp-for', "TypeProduct.Price");
 
     priceContainer.appendChild(inputPrice);
 
@@ -134,7 +134,7 @@ function addInventory(index, nameProduct, priceValue){
     inputAmount.setAttribute('data-mask-selectonfocus', 'true');
     inputAmount.setAttribute('type', 'text');
     inputAmount.setAttribute('placeholder', 'Quantidade');
-    inputAmount.setAttribute('name', 'Amount')
+    inputAmount.setAttribute('name', 'amount')
 
     productEditBtnContainer.appendChild(inputAmount)
 
