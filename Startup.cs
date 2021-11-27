@@ -18,6 +18,7 @@ namespace ProjectInter
             services.AddTransient<IAddressRepository, AddressRepository>();
             services.AddTransient<IEmployeesRepository, EmployessRepository>();
             services.AddTransient<IProductsRepository, ProductsRepository>();
+            services.AddTransient<IPurchaseRepository, PurchaseRepository>();
             services.AddControllersWithViews();
         }
 
