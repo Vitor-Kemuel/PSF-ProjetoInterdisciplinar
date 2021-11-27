@@ -12,7 +12,7 @@
 <div id="table">
     @foreach (var product in Model)
     {
-        <form asp-controller="DashboardProducts" asp-action="NewProduct"  method="POST">
+        <form asp-controller="DashboardProducts" asp-action="Inventory"  method="POST">
             <div class="productCard">
             @{string typeUnit = product.TypeProduct.TypeUnit == 1 ? "" : "ml";}
             @{string typeProduct = product.TypeProduct.TypeProduct == 1 ? "Adicional" : "Primario";}
@@ -23,7 +23,8 @@
                 <div class="productInfo">
                     <div class="invetoriContainer">
                         <div>
-                            <input type="text" name="id" value="@product.IdProducts" style="display: none;" />
+                            <input type="text" name="idProduct" value="@product.IdProducts" style="display: none;" />
+                            <input type="text" name="inventory" value="@product.Inventory" style="display: none;" />
                             <div id="productNameContainer @product.IdProducts" class="productNameContainer">
                                 <h2 id="productName @product.IdProducts" class="productName">@product.Name</h2>
                                 <hr id="productLine @product.IdProducts" class="productLine">
