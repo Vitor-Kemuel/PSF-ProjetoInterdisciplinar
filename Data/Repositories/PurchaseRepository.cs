@@ -9,19 +9,25 @@ namespace ProjectInter.Data.Repositories
 {
     public class PurchaseRepository : BDContext, IPurchaseRepository
     {
-        public void Create(Purchase purchase)
+        public void Create(double amount, int idProduct, double currentInventory)
         {
             try
             {
+                var newAmount = currentInventory + amount;
+                
+                Purchase purchase = new Purchase();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
                 cmd.CommandText = "cadCompra";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@data_compra", purchase.PurchaseDate);
-                // cmd.Parameters.AddWithValue("@quantidade", purchase.Quantify);
-                // cmd.Parameters.AddWithValue("@valor_total", purchase.TotalValue);
+
+                cmd.Parameters.AddWithValue("@id_produto", idProduct);
+                cmd.Parameters.AddWithValue("@data_compra", getDateTime(DateTime.Now));
+                cmd.Parameters.AddWithValue("@quantidade", newAmount);
+                cmd.Parameters.AddWithValue("@estoque", newAmount);
+                
 
                 cmd.ExecuteNonQuery();
             }
@@ -64,6 +70,11 @@ namespace ProjectInter.Data.Repositories
             } finally {
                 Dispose();
             }
+        }
+
+        public string getDateTime(DateTime date)
+        {
+            return $"{date.Day}/{date.Month}/{date.Year} {date.Hour}:{date.Minute}:{date.Second}";
         }
 
         public Purchase GetSinglePurchase(int IdPurchase)
