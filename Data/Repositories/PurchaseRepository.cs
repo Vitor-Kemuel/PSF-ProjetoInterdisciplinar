@@ -48,16 +48,25 @@ namespace ProjectInter.Data.Repositories
                SqlCommand cmd = new SqlCommand();
                cmd.Connection = connection;
 
-               cmd.CommandText = "SELECT id_produtos, data_compra, quantidade, valor_total FROM v_listaCadCompra";
+               cmd.CommandText = "V_LISTACOMPRAS";
 
                SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read()){
                     Purchase purchase = new Purchase(){
-                        IdPurchase = (int) reader["id_produtos"],
+                        IdPurchase = (int) reader["id_compras"],
                         PurchaseDate = (DateTime)reader["data_compra"],
-                        // Quantify = (int)reader["quantidade"],
-                        // TotalValue = (double) reader["valor_total"],
+                        itens = new ProductsPurchase(){
+                            Products = new Products(){
+                                Name = (string) reader["nome"],
+                                Inventory = (double) reader["estoque"],
+                                TypeProduct = new TypeProducts(){
+                                    Price = (double) reader["preco"]
+                                },
+                            },
+                            Quantify = (double) reader["quantidade"],
+                            ValueTotal = (double) reader["valor_total"],
+                        },
                     };
                     purchases.Add(purchase);
                 }

@@ -2,8 +2,8 @@ namespace ProjectInter.Models
 {
     public class ProductsPurchase
     {
-        public int Quantify { get; set; }
-        public float ValueTotal { get; set; }
+        public double Quantify { get; set; }
+        public double ValueTotal { get; set; }
 
         #region Foreign key
             public Purchase Purchase { get; set; }
