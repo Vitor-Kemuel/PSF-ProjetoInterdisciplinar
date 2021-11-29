@@ -24,24 +24,25 @@
                 <p class="telefone">Numero: @customer.Cellphone</p>
                 <p class="CPF">CPF: @customer.Cpf</p>
             </div>
-                @* @foreach (var adress in Model)
-                { *@
-                    <hr class="addressLine">
-                    <div class="informationLine">
-                        <p class="cep">CEP: @customer.Address.ZipCodeAddress</p>
-                    </div>
-                    <div class="informationLine">
-                        <p class="nameAddress">@customer.Address.NameAddress. @customer.Address.NumberAddress</p>
-                        <p class="district">@customer.Address.District</p>
-                    </div>
-                    <div class="informationLine">
-                    </div>
-                @* } *@
+                <hr class="addressLine">
+                <div class="informationLine">
+                    <p class="cep">CEP: @customer.Address.ZipCodeAddress</p>
+                </div>
+                <div class="informationLine">
+                    <p class="nameAddress">@customer.Address.NameAddress. @customer.Address.NumberAddress</p>
+                    <p class="district">@customer.Address.District</p>
+                </div>
+                <div class="informationLine">
+                </div>
             </div>
             @{var index = customer.IdPerson;}
             <div id="btn@index" class="informationLine">
                 <span id="spanShow @index" class="btnSpan" onclick="showAddress(@index)">Mais detalhes</span>
                 <span id="spanHide @index" class="btnSpan spanHide" onclick="hideAddress(@index)">Ocultar</span>
+                <div>
+                    <a href="/DashboardCustomer/DeleteCustomer/@customer.IdPerson" class="btnSpan">Deletar</a>
+                    <a href="/DashboardCustomer/UpdateCustomer/@customer.IdPerson" class="btnSpan">Editar</a>
+                </div>
             </div>
         </div>
     }
