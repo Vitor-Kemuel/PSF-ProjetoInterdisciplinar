@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ProjectInter.Models;
 namespace ProjectInter.Data.Interfaces
 {
@@ -7,6 +8,6 @@ namespace ProjectInter.Data.Interfaces
 
         List<Order> GetAllOrders();
 
-        void IdOrderRepository.GetSingleOrder(int idOrder);
+        Order GetSingleOrder(int idOrder);
     }
 }

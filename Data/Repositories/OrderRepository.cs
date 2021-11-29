@@ -3,6 +3,7 @@ using ProjectInter.Models;
 using System.Data.SqlClient;
 using System.Data;
 using System;
+using System.Collections.Generic;
 
 namespace ProjectInter.Data.Repositories
 {
@@ -56,66 +57,76 @@ namespace ProjectInter.Data.Repositories
 
         public List<Order> GetAllOrders()
         {
-            try
-            {
-                List<Order> order = new List<Order>();
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = connection;
-                cmd.CommandText = "SELECT id_produtos, id_pedidos, quantidade FROM v_itensPed";
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while(reader.Read()){
-                    Order orders = new Order(){
-                        IdProducts = (int) reader["id_produtos"],
-                        IdOrder = (int) reader["id_pedidos"],
-                        Quantify = (int)reader["quantidade"],
-                        }
-                    };
-                    order.Add(orders);
-                }
-                return order;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }finally{
-                Dispose();
-            };
+            throw new NotImplementedException();
         }
 
-        public void GetSingleOrder(int idOrder)
+        public Order GetSingleOrder(int idOrder)
         {
-            try
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = connection;
-
-                cmd.CommandText = "SELECT id_produtos, id_pedidos, quantidade FROM v_itensPed WHERE id_pedidos= @id";
-                cmd.Parameters.AddWithValue("@id", IdOrder);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if(reader.Read()){
-                    Order orders = new Order(){
-                        IdProducts = (int) reader["id_produtos"],
-                        IdOrder = (int) reader["id_pedidos"],
-                        Quantify = (int)reader["quantidade"],
-                        }
-
-                    };
-                    return orders;
-                }
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            } finally {
-                Dispose();
-            }
+            throw new NotImplementedException();
         }
+
+        // public List<Order> GetAllOrders()
+        // {
+        //     try
+        //     {
+        //         List<Order> order = new List<Order>();
+
+        //         SqlCommand cmd = new SqlCommand();
+        //         cmd.Connection = connection;
+        //         cmd.CommandText = "SELECT id_produtos, id_pedidos, quantidade FROM v_itensPed";
+
+        //         SqlDataReader reader = cmd.ExecuteReader();
+
+        //         while(reader.Read()){
+        //             Order orders = new Order(){
+        //                 IdProducts = (int) reader["id_produtos"],
+        //                 IdOrder = (int) reader["id_pedidos"],
+        //                 Quantify = (int)reader["quantidade"],
+        //                 }
+        //             };
+        //             order.Add(orders);
+        //         }
+        //         return order;
+
+        //     catch (Exception ex)
+        //     {
+        //         throw new Exception(ex.Message);
+        //     }finally{
+        //         Dispose();
+        //     };
+        // }
+
+        // public void GetSingleOrder(int idOrder)
+        // {
+        //     try
+        //     {
+        //         SqlCommand cmd = new SqlCommand();
+        //         cmd.Connection = connection;
+
+        //         cmd.CommandText = "SELECT id_produtos, id_pedidos, quantidade FROM v_itensPed WHERE id_pedidos= @id";
+        //         cmd.Parameters.AddWithValue("@id", IdOrder);
+
+        //         SqlDataReader reader = cmd.ExecuteReader();
+
+        //         if(reader.Read()){
+        //             Order orders = new Order(){
+        //                 IdProducts = (int) reader["id_produtos"],
+        //                 IdOrder = (int) reader["id_pedidos"],
+        //                 Quantify = (int)reader["quantidade"],
+        //                 }
+
+        //             };
+        //             return orders;
+        //         }
+
+        //         return null;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         throw new Exception(ex.Message);
+        //     } finally {
+        //         Dispose();
+        //     }
+        // }
     }
 }
