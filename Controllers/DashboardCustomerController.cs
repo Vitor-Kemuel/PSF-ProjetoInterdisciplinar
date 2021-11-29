@@ -32,14 +32,16 @@ namespace ProjectInter.Controllers
             return RedirectToAction("CustomerList");
         }
         [HttpGet]
-        public ActionResult UpdateCustomer()
+        public ActionResult UpdateCustomer(int idCustomer)
         {
-            return View();
+            var customer = repository.GetSingleCustomer(idCustomer);
+            return View(customer);
         }
         [HttpPost]
-        public ActionResult UpdateCustomer(Customers customer)
+        public ActionResult UpdateCustomer( int idCustomer ,Customers customer)
         {
-            return View();
+            repository.Update(idCustomer, customer);
+            return RedirectToAction("CustomerList");
         }
         [HttpGet]
         public ActionResult DeleteCustomer(int idCustomer)

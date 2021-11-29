@@ -150,7 +150,7 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "ProcedurePendente";
+                cmd.CommandText = "altClientes";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id_pessoas", id);
                 cmd.Parameters.AddWithValue("@nome", customers.Name);
@@ -160,7 +160,7 @@ namespace ProjectInter.Data.Repositories
                 cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO );
                 cmd.Parameters.AddWithValue("@cpf", customers.Cpf);
                 cmd.Parameters.AddWithValue("@endereco", customers.Address.NameAddress);
-                cmd.Parameters.AddWithValue("@complemento", customers.Address.ComplementAddress);
+                cmd.Parameters.AddWithValue("@complemento", (object) customers.Address.ComplementAddress?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@numero_endereco", customers.Address.NumberAddress);
                 cmd.Parameters.AddWithValue("@bairro", customers.Address.District);
                 cmd.Parameters.AddWithValue("@cep", customers.Address.ZipCodeAddress);
