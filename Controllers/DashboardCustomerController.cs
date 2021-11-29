@@ -31,5 +31,21 @@ namespace ProjectInter.Controllers
             repository.Create(customer);
             return RedirectToAction("CustomerList");
         }
+        [HttpGet]
+        public ActionResult UpdateCustomer()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpdateCustomer(Customers customer)
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult DeleteCustomer(int idCustomer)
+        {
+            repository.Delete(idCustomer);
+            return RedirectToAction("CustomerList");
+        }
     }
 }
