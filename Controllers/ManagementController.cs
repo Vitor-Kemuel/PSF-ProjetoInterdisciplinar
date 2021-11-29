@@ -39,5 +39,25 @@ namespace ProjectInter.Controllers
             repository.Create(employees);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult UpdateEmployee(int idEmployee)
+        {
+            var employee = repository.GetSingleEmployee(idEmployee);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateEmployee(int idEmployee, Employees employees)
+        {
+            repository.Update(idEmployee, employees);
+            return RedirectToAction("Employee");
+        }
+        [HttpGet]
+        public ActionResult DeleteEmployee(int idEmployee)
+        {
+            repository.Delete(idEmployee);
+            return RedirectToAction("Employee");
+        }
     }
 }

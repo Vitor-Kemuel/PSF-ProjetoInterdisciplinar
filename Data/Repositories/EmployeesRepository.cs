@@ -40,16 +40,18 @@ namespace ProjectInter.Data.Repositories
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "UPDATE PESSOAS SET SITUACAO = 1 WHERE id_pessoa = @id";
-                cmd.Parameters.AddWithValue("@id",id);
+                cmd.CommandText = "delCliente";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                cmd.Parameters.AddWithValue("@id_pessoas",id);
+                cmd.Parameters.AddWithValue("@situacao", Constants.DESATIVADO);
 
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
-
             } finally{
                 Dispose();
             }
@@ -61,7 +63,7 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT id_pessoas, salario, cargo FROM v_listaFuncionario WHERE id_pessoas = @id";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, salario, cargo FROM v_listaFuncionario WHERE id_pessoas = @id";
 
                 cmd.Parameters.AddWithValue("@id", id);
 
@@ -70,12 +72,12 @@ namespace ProjectInter.Data.Repositories
                 if(reader.Read()){
                     Employees employee = new Employees(){
                         IdPerson = (int) reader["id_pessoas"],
-                            Name = (string) reader["nome"],
-                            Cellphone = (string)reader["celular"],
-                            Email = (string) reader["email"],
-                            Password = (string) reader["senha"],
-                            Wage = (decimal)reader["salario"],
-                            Responsibility = (string)reader["cargo"],
+                        Name = (string) reader["nome"],
+                        Cellphone = (string)reader["celular"],
+                        Email = (string) reader["email"],
+                        Password = (string) reader["senha"],
+                        Wage = (decimal)reader["salario"],
+                        Responsibility = (string)reader["cargo"],
                     };
                     return employee;
                 }
@@ -97,20 +99,19 @@ namespace ProjectInter.Data.Repositories
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                // Heitor tem que corrigir, trazer todos os dados de pessoa, e não somente id_pessoas
-                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, salario, cargo FROM v_listaFuncionario";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, salario, cargo FROM v_listaFuncionario where situacao = 1";
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read()){
                     Employees employee = new Employees(){
                         IdPerson = (int) reader["id_pessoas"],
-                            Name = (string) reader["nome"],
-                            Cellphone = (string)reader["celular"],
-                            Email = (string) reader["email"],
-                            Password = (string) reader["senha"],
-                            Wage = (decimal)reader["salario"],
-                            Responsibility = (string)reader["cargo"],
+                        Name = (string) reader["nome"],
+                        Cellphone = (string)reader["celular"],
+                        Email = (string) reader["email"],
+                        Password = (string) reader["senha"],
+                        Wage = (decimal)reader["salario"],
+                        Responsibility = (string)reader["cargo"],
                     };
 
                     employees.Add(employee);
@@ -165,17 +166,20 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void Update(int id, Employees employee)
+        public void Update(int idEmployee, Employees employee)
         {
             try{
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "ProcedurePendente";
+                cmd.CommandText = "altFuncionario";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", id);
+
+
+                cmd.Parameters.AddWithValue("@id_pessoas", idEmployee);
                 cmd.Parameters.AddWithValue("@nome", employee.Name);
                 cmd.Parameters.AddWithValue("@celular", employee.Cellphone);
+                cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO);
                 cmd.Parameters.AddWithValue("@email", employee.Email);
                 cmd.Parameters.AddWithValue("@senha", employee.Password);
                 cmd.Parameters.AddWithValue("@cargo", employee.Responsibility);

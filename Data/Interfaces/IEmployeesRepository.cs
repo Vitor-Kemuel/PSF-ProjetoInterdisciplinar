@@ -11,7 +11,7 @@ namespace ProjectInter.Data.Interfaces
 
         Employees GetSingleEmployee(int id);
 
-        void Update(int id, Employees employee);
+        void Update(int idEmployee, Employees employee);
 
         Employees Login(Employees employee);
 

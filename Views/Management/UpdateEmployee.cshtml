@@ -1,0 +1,33 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProjectInter.Models
+@model Employees
+
+@{
+    ViewBag.Title = "Administração";
+    ViewBag.Styles = "/css/management/newEmployee.css";
+    ViewBag.Script = "";
+    Layout = "/Views/Shared/_layoutManagement.cshtml";
+}
+
+<div id="table">
+    <form id="formCadastro" asp-controller="Management" asp-action="UpdateEmployee" method="POST">
+        <div class="formLine">
+            <input id="idEmployee" value="@Model.IdPerson" style="display: none;">
+            <input id="employeeName" value="@Model.Name" class="formInput" type="text" placeholder="Nome" name="Name">
+            <input id="employeeCPF" value="@Model.Wage" class="formInput" data-mask="##.##0,00" data-mask-reverse="true" type="text" placeholder="Salario" name="Wage">
+            <input id="employeeResponsibility" value="@Model.Responsibility" class="formInput" type="text" placeholder="Cargo" name="Responsibility">
+        </div>
+        <div class="formLine">
+            <input id="employeeEmail" value="@Model.Email" class="formInput" type="text" placeholder="E-mail" name="Email">
+            <input id="employeePhoneNumber" value="@Model.Cellphone" class="form-control cel-sp-mask formInput" type="text" placeholder="Telefone" name="Cellphone">
+        </div>
+        <div class="formLine">
+            <input id="employeePassword" value="@Model.Password" class="formInput" type="text" placeholder="Senha" name="Password">
+            <input id="employeeConfirmPassword" class="formInput" type="text" placeholder="Confirmar Senha">
+        </div>
+        <hr class="divForm">
+        <div id="formOptionsBtn">
+            <button id="btnSubmit" class="btnForm" type="submit">Salvar <i class="far fa-save"></i></button>
+        </div>
+    </form>
+</div>
