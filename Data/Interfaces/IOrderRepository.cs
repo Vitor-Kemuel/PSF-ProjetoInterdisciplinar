@@ -5,8 +5,8 @@ namespace ProjectInter.Data.Interfaces
     {
         void Create(Order order);
 
-        void GetAllOrders();
+        List<Order> GetAllOrders();
 
-        void GetSingleOrder(int idOrder);
+        void IdOrderRepository.GetSingleOrder(int idOrder);
     }
 }
