@@ -130,7 +130,7 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void UpdateProduct(int IdProduct)
+        public void UpdateProduct(int idProduct, string name, double price)
         {
             try
             {
@@ -138,16 +138,13 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "altProduto where id_produtos = @id";
+                cmd.CommandText = "altProduto";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", IdProduct);
+                cmd.Parameters.AddWithValue("@id_produtos", idProduct);
 
-                cmd.Parameters.AddWithValue("@nome", products.Name);
-                cmd.Parameters.AddWithValue("@estoque", products.Inventory);
-                cmd.Parameters.AddWithValue("@situacao", products.Status);
-                cmd.Parameters.AddWithValue("@preco", products.TypeProduct.Price);
-                cmd.Parameters.AddWithValue("@tipoproduto", products.TypeProduct.TypeProduct);
+                cmd.Parameters.AddWithValue("@nome", name);
+                cmd.Parameters.AddWithValue("@preco", price);
 
                 cmd.ExecuteNonQuery();
             }

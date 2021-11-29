@@ -213,17 +213,13 @@ go
 create procedure altProduto
 (
 	@id_produtos     int,
-	@situacao	     bit,          -- 1=Ativo 2=Desativo
 	@nome		     varchar(100),
-	@estoque         decimal(10,2),
-	@id_tipo_produto int,
-	@preco		     decimal(10,2),
-	@tipo_produto    bit           -- define se o produto é do tipo normal ou adicional
+	@preco		     decimal(10,2)
 )
 as
 begin
-	update PRODUTOS set situacao = @situacao, nome = @nome, estoque = @estoque
-	update TIPO_PRODUTOS set preco = @preco, tipo_produto = @tipo_produto
+	update PRODUTOS set nome = @nome WHERE id_produtos = @id_produtos
+	update TIPO_PRODUTOS set preco = @preco where id_tipo_produto = @id_produtos
 end
 
 --------------------------------------------------------------------------------------------

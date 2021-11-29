@@ -40,8 +40,7 @@ namespace ProjectInter.Controllers
         public ActionResult Inventory(int idProduct, string name, double amount, string price, double inventory)
         {
             if (name != null && price != null)
-                Console.WriteLine(name, price.ToString(), idProduct);
-                //repositoryProducts.UpdateProduct(idProduct);
+                repositoryProducts.UpdateProduct(idProduct, name, Convert.ToDouble(price));
             else
                 repositoryPurchase.Create(amount, idProduct, inventory);
                 
