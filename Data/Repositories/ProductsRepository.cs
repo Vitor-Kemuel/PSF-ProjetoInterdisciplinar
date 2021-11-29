@@ -110,15 +110,18 @@ namespace ProjectInter.Data.Repositories
             }
         }
 
-        public void Delete(int IdProduct)
+        public void Delete(int idProduct)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "UPDATE PRODUTOS set situacao = 1 where id_produtos = @id";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@id", IdProduct);
+                cmd.CommandText = "delProduto";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                cmd.Parameters.AddWithValue("@id_produto", idProduct);
+                cmd.Parameters.AddWithValue("@situacao", Constants.DESATIVADO);
 
                 cmd.ExecuteNonQuery();
             }

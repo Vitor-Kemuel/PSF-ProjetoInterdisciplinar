@@ -48,6 +48,7 @@
                             <div id="productEditBtnContainer @product.IdProducts" class="cardLine priceLine">
                                 <span id="productAddInventoryBtn @product.IdProducts" class="productInformation productEditBtn" onclick="addInventory(@product.IdProducts,'@product.Name', '@product.TypeProduct.Price')">Adicionar Estoque</span>
                                 <span id="productEditBtn @product.IdProducts" class="productInformation productEditBtn" onclick="editProduct(@product.IdProducts,'@product.Name', '@product.TypeProduct.Price')">Editar</span>
+                                <a class="productInformation productEditBtn" href="/DashboardProducts/DeleteProduct?idProduct=@product.IdProducts">Deletar</a>
                             </div>
                         </div>
                     </div>

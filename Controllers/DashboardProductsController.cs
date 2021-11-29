@@ -71,5 +71,11 @@ namespace ProjectInter.Controllers
             repositoryProducts.Create(products);
             return RedirectToAction("Inventory");
         }
+        [HttpGet]
+        public ActionResult DeleteProduct(int idProduct)
+        {
+            repositoryProducts.Delete(idProduct);
+            return RedirectToAction("Inventory");
+        }
     }
 }
