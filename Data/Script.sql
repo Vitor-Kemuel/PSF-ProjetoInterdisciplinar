@@ -470,6 +470,27 @@ GO
 
 select * from V_LISTACOMPRAS
 
+---------------------------------------------------------------------------------------
+----------------------------PROCEDURE ALTERA FUNCIONÁRIO   ----------------------------
+---------------------------------------------------------------------------------------
+
+create procedure altFuncionario(
+	@nome			 varchar(50),
+	@celular		 varchar(14),
+	@email		     varchar(50),
+	@senha			 varchar(50),
+	@situacao        bit,         -- 0 = Ativo e 1 = Desativo
+	@id_pessoas      int,
+	@salario         float,
+	@cargo			 varchar(100)	
+)
+as
+begin
+	update PESSOAS     set nome = @nome, celular = @celular, email = @email, senha = @senha, situacao = @situacao where id_pessoas = @id_pessoas
+	update FUNCIONARIOS   set salario =  @salario, cargo = @cargo where id_pessoas = @id_pessoas
+end
+go
+
 
 
 
