@@ -55,7 +55,8 @@ function editProduct(index, nameProduct, priceValue){
     inputPrice.setAttribute('data-mask-selectonfocus', 'true');
     inputPrice.setAttribute('type', 'text');
     inputPrice.setAttribute('placeholder', 'Preço');
-    inputPrice.setAttribute('name', 'price');
+    inputPrice.setAttribute('name', 'Price');
+    inputPrice.setAttribute('asp-for', 'TypeProduct.Price');
     inputPrice.setAttribute('value', priceValue);
 
     priceContainer.appendChild(inputPrice);
