@@ -59,7 +59,7 @@ namespace ProjectInter.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        void IdOrderRepository.GetSingleOrder(int idOrder)
+        public void GetSingleOrder(int idOrder)
         {
             throw new System.NotImplementedException();
         }
