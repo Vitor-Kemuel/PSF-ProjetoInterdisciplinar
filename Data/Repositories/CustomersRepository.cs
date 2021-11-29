@@ -109,7 +109,9 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes where situacao = 1";
+                cmd.CommandText = "SELECT id_pessoas, nome, celular, email, senha, cpf, endereco, complemento, numero, bairro, cep FROM v_listaClientes where situacao = @situacao";
+
+                cmd.Parameters.AddWithValue("@situacao", Constants.ATIVO);
                
                 SqlDataReader reader = cmd.ExecuteReader();
 
