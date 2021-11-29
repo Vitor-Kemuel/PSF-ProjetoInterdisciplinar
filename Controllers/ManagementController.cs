@@ -39,14 +39,12 @@ namespace ProjectInter.Controllers
             repository.Create(employees);
             return RedirectToAction("Index");
         }
-
         [HttpGet]
         public ActionResult UpdateEmployee(int idEmployee)
         {
             var employee = repository.GetSingleEmployee(idEmployee);
             return View(employee);
         }
-
         [HttpPost]
         public ActionResult UpdateEmployee(int idEmployee, Employees employees)
         {

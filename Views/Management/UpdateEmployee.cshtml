@@ -12,7 +12,7 @@
 <div id="table">
     <form id="formCadastro" asp-controller="Management" asp-action="UpdateEmployee" method="POST">
         <div class="formLine">
-            <input id="idEmployee" value="@Model.IdPerson" style="display: none;">
+            <input name="idEmployee" value="@Model.IdPerson" style="display: none;">
             <input id="employeeName" value="@Model.Name" class="formInput" type="text" placeholder="Nome" name="Name">
             <input id="employeeCPF" value="@Model.Wage" class="formInput" data-mask="##.##0,00" data-mask-reverse="true" type="text" placeholder="Salario" name="Wage">
             <input id="employeeResponsibility" value="@Model.Responsibility" class="formInput" type="text" placeholder="Cargo" name="Responsibility">
