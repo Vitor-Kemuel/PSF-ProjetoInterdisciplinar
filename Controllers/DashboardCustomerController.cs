@@ -38,7 +38,7 @@ namespace ProjectInter.Controllers
             return View(customer);
         }
         [HttpPost]
-        public ActionResult UpdateCustomer( int idCustomer ,Customers customer)
+        public ActionResult UpdateCustomer( int idCustomer, Customers customer)
         {
             repository.Update(idCustomer, customer);
             return RedirectToAction("CustomerList");
