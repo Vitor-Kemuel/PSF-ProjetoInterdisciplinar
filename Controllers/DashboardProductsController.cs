@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectInter.Models;
 using ProjectInter.Data.Interfaces;
-using System.IO;
 using System;
-
+using System.IO;
+using System.Text.Json;
 
 namespace ProjectInter.Controllers
 {
@@ -24,7 +24,7 @@ namespace ProjectInter.Controllers
             List<Products> products = repositoryProducts.GetAllProducts();
             return products;
         }
-
+        [HttpGet]
         public ActionResult NewOrder()
         {
             return View(GetProductsFromView());
@@ -43,9 +43,9 @@ namespace ProjectInter.Controllers
                 repositoryProducts.UpdateProduct(idProduct, name, Convert.ToDouble(price));
             else
                 repositoryPurchase.Create(amount, idProduct, inventory);
-                
-            return RedirectToAction("Inventory");    
-        }    
+
+            return RedirectToAction("Inventory");
+        }
         [HttpGet]
         public ActionResult NewProduct()
         {
@@ -76,6 +76,36 @@ namespace ProjectInter.Controllers
         {
             repositoryProducts.Delete(idProduct);
             return RedirectToAction("Inventory");
+        }
+
+        [HttpPost]
+        public ActionResult NewOrder(CartProduct cart)
+        {
+            // Console.WriteLine(cart.IdPrimary);
+            // foreach (var item in cart.IdAdd)
+            // {
+            //     Console.WriteLine(item);
+            // }
+            string carrinho = HttpContext.Session.GetString("carrinho");
+
+            List<CartProduct> itens = null;
+
+            if(carrinho == null)
+            {
+                itens = new List<CartProduct>();
+            }
+            else
+            {
+                itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
+            }
+
+            itens.Add(cart);
+
+            string jsonString = JsonSerializer.Serialize(itens);
+
+            HttpContext.Session.SetString("carrinho", jsonString);
+
+            return RedirectToAction("NewOrder");
         }
     }
 }
