@@ -12,9 +12,10 @@
 <div id="table">
     @foreach (var product in Model)
     {
-        <form>
+        <form asp-controller="DashboardProducts" asp-action="NewOrder" method="POST">
             @if (product.TypeProduct.TypeProduct == 0)
             {
+                <input name="IdPrimary" value="@product.IdProducts" style="display: none;">
                 <div class="productCard">
                     <img class="productImage" src="/uploads/@product.Image">
                     <div class="productInfo">
@@ -28,8 +29,8 @@
                                 {
                                     @if (adicional.TypeProduct.TypeProduct == 1)
                                     {
-                                        <input id="@adicional.Name" type="checkbox">
-                                        <label for="@adicional.Name">@adicional.Name</label>
+                                        <input asp-for="IdAdd" name="IdAdd" id="@adicional.Name @adicional.IdProducts" value="@adicional.IdProducts" type="checkbox">
+                                        <label for="@adicional.Name @adicional.IdProducts">@adicional.Name</label>
                                     }
                                 }
                             </div>
