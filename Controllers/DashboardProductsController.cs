@@ -183,6 +183,10 @@ namespace ProjectInter.Controllers
             {
                 itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
             }
+            else
+            {
+                return RedirectToAction("inventory");
+            }
 
             Console.WriteLine(itens);
             foreach (var item in itens)
@@ -213,10 +217,10 @@ namespace ProjectInter.Controllers
 
             foreach (var productForCart in itens)
             {
-                
+
                 foreach (var productForAllProduct in allProducts)
                 {
-                    
+
                     if(productForAllProduct.IdProducts == productForCart.IdPrimary)
                     {
                         Products cartProduct = productForAllProduct;
@@ -237,7 +241,7 @@ namespace ProjectInter.Controllers
                                 }
                             }
                         }
-                        
+
                         cartProduct.Adicionais = adic;
                         productsOrders.Quantify = amoutn;
                         productsOrders.Produtos = cartProduct;
@@ -253,11 +257,13 @@ namespace ProjectInter.Controllers
             order.OrderDelivery = DateTime.Now;
             order.Itens = listaProductOrder;
             order.Situation = 2;
-            order.Customer.IdPerson = idCustomer;
+            Customers c = new Customers();
+            c.IdPerson = idCustomer;
+            order.Customer = c;
 
 
 
-            
+
             repositoryOrder.Create(order);
             return RedirectToAction("Inventory");
         }
