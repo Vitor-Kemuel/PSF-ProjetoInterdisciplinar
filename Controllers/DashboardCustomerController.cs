@@ -49,5 +49,11 @@ namespace ProjectInter.Controllers
             repository.Delete(idCustomer);
             return RedirectToAction("CustomerList");
         }
+        [HttpGet]
+        public ActionResult CartCustomer()
+        {
+            var customers = repository.GetAllCustomers();
+            return View(customers);
+        }
     }
 }

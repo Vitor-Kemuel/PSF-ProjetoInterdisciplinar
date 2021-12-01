@@ -111,7 +111,16 @@ namespace ProjectInter.Controllers
         {
             string carrinho = HttpContext.Session.GetString("carrinho");
 
-            List<CartProduct> itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
+            List<CartProduct> itens = null;
+
+            if (carrinho != null)
+            {
+                itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
+            }
+            else
+            {
+                return View(null);
+            }
 
             Console.WriteLine(itens);
             foreach (var item in itens)
@@ -160,6 +169,70 @@ namespace ProjectInter.Controllers
 
             return View(retorno);
 
+        }
+        [HttpGet]
+        public void ToOrder(int idCustomer)
+        {
+            string carrinho = HttpContext.Session.GetString("carrinho");
+
+            List<CartProduct> itens = null;
+
+            if (carrinho != null)
+            {
+                itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
+            }
+
+            Console.WriteLine(itens);
+            foreach (var item in itens)
+            {
+                Console.WriteLine("Product");
+                Console.WriteLine(item.IdPrimary);
+                Console.WriteLine("Product Amount");
+                Console.WriteLine(item.Amount);
+                foreach (var add in item.IdAdd)
+                {
+                    Console.WriteLine("Product ADD");
+                    Console.WriteLine(add);
+                }
+
+            }
+
+            List<Products> allProducts = repositoryProducts.GetAllProducts();
+
+            List<Products> retorno = new List<Products>();
+
+            foreach (var productForCart in itens)
+            {
+                foreach (var productForAllProduct in allProducts)
+                {
+                    if(productForAllProduct.IdProducts == productForCart.IdPrimary)
+                    {
+                        Products cartProduct = productForAllProduct;
+                        List<Products> adic = new List<Products>();
+                        foreach (var aditionaisProduct in productForCart.IdAdd)
+                        {
+                            foreach (var productAllAditions in allProducts)
+                            {
+                                if(aditionaisProduct == productAllAditions.IdProducts)
+                                {
+                                    Products add = productAllAditions;
+                                    adic.Add(add);
+                                }
+                            }
+                        }
+                        cartProduct.Adicionais = adic;
+                        retorno.Add(cartProduct);
+                    }
+
+                }
+            }
+
+            /*
+                função que faz o pedido (retorno idCustomer)
+                id de quem é = id
+            */
+
+            // return View(retorno);
         }
     }
 }
