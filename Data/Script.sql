@@ -243,8 +243,8 @@ CREATE PROCEDURE delProduto
 	@situacao   bit
 )
 as
-begin 
-	UPDATE PRODUTOS SET situacao = @situacao  WHERE id_produtos = @id_produto 
+begin
+	UPDATE PRODUTOS SET situacao = @situacao  WHERE id_produtos = @id_produto
 end
 go
 
@@ -306,7 +306,7 @@ go
 
 create view v_listaRegVendas
 as
-	select ped.cod_pedidos, ped.observacoes, ped.situacao, ped.data_venda, ped.pedido_lido, ped.pedido_produzindo, ped.pedido_entregue, prop.id_produtos, prop.quantidade, prop.valor_total,pe.id_pessoas, pe.celular, pe.email, pe.nome, pe.senha, cli.cpf, fun.cargo, fun.salario
+	select ped.situacao, ped.data_venda, ped.pedido_lido, ped.pedido_produzindo, ped.pedido_entregue, prop.id_produtos, prop.quantidade, pe.id_pessoas, pe.celular, pe.email, pe.nome, pe.senha, cli.cpf, fun.cargo, fun.salario
 	from PEDIDOS ped, PRODUTOS_PEDIDOS prop, PESSOAS pe, CLIENTES cli, FUNCIONARIOS fun
 	where pe.id_pessoas = cli.id_pessoas and pe.id_pessoas = ped.id_clientes and ped.id_pedidos = prop.id_pedidos
 go
@@ -346,11 +346,11 @@ go
 --------------------------------VIEW ITENS PEDIDOS------------------------------------------
 --------------------------------------------------------------------------------------------
 
+
 create view v_itensPed
 as
 	select pp.id_produtos, pp.id_pedidos, pp.quantidade
 	from PRODUTOS_PEDIDOS pp
-	where pp.id_produtos = pp.id_pedidos
 go
 
 select * from v_itensPed
@@ -490,7 +490,7 @@ create procedure altFuncionario(
 	@situacao        bit,         -- 0 = Ativo e 1 = Desativo
 	@id_pessoas      int,
 	@salario         float,
-	@cargo			 varchar(100)	
+	@cargo			 varchar(100)
 )
 as
 begin
@@ -498,7 +498,3 @@ begin
 	update FUNCIONARIOS   set salario =  @salario, cargo = @cargo where id_pessoas = @id_pessoas
 end
 go
-
-
-
-
