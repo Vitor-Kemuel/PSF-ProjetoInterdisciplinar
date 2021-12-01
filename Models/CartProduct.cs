@@ -6,5 +6,6 @@ namespace ProjectInter.Models
     {
         public int IdPrimary { get; set; }
         public List<int> IdAdd { get; set; }
+        public int Amount { get; set; }
     }
 }
