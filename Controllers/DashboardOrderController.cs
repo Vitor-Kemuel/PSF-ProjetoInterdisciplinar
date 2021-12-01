@@ -16,8 +16,6 @@ namespace ProjectInter.Controllers
             order01.IdOrder = 1;
             order01.DateToSell = new DateTime(2021, 11, 16, 18, 25, 00);
             order01.Situation = 3;
-            order01.CodeOrder = "001282";
-            order01.Observations = "Sem cebola";
             // order01.QuantityItens = 2; quantidade deve ser por itens
             order01.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order01.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
@@ -27,8 +25,6 @@ namespace ProjectInter.Controllers
             order02.IdOrder = 2;
             order02.DateToSell = new System.DateTime(2021, 11, 28);
             order02.Situation = 3;
-            order02.CodeOrder = "001282";
-            order02.Observations = "Sem cebola";
             order02.OrderRead = new System.DateTime(2021, 11, 28, 15, 20, 0);
             order02.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order02.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
@@ -37,8 +33,6 @@ namespace ProjectInter.Controllers
             order03.IdOrder = 3;
             order03.DateToSell = new System.DateTime(2021, 11, 16);
             order03.Situation = 3;
-            order03.CodeOrder = "001282";
-            order03.Observations = "Sem cebola";
             order03.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order03.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order03.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
@@ -47,8 +41,6 @@ namespace ProjectInter.Controllers
             order04.IdOrder = 4;
             order04.DateToSell = new System.DateTime(2021, 11, 16);
             order04.Situation = 3;
-            order04.CodeOrder = "001282";
-            order04.Observations = "Sem cebola";
             order04.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order04.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order04.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
@@ -57,8 +49,6 @@ namespace ProjectInter.Controllers
             order05.IdOrder = 5;
             order05.DateToSell = new System.DateTime(2021, 11, 16);
             order05.Situation = 3;
-            order05.CodeOrder = "001282";
-            order05.Observations = "Sem cebola";
             order05.OrderRead = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order05.OrderAccepted = new System.DateTime(2021, 11, 26, 15, 20, 0);
             order05.OrderDelivery = new System.DateTime(2021, 11, 26, 15, 20, 0);
