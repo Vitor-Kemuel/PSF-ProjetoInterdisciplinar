@@ -50,7 +50,7 @@ go
 create table TIPO_PRODUTOS(
 id_tipo_produto   int           not null  primary key references PRODUTOS,
 preco             decimal(10,2) not null,
-tipo_produto      int           not null,-- 0 = primário e 1 - adicional
+tipo_produto      int           not null, -- 0 = primário e 1 - adicional
 tipo_medida       int           not null, -- 0 = ml e 1 =  quantidade
 check(tipo_medida  in (0, 1)),
 check(tipo_produto in (0, 1))
@@ -498,3 +498,18 @@ begin
 	update FUNCIONARIOS   set salario =  @salario, cargo = @cargo where id_pessoas = @id_pessoas
 end
 go
+
+
+CREATE VIEW V_LISTA_PEDIDOS
+AS
+	SELECT P.id_pedidos,  P.id_clientes, P.data_venda, P.pedido_entregue, P.pedido_lido, P.pedido_produzindo, P.situacao
+	FROM PEDIDOS P
+GO
+
+CREATE VIEW V_PRODUTOS_PEDIDOS
+AS
+	SELECT P.id_pedidos, P.id_clientes, P.data_venda, P.pedido_entregue, P.pedido_lido, P.pedido_produzindo, P.situacao, PD.id_produtos, PD.quantidade
+	FROM PEDIDOS P
+	INNER JOIN PRODUTOS_PEDIDOS PD
+	ON PD.id_pedidos = P.id_pedidos
+GO

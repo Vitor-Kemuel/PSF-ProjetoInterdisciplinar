@@ -46,8 +46,6 @@ namespace ProjectInter.Data.Repositories
                     cmdItem.Parameters.AddWithValue("@id_pedidos", idPedido);
                     cmdItem.Parameters.AddWithValue("@id_produtos", item.Produtos.IdProducts);
                     cmdItem.Parameters.AddWithValue("@quantidade", item.Quantify);
-                    // cmd.Parameters.AddWithValue("@valor_total", item.ValueTotal); /* Naturalmente é calculado e não cadastrado */
-
 
                     cmdItem.ExecuteNonQuery();
                 }
@@ -62,7 +60,61 @@ namespace ProjectInter.Data.Repositories
 
         public List<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                 List<Order> orders = new List<Order>();
+            List<ProductsOrders> listProductsOrders = new List<ProductsOrders>();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+
+            cmd.CommandText = "V_LISTA_PEDIDOS";
+            cmd.CommandType = CommandType.TableDirect;
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while(reader.Read()){
+                Order order = new Order(){
+                    IdOrder = (int) reader["id_pedidos"],
+                    DateToSell = (DateTime) reader["data_venda"],
+                    Situation = (int) reader["situacao"],
+                    OrderAccepted = (DateTime) reader["pedido_produzindo"],
+                    OrderRead = (DateTime) reader["pedido_lido"],
+                    OrderDelivery = (DateTime) reader["pedido_entregue"],
+                    Customer = new Customers(){
+                        IdPerson = (int) reader["id_clientes"],
+                    }
+                };
+
+                foreach (var item in order.Itens)
+                {
+                   SqlCommand cmdItem = new SqlCommand();
+
+                   cmdItem.CommandText = "V_PRODUTOS_PEDIDOS where id_pedidos = @id_pedidos";
+                   cmd.Parameters.AddWithValue("@id_pedidos", order.IdOrder);
+
+                   item.IdPedido = (int) reader["id_pedidos"];
+                   item.Quantify = (int) reader["quantidade"];
+                   item.Products.IdProducts = (int) reader["id_produtos"];
+
+                   listProductsOrders.Add(item);
+                }
+
+                order.Itens = listProductsOrders;
+                orders.Add(order);
+            }
+
+            return orders;
+            }
+            catch (Exception ex)
+            {
+                
+                throw new Exception(ex.Message);
+            }
+            finally{
+                Dispose();
+            }
         }
 
         public Order GetSingleOrder(int idOrder)
@@ -70,68 +122,5 @@ namespace ProjectInter.Data.Repositories
             throw new NotImplementedException();
         }
 
-        // public List<Order> GetAllOrders()
-        // {
-        //     try
-        //     {
-        //         List<Order> order = new List<Order>();
-
-        //         SqlCommand cmd = new SqlCommand();
-        //         cmd.Connection = connection;
-        //         cmd.CommandText = "SELECT id_produtos, id_pedidos, quantidade FROM v_itensPed";
-
-        //         SqlDataReader reader = cmd.ExecuteReader();
-
-        //         while(reader.Read()){
-        //             Order orders = new Order(){
-        //                 IdProducts = (int) reader["id_produtos"],
-        //                 IdOrder = (int) reader["id_pedidos"],
-        //                 Quantify = (int)reader["quantidade"],
-        //                 }
-        //             };
-        //             order.Add(orders);
-        //         }
-        //         return order;
-
-        //     catch (Exception ex)
-        //     {
-        //         throw new Exception(ex.Message);
-        //     }finally{
-        //         Dispose();
-        //     };
-        // }
-
-        // public void GetSingleOrder(int idOrder)
-        // {
-        //     try
-        //     {
-        //         SqlCommand cmd = new SqlCommand();
-        //         cmd.Connection = connection;
-
-        //         cmd.CommandText = "SELECT id_produtos, id_pedidos, quantidade FROM v_itensPed WHERE id_pedidos= @id";
-        //         cmd.Parameters.AddWithValue("@id", IdOrder);
-
-        //         SqlDataReader reader = cmd.ExecuteReader();
-
-        //         if(reader.Read()){
-        //             Order orders = new Order(){
-        //                 IdProducts = (int) reader["id_produtos"],
-        //                 IdOrder = (int) reader["id_pedidos"],
-        //                 Quantify = (int)reader["quantidade"],
-        //                 }
-
-        //             };
-        //             return orders;
-        //         }
-
-        //         return null;
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         throw new Exception(ex.Message);
-        //     } finally {
-        //         Dispose();
-        //     }
-        // }
     }
 }
