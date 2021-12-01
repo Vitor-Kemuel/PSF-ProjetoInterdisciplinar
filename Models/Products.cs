@@ -12,6 +12,8 @@ namespace ProjectInter.Models
         public double Inventory { get; set; }
         public int Status { get; set; } // 1 - Ativo 2 - Inativo
 
+        public List<Products> Adicionais { get; set; }
+
         #region Foreign Key
             public TypeProducts TypeProduct { get; set; }
             public List<ProductsOrders> Itens { get; set; }

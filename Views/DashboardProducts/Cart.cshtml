@@ -1,0 +1,46 @@
+@using ProjectInter.Models
+@using System.Globalization
+@model List<Products>
+
+@{
+    ViewBag.Title = "Point Dashboard";
+    ViewBag.Styles = "/css/dashboard/inventory.css";
+    ViewBag.Script = "/js/dashboard/inventory.js";
+    Layout = "/Views/Shared/_layoutDashboard.cshtml";
+}
+
+@foreach(var product in Model)
+{
+    <div class="productCard">
+        @if (product.TypeProduct.TypeProduct == 0)
+        {
+            <img class="productImage" src="/uploads/@product.Image">
+        }
+        <div class="productInfo">
+            <div class="invetoriContainer">
+                <div>
+                    <input type="text" name="idProduct" value="@product.IdProducts" style="display: none;" />
+                    <input type="text" name="inventory" value="@product.Inventory" style="display: none;" />
+                    <div id="productNameContainer @product.IdProducts" class="productNameContainer">
+                        <h2 id="productName @product.IdProducts" class="productName">@product.Name</h2>
+                        <hr id="productLine @product.IdProducts" class="productLine">
+                    </div>
+                    <div class="inventoryInformation">
+                        <div class="cardLine">
+                            <h3 class="estoqueTitle">Estoque:</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="priceContainer">
+                    <div id="productPriceContaierDiv @product.IdProducts" class="cardLine priceLine">
+                        <p id="productPriceContaier @product.IdProducts" class="productInformation productPrice">
+                            Preço: R$<i id="priceValue @product.IdProducts">@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:N2}", product.TypeProduct.Price)</i>
+                        </p>
+                    </div>
+                    <div id="productEditBtnContainer @product.IdProducts" class="cardLine priceLine">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
