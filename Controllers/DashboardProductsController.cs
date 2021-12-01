@@ -111,7 +111,16 @@ namespace ProjectInter.Controllers
         {
             string carrinho = HttpContext.Session.GetString("carrinho");
 
-            List<CartProduct> itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
+            List<CartProduct> itens = null;
+
+            if (carrinho != null)
+            {
+                itens = JsonSerializer.Deserialize<List<CartProduct>>(carrinho);
+            }
+            else
+            {
+                return View(null);
+            }
 
             Console.WriteLine(itens);
             foreach (var item in itens)
