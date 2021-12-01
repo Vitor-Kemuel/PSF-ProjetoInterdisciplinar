@@ -107,22 +107,6 @@ namespace ProjectInter.Controllers
 
             return RedirectToAction("NewOrder");
         }
-        public List<Products> GetCartProducts(List<CartProduct> cart)
-        {
-            List<Products> retorno = new List<Products>();
-
-            foreach (var aux in cart)
-            {
-                Products item = repositoryProducts.GetSingleProducts(aux.IdPrimary);
-                foreach (var adicionais in aux.IdAdd)
-                {
-                    Products adicional = repositoryProducts.GetSingleProducts(adicionais);
-                    item.Adicionais.Add(adicional);
-                }
-                retorno.Add(item);
-            }
-            return retorno;
-        }
         public ActionResult Cart()
         {
             string carrinho = HttpContext.Session.GetString("carrinho");
