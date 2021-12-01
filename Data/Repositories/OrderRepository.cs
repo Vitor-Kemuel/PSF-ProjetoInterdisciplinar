@@ -17,29 +17,36 @@ namespace ProjectInter.Data.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "regVenda" + "SELECT @@IDENTITY";
+                cmd.CommandText = "regPedidos";
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id_cliente", order.Customer.IdPerson);
                 cmd.Parameters.AddWithValue("@situacao", order.Situation);
                 cmd.Parameters.AddWithValue("@data_venda", order.DateToSell);
                 cmd.Parameters.AddWithValue("@pedido_lido", order.OrderRead);
-                cmd.Parameters.AddWithValue("@pedido_produzido", order.OrderAccepted);
+                cmd.Parameters.AddWithValue("@pedido_produzindo", order.OrderAccepted);
                 cmd.Parameters.AddWithValue("@pedido_entregue", order.OrderDelivery);
+
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "SELECT @@IDENTITY";
+                cmd.CommandType = CommandType.Text;
 
                 var idPedido = Convert.ToInt16(cmd.ExecuteScalar());
 
-
                 foreach( var item in order.Itens){
 
+
                     SqlCommand cmdItem = new SqlCommand();
-                    cmdItem.CommandText = "PRODUTO_PEDIDOS";
+                    cmdItem.Connection = connection;
+
+                    cmdItem.CommandText = "itensPed";
                     cmdItem.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id_pedido", item.IdPedido);
-                    cmd.Parameters.AddWithValue("@id_produto", item.Produtos.IdProducts);
-                    cmd.Parameters.AddWithValue("@quantidade", item.Quantify);
-                    cmd.Parameters.AddWithValue("@valor_total", item.ValueTotal); /* Naturalmente é calculado e não cadastrado */
+                    cmdItem.Parameters.AddWithValue("@id_pedidos", idPedido);
+                    cmdItem.Parameters.AddWithValue("@id_produtos", item.Produtos.IdProducts);
+                    cmdItem.Parameters.AddWithValue("@quantidade", item.Quantify);
+                    // cmd.Parameters.AddWithValue("@valor_total", item.ValueTotal); /* Naturalmente é calculado e não cadastrado */
 
 
                     cmdItem.ExecuteNonQuery();
