@@ -13,11 +13,13 @@ namespace ProjectInter.Controllers
     {
         private IProductsRepository repositoryProducts;
         private IPurchaseRepository repositoryPurchase;
+        private IOrderRepository repositoryOrder;
 
-        public DashboardProductsController(IProductsRepository repositoryProducts, IPurchaseRepository repositoryPurchase)
+        public DashboardProductsController(IProductsRepository repositoryProducts, IPurchaseRepository repositoryPurchase, IOrderRepository repositoryOrder)
         {
             this.repositoryProducts = repositoryProducts;
             this.repositoryPurchase = repositoryPurchase;
+            this.repositoryOrder = repositoryOrder;
         }
 
         private List<Products> GetProductsFromView(){
@@ -171,7 +173,7 @@ namespace ProjectInter.Controllers
 
         }
         [HttpGet]
-        public void ToOrder(int idCustomer)
+        public ActionResult ToOrder(int idCustomer)
         {
             string carrinho = HttpContext.Session.GetString("carrinho");
 
@@ -201,14 +203,29 @@ namespace ProjectInter.Controllers
 
             List<Products> retorno = new List<Products>();
 
+            List<int> quantidade = new List<int>();
+
+            Order order = new Order();
+            List<ProductsOrders> listaProductOrder = new List<ProductsOrders>();
+
+            var now = DateTime.Now;
+
+
             foreach (var productForCart in itens)
             {
+                
                 foreach (var productForAllProduct in allProducts)
                 {
+                    
                     if(productForAllProduct.IdProducts == productForCart.IdPrimary)
                     {
                         Products cartProduct = productForAllProduct;
                         List<Products> adic = new List<Products>();
+                        var amoutn = productForCart.Amount;
+
+
+                        ProductsOrders productsOrders = new ProductsOrders();
+
                         foreach (var aditionaisProduct in productForCart.IdAdd)
                         {
                             foreach (var productAllAditions in allProducts)
@@ -220,19 +237,29 @@ namespace ProjectInter.Controllers
                                 }
                             }
                         }
+                        
                         cartProduct.Adicionais = adic;
-                        retorno.Add(cartProduct);
+                        productsOrders.Quantify = amoutn;
+                        productsOrders.Produtos = cartProduct;
+                        listaProductOrder.Add(productsOrders);
                     }
 
                 }
             }
 
-            /*
-                função que faz o pedido (retorno idCustomer)
-                id de quem é = id
-            */
+            order.DateToSell = DateTime.Now;
+            order.OrderRead = DateTime.Now;
+            order.OrderAccepted = DateTime.Now;
+            order.OrderDelivery = DateTime.Now;
+            order.Itens = listaProductOrder;
+            order.Situation = 2;
+            order.Customer.IdPerson = idCustomer;
 
-            // return View(retorno);
+
+
+            
+            repositoryOrder.Create(order);
+            return RedirectToAction("Inventory");
         }
     }
 }
