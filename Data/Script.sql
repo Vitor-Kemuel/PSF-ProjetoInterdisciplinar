@@ -508,8 +508,12 @@ GO
 
 CREATE VIEW V_PRODUTOS_PEDIDOS
 AS
-	SELECT P.id_pedidos, P.id_clientes, P.data_venda, P.pedido_entregue, P.pedido_lido, P.pedido_produzindo, P.situacao, PD.id_produtos, PD.quantidade
+	SELECT P.id_pedidos, P.id_clientes, P.data_venda, P.pedido_entregue, P.pedido_lido, P.pedido_produzindo, P.situacao, PD.id_produtos, PD.quantidade, PROD.nome, PROD.estoque, (TP.preco * PD.quantidade) AS valor_total
 	FROM PEDIDOS P
 	INNER JOIN PRODUTOS_PEDIDOS PD
 	ON PD.id_pedidos = P.id_pedidos
+	INNER JOIN PRODUTOS PROD
+	ON PROD.id_produtos = PD.id_produtos
+	INNER JOIN TIPO_PRODUTOS TP
+	ON TP.id_tipo_produto = PROD.id_produtos
 GO
