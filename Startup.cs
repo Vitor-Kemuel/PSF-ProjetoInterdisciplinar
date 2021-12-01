@@ -20,6 +20,7 @@ namespace ProjectInter
             services.AddTransient<IEmployeesRepository, EmployessRepository>();
             services.AddTransient<IProductsRepository, ProductsRepository>();
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddSession(options =>{
                 options.IdleTimeout = TimeSpan.FromSeconds(3600);
 
