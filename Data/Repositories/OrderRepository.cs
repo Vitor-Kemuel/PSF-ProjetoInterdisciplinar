@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ProjectInter.Data.Repositories
 {
-    public class OrderRepository : BDContext, IdOrderRepository
+    public class OrderRepository : BDContext, IOrderRepository
     {
         public void Create(Order order)
         {
@@ -21,8 +21,6 @@ namespace ProjectInter.Data.Repositories
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id_cliente", order.Customer.IdPerson);
-                cmd.Parameters.AddWithValue("@id_funcionario", order.Employees.IdPerson);
-                cmd.Parameters.AddWithValue("@observacoes", order.Observations);
                 cmd.Parameters.AddWithValue("@situacao", order.Situation);
                 cmd.Parameters.AddWithValue("@data_venda", order.DateToSell);
                 cmd.Parameters.AddWithValue("@pedido_lido", order.OrderRead);
@@ -39,7 +37,7 @@ namespace ProjectInter.Data.Repositories
                     cmdItem.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@id_pedido", item.IdPedido);
-                    cmd.Parameters.AddWithValue("@id_produto", item.IdProduto);
+                    cmd.Parameters.AddWithValue("@id_produto", item.Produtos.IdProducts);
                     cmd.Parameters.AddWithValue("@quantidade", item.Quantify);
                     cmd.Parameters.AddWithValue("@valor_total", item.ValueTotal); /* Naturalmente é calculado e não cadastrado */
 
