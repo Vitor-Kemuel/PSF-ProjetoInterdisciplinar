@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectInter.Data.Repositories;
 using ProjectInter.Data.Interfaces;
+using System;
 
 namespace ProjectInter
 {
@@ -19,6 +20,14 @@ namespace ProjectInter
             services.AddTransient<IEmployeesRepository, EmployessRepository>();
             services.AddTransient<IProductsRepository, ProductsRepository>();
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
+            services.AddSession(options =>{
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+
+                options.Cookie.HttpOnly = true;
+
+                options.Cookie.IsEssential = true;
+
+            });
             services.AddControllersWithViews();
         }
 
@@ -39,6 +48,8 @@ namespace ProjectInter
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
