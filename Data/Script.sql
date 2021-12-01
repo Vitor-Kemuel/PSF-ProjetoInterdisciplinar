@@ -60,9 +60,6 @@ go
 create table PEDIDOS(
 id_pedidos        int            not null   primary key   identity,
 id_clientes       int            not null   references    CLIENTES,
-id_funcionarios   int            not null   references    FUNCIONARIOS,
-cod_pedidos       varchar(40)    not null,
-observacoes       varchar(500),
 situacao          int            not null, -- 1=Leitura do pedido 2=Produzindo 3=Saiu pra entrega
 data_venda        datetime       not null,
 pedido_lido       datetime       not null, --Horario
@@ -295,9 +292,6 @@ go
 create procedure regPedidos
 (
 	@id_cliente        int,
-	@id_funcionario    int,
-	@cod_pedido        varchar(40),
-	@observacoes       varchar(500),
 	@situacao          bit,
 	@data_venda        datetime,
 	@pedido_lido       datetime,
@@ -306,7 +300,7 @@ create procedure regPedidos
 )
 as
 begin
-	insert PEDIDOS values(@id_cliente, @id_funcionario, @cod_pedido, @observacoes, @situacao, @data_venda, @pedido_lido, @pedido_produzindo, @pedido_entregue)
+	insert PEDIDOS values(@id_cliente, @situacao, @data_venda, @pedido_lido, @pedido_produzindo, @pedido_entregue)
 end
 go
 
