@@ -6,8 +6,6 @@ namespace ProjectInter.Models
     public class Order
     {
         public int IdOrder { get; set; }
-        public string CodeOrder { get; set; }
-        public string Observations { get; set; }
         public int Situation { get; set; }
         public DateTime DateToSell {get; set;}
         public DateTime OrderRead { get; set; }
@@ -16,7 +14,6 @@ namespace ProjectInter.Models
 
         #region foreign key
              public List<ProductsOrders> Itens { get; set; }
-             public Employees Employees { get; set; }
              public Customers Customer { get; set; }
         #endregion
     }
