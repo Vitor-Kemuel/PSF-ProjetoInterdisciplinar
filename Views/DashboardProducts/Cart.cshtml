@@ -30,8 +30,14 @@
                             </div>
                             <div class="inventoryInformation">
                                 <div class="cardLine">
-                                    <h3 class="estoqueTitle">Estoque:</h3>
+                                    <h3 class="estoqueTitle">Adicionais:</h3>
                                 </div>
+                                @foreach(var adicional in product.Adicionais)
+                                {
+                                    <div class="cardLine">
+                                        <p>@adicional.Name</p>
+                                    </div>
+                                }
                             </div>
                         </div>
                         <div class="priceContainer">
