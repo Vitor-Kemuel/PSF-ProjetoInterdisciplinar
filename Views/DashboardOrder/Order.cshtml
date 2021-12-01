@@ -20,7 +20,7 @@
                         <p class="dataOrder">@order.DateToSell.ToString("dd/MM/yyyy") &nbsp</p>
                     </div>
                     <div class="consumerName">
-                        <p class="clientName">Joana da Silva Ferreira Dutra de Solza Filho</p>
+                        <p class="clientName">Nome Do Cliente @order.Customer.IdPerson</p>
                     </div>
                 </div>
                 <div class="orderInformationLine">
@@ -28,8 +28,17 @@
                     <p class="orderStatus">Situação: @situacao</p>
                 </div>
                 <div class="orderInformationLine">
-                    <p>+ Detalhes</p>
+                    <p>itens</p>
                 </div>
+                @foreach (var item in order.Itens)
+                {
+                    <div class="orderInformationLine">
+                        <p>@item.Products.IdProducts</p>
+                    </div>
+                }
+                @* <div class="orderInformationLine">
+                    <p>+ Detalhes</p>
+                </div> *@
             </div>
             <div class="orderInformationLine">
                 <div class="timeOrderInformation">

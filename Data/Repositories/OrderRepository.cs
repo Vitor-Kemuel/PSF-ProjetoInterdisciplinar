@@ -63,53 +63,62 @@ namespace ProjectInter.Data.Repositories
 
             try
             {
-                 List<Order> orders = new List<Order>();
-            List<ProductsOrders> listProductsOrders = new List<ProductsOrders>();
+                List<Order> orders = new List<Order>();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
 
-            cmd.CommandText = "V_LISTA_PEDIDOS";
-            cmd.CommandType = CommandType.TableDirect;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-            SqlDataReader reader = cmd.ExecuteReader();
+                // cmd.CommandText = "V_LISTA_PEDIDOS";
+                // cmd.CommandType = CommandType.TableDirect;
+                cmd.CommandText = "SELECT * from V_LISTA_PEDIDOS";
 
-            while(reader.Read()){
-                Order order = new Order(){
-                    IdOrder = (int) reader["id_pedidos"],
-                    DateToSell = (DateTime) reader["data_venda"],
-                    Situation = (int) reader["situacao"],
-                    OrderAccepted = (DateTime) reader["pedido_produzindo"],
-                    OrderRead = (DateTime) reader["pedido_lido"],
-                    OrderDelivery = (DateTime) reader["pedido_entregue"],
-                    Customer = new Customers(){
-                        IdPerson = (int) reader["id_clientes"],
-                    }
-                };
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                foreach (var item in order.Itens)
-                {
-                   SqlCommand cmdItem = new SqlCommand();
-
-                   cmdItem.CommandText = "V_PRODUTOS_PEDIDOS where id_pedidos = @id_pedidos";
-                   cmd.Parameters.AddWithValue("@id_pedidos", order.IdOrder);
-
-                   item.IdPedido = (int) reader["id_pedidos"];
-                   item.Quantify = (int) reader["quantidade"];
-                   item.Products.IdProducts = (int) reader["id_produtos"];
-
-                   listProductsOrders.Add(item);
+                while(reader.Read()){
+                    Order order = new Order(){
+                        IdOrder = (int) reader["id_pedidos"],
+                        DateToSell = (DateTime) reader["data_venda"],
+                        Situation = (int) reader["situacao"],
+                        OrderAccepted = (DateTime) reader["pedido_produzindo"],
+                        OrderRead = (DateTime) reader["pedido_lido"],
+                        OrderDelivery = (DateTime) reader["pedido_entregue"],
+                        Customer = new Customers(){
+                            IdPerson = (int) reader["id_clientes"],
+                        }
+                    };
+                    orders.Add(order);
                 }
 
-                order.Itens = listProductsOrders;
-                orders.Add(order);
-            }
+                foreach (var item in orders)
+                {
+                    List<ProductsOrders> listProductsOrders = new List<ProductsOrders>();
 
-            return orders;
+                    SqlCommand cmdItem = new SqlCommand();
+                    cmdItem.Connection = connection;
+
+                    cmdItem.CommandText = "SELECT * FROM V_PRODUTOS_PEDIDOS where id_pedidos = @id_pedidos";
+                    cmdItem.Parameters.AddWithValue("@id_pedidos", item.IdOrder);
+
+                    SqlDataReader reader2 = cmdItem.ExecuteReader();
+
+                    while(reader2.Read()){
+                        ProductsOrders p = new ProductsOrders(){
+                            IdPedido = (int) reader2["id_pedidos"],
+                            Quantify = (int) reader2["quantidade"],
+                            Products = new Products(){
+                                IdProducts = (int) reader2["id_produtos"]
+                            }
+                        };
+                        listProductsOrders.Add(p);
+                    }
+                    item.Itens = listProductsOrders;
+                }
+
+                return (orders);
             }
             catch (Exception ex)
             {
-                
                 throw new Exception(ex.Message);
             }
             finally{

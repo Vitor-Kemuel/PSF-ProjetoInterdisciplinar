@@ -261,10 +261,9 @@ namespace ProjectInter.Controllers
             c.IdPerson = idCustomer;
             order.Customer = c;
 
-
-
-
             repositoryOrder.Create(order);
+
+            HttpContext.Session.Clear();
             return RedirectToAction("Inventory");
         }
     }

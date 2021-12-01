@@ -9,7 +9,7 @@ namespace ProjectInter.Data.Repositories
         // Construtor
         public BDContext()
         {
-            var strConnection = "Data Source = localhost; Integrated Security = True; Initial Catalog = point_summer_foods_dev";
+            var strConnection = "Data Source = localhost; Integrated Security = True; Initial Catalog = point_summer_foods_dev; MultipleActiveResultSets=true";
             connection = new SqlConnection(strConnection);
             connection.Open();
             Console.WriteLine("Conexão Aberta");
